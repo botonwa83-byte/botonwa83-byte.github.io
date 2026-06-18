@@ -3,25 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="King Top 教育 App 产品矩阵：WordPulse、MathApex、PhysApex、ChemApex、BioApex、ChinApex、PolApex。">
-  <meta name="theme-color" content="#111514">
+  <meta name="description" content="King Top 初高中教育 App 产品矩阵：WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、PolApex。">
+  <meta name="theme-color" content="#f6fbff">
   <title>King Top · 教育 App 产品矩阵</title>
   <style>
     :root {
-      --ink: #141817;
-      --muted: #65706c;
-      --paper: #f5f7f2;
-      --surface: #ffffff;
-      --line: rgba(20, 24, 23, .12);
-      --deep: #111514;
-      --gold: #d9a441;
-      --red: #d94f3f;
-      --blue: #3e7fc4;
-      --green: #2aa86a;
-      --teal: #22a6a1;
-      --violet: #7162d8;
+      --ink: #101723;
+      --muted: #5b6675;
+      --paper: #f6fbff;
+      --surface: rgba(255, 255, 255, .84);
+      --line: rgba(16, 23, 35, .12);
+      --deep: #14313a;
+      --gold: #f3b23e;
+      --red: #ff5a68;
+      --blue: #2f80ed;
+      --green: #25a767;
+      --teal: #18bcb5;
+      --violet: #7357e8;
+      --cyan: #00a8ff;
       --radius: 8px;
-      --shadow: 0 18px 44px rgba(16, 24, 21, .12);
+      --shadow: 0 22px 58px rgba(30, 56, 82, .14);
+      --shadow-strong: 0 30px 90px rgba(31, 90, 140, .22);
     }
 
     * {
@@ -36,8 +38,16 @@
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--ink);
-      background: var(--paper);
+      background:
+        linear-gradient(115deg, rgba(0, 168, 255, .10), transparent 30%),
+        linear-gradient(245deg, rgba(255, 90, 104, .10), transparent 28%),
+        linear-gradient(180deg, #fbfeff 0%, var(--paper) 42%, #f8fbf2 100%);
       line-height: 1.65;
+    }
+
+    body::selection {
+      color: #fff;
+      background: var(--blue);
     }
 
     a {
@@ -56,10 +66,11 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(17, 21, 20, .82);
-      color: #fff;
+      background: rgba(255, 255, 255, .74);
+      color: var(--ink);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255, 255, 255, .10);
+      border-bottom: 1px solid rgba(255, 255, 255, .78);
+      box-shadow: 0 10px 34px rgba(37, 79, 118, .08);
     }
 
     .nav {
@@ -90,36 +101,61 @@
       background: conic-gradient(from 210deg, var(--red), var(--gold), var(--teal), var(--blue), var(--red));
       font-size: 18px;
       letter-spacing: 0;
+      box-shadow: 0 8px 22px rgba(47, 128, 237, .22);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       gap: 18px;
-      color: rgba(255, 255, 255, .72);
+      color: rgba(16, 23, 35, .66);
       font-size: 14px;
     }
 
     .nav-links a:hover {
-      color: #fff;
+      color: var(--blue);
     }
 
     .hero {
       min-height: 88svh;
       padding: 112px 0 64px;
-      color: #fff;
+      color: var(--ink);
       background:
-        linear-gradient(rgba(17, 21, 20, .70), rgba(17, 21, 20, .78)),
-        url("assets/wordpulse.png") 5% 18% / 112px 112px no-repeat,
-        url("assets/mathapex.png") 82% 12% / 124px 124px no-repeat,
-        url("assets/physapex.png") 94% 44% / 102px 102px no-repeat,
-        url("assets/chemapex.png") 12% 72% / 104px 104px no-repeat,
-        url("assets/bioapex.png") 70% 78% / 116px 116px no-repeat,
-        url("assets/chinapex.png") 28% 8% / 96px 96px no-repeat,
-        #111514;
+        linear-gradient(125deg, rgba(0, 168, 255, .18), transparent 32%),
+        linear-gradient(245deg, rgba(255, 90, 104, .16), transparent 30%),
+        linear-gradient(180deg, #fbfeff 0%, #eff8ff 54%, #fff9e8 100%);
       display: flex;
       align-items: center;
       overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background-image:
+        linear-gradient(rgba(47, 128, 237, .10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 188, 181, .10) 1px, transparent 1px);
+      background-size: 58px 58px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .80), transparent 82%);
+      opacity: .72;
+      transform: rotate(-8deg);
+      animation: gridDrift 22s linear infinite;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 12% -10% auto auto;
+      width: 62vw;
+      height: 36vh;
+      background:
+        linear-gradient(100deg, transparent 0%, rgba(0, 168, 255, .16) 30%, rgba(24, 188, 181, .16) 52%, rgba(255, 90, 104, .12) 72%, transparent 100%);
+      filter: blur(10px);
+      transform: rotate(-14deg);
+      animation: beamPulse 9s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .hero-inner {
@@ -129,14 +165,38 @@
       grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
       gap: 42px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
+
+    .hero-streams {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-streams span {
+      position: absolute;
+      width: min(420px, 42vw);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(47, 128, 237, .42), rgba(24, 188, 181, .36), transparent);
+      transform: rotate(-18deg);
+      opacity: .65;
+      animation: streamSlide 7s ease-in-out infinite;
+    }
+
+    .hero-streams span:nth-child(1) { top: 20%; left: -8%; animation-delay: 0s; }
+    .hero-streams span:nth-child(2) { top: 42%; right: 8%; animation-delay: -2.2s; }
+    .hero-streams span:nth-child(3) { bottom: 19%; left: 18%; animation-delay: -4.4s; }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       margin: 0 0 18px;
-      color: rgba(255, 255, 255, .74);
+      color: rgba(16, 23, 35, .66);
       font-size: 14px;
       font-weight: 700;
     }
@@ -145,7 +205,7 @@
       content: "";
       width: 34px;
       height: 2px;
-      background: var(--gold);
+      background: linear-gradient(90deg, var(--cyan), var(--gold), var(--red));
     }
 
     h1 {
@@ -154,12 +214,16 @@
       font-size: clamp(42px, 6vw, 78px);
       line-height: 1.04;
       letter-spacing: 0;
+      color: transparent;
+      background: linear-gradient(110deg, #101723 0%, #0e6bb8 44%, #118c83 72%, #c05b15 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
     }
 
     .hero-copy {
       max-width: 640px;
       margin: 22px 0 0;
-      color: rgba(255, 255, 255, .80);
+      color: rgba(16, 23, 35, .74);
       font-size: clamp(17px, 2vw, 22px);
     }
 
@@ -180,33 +244,65 @@
       padding: 12px 18px;
       font-weight: 800;
       border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
     }
 
     .button.primary {
-      color: #111514;
-      background: #fff;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      box-shadow: 0 14px 34px rgba(47, 128, 237, .28);
     }
 
     .button.secondary {
-      color: #fff;
-      border-color: rgba(255, 255, 255, .28);
-      background: rgba(255, 255, 255, .08);
+      color: var(--ink);
+      border-color: rgba(47, 128, 237, .22);
+      background: rgba(255, 255, 255, .70);
+      box-shadow: 0 10px 28px rgba(37, 79, 118, .10);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(47, 128, 237, .24);
     }
 
     .app-cloud {
       min-height: 430px;
       position: relative;
+      transition: transform .18s ease-out;
+      will-change: transform;
+    }
+
+    .app-cloud::before {
+      content: "";
+      position: absolute;
+      inset: 12% 8%;
+      border: 1px solid rgba(47, 128, 237, .18);
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(47, 128, 237, .16) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(24, 188, 181, .13) 50%, transparent 51%);
+      border-radius: 50%;
+      transform: rotate(-10deg);
+      animation: radarSpin 18s linear infinite;
     }
 
     .app-tile {
       position: absolute;
       width: 160px;
       padding: 12px;
-      border: 1px solid rgba(255, 255, 255, .16);
+      border: 1px solid rgba(255, 255, 255, .70);
       border-radius: var(--radius);
-      background: rgba(255, 255, 255, .10);
+      background: rgba(255, 255, 255, .72);
       backdrop-filter: blur(16px);
-      box-shadow: 0 22px 52px rgba(0, 0, 0, .26);
+      box-shadow: 0 24px 58px rgba(31, 90, 140, .20);
+      animation: tileFloat 6s ease-in-out infinite;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    a.app-tile:hover,
+    a.app-tile:focus-visible {
+      outline: none;
+      box-shadow: 0 30px 72px rgba(31, 90, 140, .28);
+      border-color: rgba(47, 128, 237, .30);
     }
 
     .app-tile img,
@@ -221,24 +317,24 @@
       display: block;
       font-size: 15px;
       line-height: 1.2;
-      color: #fff;
+      color: var(--ink);
     }
 
     .app-tile span {
       display: block;
       margin-top: 4px;
-      color: rgba(255, 255, 255, .62);
+      color: rgba(16, 23, 35, .58);
       font-size: 12px;
       line-height: 1.35;
     }
 
-    .tile-word { left: 8%; top: 4%; }
-    .tile-math { left: 42%; top: 0; }
-    .tile-phys { right: 2%; top: 25%; }
-    .tile-chem { left: 22%; top: 38%; }
-    .tile-bio { left: 58%; top: 55%; }
-    .tile-chin { left: 0; bottom: 4%; }
-    .tile-pol { right: 17%; bottom: 0; }
+    .tile-word { left: 8%; top: 4%; animation-delay: -.4s; }
+    .tile-math { left: 42%; top: 0; animation-delay: -1.6s; }
+    .tile-phys { right: 2%; top: 25%; animation-delay: -2.4s; }
+    .tile-chem { left: 22%; top: 38%; animation-delay: -3.2s; }
+    .tile-bio { left: 58%; top: 55%; animation-delay: -4s; }
+    .tile-chin { left: 0; bottom: 4%; animation-delay: -4.8s; }
+    .tile-pol { right: 17%; bottom: 0; animation-delay: -5.6s; }
 
     .pol-mark {
       display: grid;
@@ -258,7 +354,10 @@
     }
 
     .section.alt {
-      background: #fff;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .82), rgba(244, 251, 255, .92)),
+        radial-gradient(circle at 12% 20%, rgba(243, 178, 62, .10), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(24, 188, 181, .12), transparent 30%);
     }
 
     .wrap {
@@ -295,20 +394,39 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
-      background: var(--line);
+      background: rgba(255, 255, 255, .64);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
     }
 
     .metric {
       min-height: 136px;
       padding: 24px;
-      background: var(--surface);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .90), rgba(248, 253, 255, .74));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 18px auto;
+      width: 70px;
+      height: 70px;
+      border: 1px solid rgba(47, 128, 237, .14);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 168, 255, .12), transparent 62%);
     }
 
     .metric strong {
       display: block;
       font-size: 34px;
       line-height: 1;
+      color: transparent;
+      background: linear-gradient(120deg, var(--blue), var(--teal), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
     }
 
     .metric span {
@@ -329,10 +447,41 @@
       padding: 22px;
       border-radius: var(--radius);
       border: 1px solid var(--line);
-      background: var(--surface);
+      background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        linear-gradient(135deg, rgba(47, 128, 237, .28), rgba(24, 188, 181, .20), rgba(243, 178, 62, .22)) border-box;
       display: flex;
       flex-direction: column;
       box-shadow: 0 12px 30px rgba(16, 24, 21, .07);
+      overflow: hidden;
+      position: relative;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .product-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at var(--mx, 16%) var(--my, 12%), rgba(0, 168, 255, .16), transparent 30%),
+        linear-gradient(120deg, transparent, rgba(255, 255, 255, .42), transparent);
+      opacity: 0;
+      transition: opacity .22s ease;
+      pointer-events: none;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .product-top {
@@ -356,6 +505,44 @@
       border-radius: 17px;
       flex: 0 0 auto;
       box-shadow: 0 10px 22px rgba(18, 24, 23, .18);
+      transition: transform .22s ease;
+    }
+
+    .store-icon-link {
+      position: relative;
+      display: block;
+      flex: 0 0 auto;
+      border-radius: 17px;
+      outline: none;
+    }
+
+    .store-icon-link::after {
+      content: "";
+      position: absolute;
+      right: -3px;
+      bottom: -3px;
+      width: 17px;
+      height: 17px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      box-shadow: 0 6px 16px rgba(47, 128, 237, .24);
+      transform: scale(.9);
+      transition: transform .22s ease;
+    }
+
+    .product-card:hover .product-icon,
+    .product-card:hover .pol-mark {
+      transform: scale(1.04) rotate(-2deg);
+    }
+
+    .product-card:hover .store-icon-link::after,
+    .store-icon-link:focus-visible::after {
+      transform: scale(1.08);
+    }
+
+    .store-icon-link:focus-visible {
+      box-shadow: 0 0 0 3px rgba(47, 128, 237, .24);
     }
 
     .product-card .pol-mark {
@@ -387,6 +574,7 @@
     .status {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       min-height: 28px;
       padding: 5px 9px;
       border-radius: 999px;
@@ -398,13 +586,20 @@
     }
 
     .status.live {
-      color: #176447;
-      background: rgba(42, 168, 106, .12);
+      color: #126049;
+      background: linear-gradient(135deg, rgba(37, 167, 103, .16), rgba(24, 188, 181, .14));
+      box-shadow: inset 0 0 0 1px rgba(37, 167, 103, .14);
     }
 
     .status.plan {
       color: #8a4d00;
       background: rgba(217, 164, 65, .16);
+    }
+
+    .status.review {
+      color: #7357e8;
+      background: rgba(115, 87, 232, .14);
+      box-shadow: inset 0 0 0 1px rgba(115, 87, 232, .14);
     }
 
     .tagline {
@@ -429,11 +624,11 @@
     }
 
     .chip {
-      border: 1px solid var(--line);
+      border: 1px solid rgba(47, 128, 237, .14);
       border-radius: 999px;
       padding: 6px 10px;
-      color: #3a4541;
-      background: #f8faf5;
+      color: #284257;
+      background: rgba(248, 252, 255, .78);
       font-size: 12px;
       font-weight: 700;
     }
@@ -448,20 +643,34 @@
     .principle-panel {
       padding: 30px;
       border-radius: var(--radius);
-      background: var(--deep);
+      background-color: var(--deep);
+      background-image:
+        linear-gradient(135deg, rgba(20, 49, 58, .96), rgba(25, 91, 111, .90)),
+        radial-gradient(circle at 80% 12%, rgba(243, 178, 62, .30), transparent 30%),
+        url("assets/mathapex.png"),
+        url("assets/wordpulse.png"),
+        url("assets/chinapex.png");
       color: #fff;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-height: 430px;
-      background-image:
-        url("assets/mathapex.png"),
-        url("assets/wordpulse.png"),
-        url("assets/chinapex.png");
-      background-size: 126px, 104px, 94px;
-      background-position: 88% 16%, 16% 76%, 78% 82%;
+      background-size: cover, cover, 126px, 104px, 94px;
+      background-position: center, center, 88% 16%, 16% 76%, 78% 82%;
       background-repeat: no-repeat;
       box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .principle-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -14% -18% 20%;
+      height: 150px;
+      background: linear-gradient(90deg, rgba(0, 168, 255, .28), rgba(243, 178, 62, .22), transparent);
+      filter: blur(20px);
+      transform: rotate(-9deg);
     }
 
     .principle-panel h2 {
@@ -483,8 +692,15 @@
     .principle {
       padding: 22px;
       border-radius: var(--radius);
-      background: #fff;
+      background: rgba(255, 255, 255, .82);
       border: 1px solid var(--line);
+      box-shadow: 0 12px 34px rgba(37, 79, 118, .07);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .principle:hover {
+      transform: translateX(4px);
+      box-shadow: 0 18px 42px rgba(37, 79, 118, .13);
     }
 
     .principle b {
@@ -509,7 +725,14 @@
       padding: 24px;
       border-radius: var(--radius);
       border: 1px solid var(--line);
-      background: #fff;
+      background: rgba(255, 255, 255, .84);
+      box-shadow: 0 14px 34px rgba(37, 79, 118, .08);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .road-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 54px rgba(37, 79, 118, .14);
     }
 
     .road-card h3 {
@@ -525,13 +748,32 @@
     .contact-band {
       padding: 46px;
       border-radius: var(--radius);
-      background: var(--deep);
+      background:
+        linear-gradient(135deg, #15546c, #15877c 52%, #f0a33b);
       color: #fff;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 24px;
       align-items: center;
       box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .contact-band::before {
+      content: "";
+      position: absolute;
+      inset: -80px auto auto -80px;
+      width: 260px;
+      height: 260px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, .18), transparent 60%);
+    }
+
+    .contact-band > * {
+      position: relative;
+      z-index: 1;
     }
 
     .contact-band h2 {
@@ -567,12 +809,9 @@
         min-height: 86svh;
         padding-top: 100px;
         background:
-          linear-gradient(rgba(17, 21, 20, .72), rgba(17, 21, 20, .80)),
-          url("assets/wordpulse.png") 6% 12% / 82px 82px no-repeat,
-          url("assets/mathapex.png") 88% 14% / 88px 88px no-repeat,
-          url("assets/physapex.png") 92% 64% / 76px 76px no-repeat,
-          url("assets/chemapex.png") 12% 77% / 78px 78px no-repeat,
-          #111514;
+          linear-gradient(125deg, rgba(0, 168, 255, .18), transparent 32%),
+          linear-gradient(245deg, rgba(255, 90, 104, .16), transparent 30%),
+          linear-gradient(180deg, #fbfeff 0%, #eff8ff 54%, #fff9e8 100%);
       }
 
       .hero-inner {
@@ -635,7 +874,7 @@
       }
 
       .status {
-        max-width: 92px;
+        max-width: 118px;
         white-space: normal;
         justify-content: center;
         text-align: center;
@@ -646,6 +885,55 @@
       .contact-band {
         padding: 26px 22px;
       }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition: opacity .62s ease, transform .62s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @keyframes gridDrift {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 116px 58px, 58px 116px; }
+    }
+
+    @keyframes beamPulse {
+      0%, 100% { opacity: .58; transform: rotate(-14deg) translateX(0); }
+      50% { opacity: .92; transform: rotate(-14deg) translateX(-28px); }
+    }
+
+    @keyframes streamSlide {
+      0%, 100% { transform: rotate(-18deg) translateX(-18px); opacity: .28; }
+      50% { transform: rotate(-18deg) translateX(34px); opacity: .78; }
+    }
+
+    @keyframes radarSpin {
+      from { transform: rotate(-10deg); }
+      to { transform: rotate(350deg); }
+    }
+
+    @keyframes tileFloat {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(0, -12px, 0) rotate(1.2deg); }
     }
   </style>
 </head>
@@ -667,25 +955,26 @@
 
   <main id="top">
     <section class="hero" aria-label="King Top 教育 App">
+      <div class="hero-streams" aria-hidden="true"><span></span><span></span><span></span></div>
       <div class="hero-inner">
         <div>
-          <p class="eyebrow">独立开发者 / 教育科技探索者</p>
+          <p class="eyebrow">初高中教育 App 矩阵</p>
           <h1>把学习里的关键能力，做成一组可以练出来的 App。</h1>
-          <p class="hero-copy">从英语词根破译，到数理化生语政的学科登顶。每个产品只抓一个核心超能力：看穿题目、拆开知识、形成答案。</p>
+          <p class="hero-copy">从英语词根破译，到初高中数理化生语政的学科登顶。已上线产品可直达 App Store，每个 App 只抓一个核心超能力：看穿题目、拆开知识、形成答案。</p>
           <div class="hero-actions">
             <a class="button primary" href="#products">查看产品矩阵</a>
             <a class="button secondary" href="mailto:botonwa83@gmail.com">联系开发者</a>
           </div>
         </div>
 
-        <div class="app-cloud" aria-hidden="true">
-          <div class="app-tile tile-word"><img src="assets/wordpulse.png" alt=""><strong>WordPulse</strong><span>词根破译</span></div>
-          <div class="app-tile tile-math"><img src="assets/mathapex.png" alt=""><strong>MathApex</strong><span>降维秒杀</span></div>
-          <div class="app-tile tile-phys"><img src="assets/physapex.png" alt=""><strong>PhysApex</strong><span>看见物理</span></div>
-          <div class="app-tile tile-chem"><img src="assets/chemapex.png" alt=""><strong>ChemApex</strong><span>守恒识局</span></div>
-          <div class="app-tile tile-bio"><img src="assets/bioapex.png" alt=""><strong>BioApex</strong><span>看见生命</span></div>
-          <div class="app-tile tile-chin"><img src="assets/chinapex.png" alt=""><strong>ChinApex</strong><span>踩点得分</span></div>
-          <div class="app-tile tile-pol"><div class="pol-mark">P</div><strong>PolApex</strong><span>答案工厂</span></div>
+        <div class="app-cloud">
+          <a class="app-tile tile-word" href="https://apps.apple.com/cn/app/wordpulse/id6767762376?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 WordPulse"><img src="assets/wordpulse.png" alt=""><strong>WordPulse</strong><span>词根破译</span></a>
+          <a class="app-tile tile-math" href="https://apps.apple.com/cn/app/mathapex/id6778461030?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 MathApex"><img src="assets/mathapex.png" alt=""><strong>MathApex</strong><span>降维秒杀</span></a>
+          <a class="app-tile tile-phys" href="https://apps.apple.com/cn/app/physicsapex/id6779031451?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PhysicsApex"><img src="assets/physapex.png" alt=""><strong>PhysicsApex</strong><span>看见物理</span></a>
+          <a class="app-tile tile-chem" href="https://apps.apple.com/cn/app/chemapex/id6780327495?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChemApex"><img src="assets/chemapex.png" alt=""><strong>ChemApex</strong><span>守恒识局</span></a>
+          <a class="app-tile tile-bio" href="https://apps.apple.com/cn/app/bioapex/id6780727579?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 BioApex"><img src="assets/bioapex.png" alt=""><strong>BioApex</strong><span>看见生命</span></a>
+          <div class="app-tile tile-chin"><img src="assets/chinapex.png" alt=""><strong>ChinApex</strong><span>审核中</span></div>
+          <div class="app-tile tile-pol"><div class="pol-mark">P</div><strong>PolApex</strong><span>规划中</span></div>
         </div>
       </div>
     </section>
@@ -693,9 +982,9 @@
     <section class="section">
       <div class="wrap">
         <div class="metric-row" aria-label="产品概览">
-          <div class="metric"><strong>7</strong><span>教育产品方向，覆盖英语与中高考核心学科</span></div>
-          <div class="metric"><strong>6</strong><span>已有工程或图标素材的应用，持续打磨中</span></div>
-          <div class="metric"><strong>1</strong><span>PolApex 政治登顶处于产品方案阶段</span></div>
+          <div class="metric"><strong>7</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
+          <div class="metric"><strong>5</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>
+          <div class="metric"><strong>2</strong><span>ChinApex 审核中，PolApex 处于产品方案阶段</span></div>
           <div class="metric"><strong>100%</strong><span>优先离线内容、本地学习记录、低依赖发布</span></div>
         </div>
       </div>
@@ -706,7 +995,7 @@
         <div class="section-head">
           <div>
             <h2>产品矩阵</h2>
-            <p class="lead">不是把题库换个皮，而是为每个学科找到一个能被用户立即感受到的能力杠杆。</p>
+            <p class="lead">不是把题库换个皮，而是为每个初高中学科找到一个能被用户立即感受到的能力杠杆。已上线产品点击图标即可进入 App Store。</p>
           </div>
         </div>
 
@@ -714,13 +1003,15 @@
           <article class="product-card">
             <div class="product-top">
               <div class="product-id">
-                <img class="product-icon" src="assets/wordpulse.png" alt="WordPulse 图标">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/wordpulse/id6767762376?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 WordPulse">
+                  <img class="product-icon" src="assets/wordpulse.png" alt="WordPulse 图标">
+                </a>
                 <div class="product-title">
                   <h3>WordPulse</h3>
-                  <p>英语词汇</p>
+                  <p>初高中英语词汇</p>
                 </div>
               </div>
-              <span class="status live">打磨中</span>
+              <span class="status live">已上线</span>
             </div>
             <p class="tagline">看到陌生长难词，拆开词根也能猜出意思。</p>
             <p>围绕词根词缀、词源宇宙、先猜后揭、懒人模式和纯离线学习，把背单词从记忆负担变成破译体验。</p>
@@ -730,15 +1021,17 @@
           <article class="product-card">
             <div class="product-top">
               <div class="product-id">
-                <img class="product-icon" src="assets/mathapex.png" alt="MathApex 图标">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/mathapex/id6778461030?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 MathApex">
+                  <img class="product-icon" src="assets/mathapex.png" alt="MathApex 图标">
+                </a>
                 <div class="product-title">
                   <h3>MathApex</h3>
-                  <p>高考数学</p>
+                  <p>初高中数学</p>
                 </div>
               </div>
-              <span class="status live">打磨中</span>
+              <span class="status live">已上线</span>
             </div>
-            <p class="tagline">用大学思维俯瞰高考压轴题。</p>
+            <p class="tagline">用高阶思维打通初高中数学关键题。</p>
             <p>常规解与降维秒杀双解对照，结合公式宇宙、错题复习、数学英雄与数学发现，让学生知道捷径背后的原理。</p>
             <div class="chips"><span class="chip">595 道压轴题</span><span class="chip">150+ 公式</span><span class="chip">双解对照</span></div>
           </article>
@@ -746,15 +1039,17 @@
           <article class="product-card">
             <div class="product-top">
               <div class="product-id">
-                <img class="product-icon" src="assets/physapex.png" alt="PhysApex 图标">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/physicsapex/id6779031451?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PhysicsApex">
+                  <img class="product-icon" src="assets/physapex.png" alt="PhysicsApex 图标">
+                </a>
                 <div class="product-title">
-                  <h3>PhysApex</h3>
-                  <p>高中物理</p>
+                  <h3>PhysicsApex</h3>
+                  <p>初高中物理</p>
                 </div>
               </div>
-              <span class="status live">打磨中</span>
+              <span class="status live">已上线</span>
             </div>
-            <p class="tagline">把守恒、对称、等效变成压轴题的上帝视角。</p>
+            <p class="tagline">把守恒、对称、等效变成物理难题的上帝视角。</p>
             <p>用互动模拟沙盘、考点地图、错因诊断和智能复习，让物理从抽象公式回到可观察的现象。</p>
             <div class="chips"><span class="chip">互动沙盘</span><span class="chip">考点地图</span><span class="chip">错因诊断</span></div>
           </article>
@@ -762,13 +1057,15 @@
           <article class="product-card">
             <div class="product-top">
               <div class="product-id">
-                <img class="product-icon" src="assets/chemapex.png" alt="ChemApex 图标">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/chemapex/id6780327495?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChemApex">
+                  <img class="product-icon" src="assets/chemapex.png" alt="ChemApex 图标">
+                </a>
                 <div class="product-title">
                   <h3>ChemApex</h3>
                   <p>初高中化学</p>
                 </div>
               </div>
-              <span class="status live">打磨中</span>
+              <span class="status live">已上线</span>
             </div>
             <p class="tagline">看见反应背后的守恒棋局。</p>
             <p>从元素星图、方程式剧本库到化学神探，把推断题、守恒题和实验题拆成可复用的识局方法。</p>
@@ -778,13 +1075,15 @@
           <article class="product-card">
             <div class="product-top">
               <div class="product-id">
-                <img class="product-icon" src="assets/bioapex.png" alt="BioApex 图标">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/bioapex/id6780727579?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 BioApex">
+                  <img class="product-icon" src="assets/bioapex.png" alt="BioApex 图标">
+                </a>
                 <div class="product-title">
                   <h3>BioApex</h3>
                   <p>初高中生物</p>
                 </div>
               </div>
-              <span class="status live">打磨中</span>
+              <span class="status live">已上线</span>
             </div>
             <p class="tagline">把“背不完”的生物变成逐个掌握的系统。</p>
             <p>过程剧场、考点图谱、遗传神探、稳态回路和易混辨析，帮助学生看见生命系统如何运转。</p>
@@ -800,7 +1099,7 @@
                   <p>初高中语文</p>
                 </div>
               </div>
-              <span class="status live">打磨中</span>
+              <span class="status review">审核中</span>
             </div>
             <p class="tagline">让语文从玄学变成可操作的采分点训练。</p>
             <p>原文定位、文言解码、默写星图、作文工坊和阅卷人之眼，让学生知道每一分到底从哪里来。</p>
@@ -813,7 +1112,7 @@
                 <div class="pol-mark" aria-hidden="true">P</div>
                 <div class="product-title">
                   <h3>PolApex</h3>
-                  <p>道法 / 思想政治</p>
+                  <p>初高中道法 / 思想政治</p>
                 </div>
               </div>
               <span class="status plan">规划中</span>
@@ -849,14 +1148,14 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>发布路线</h2>
-            <p class="lead">GitHub Pages 很适合这个阶段：免费、稳定、静态页面即可承载个人品牌和 App 合规链接。</p>
+            <h2>上线状态</h2>
+            <p class="lead">页面优先承载产品入口和可信信息：已上线产品进入 App Store，审核中和规划中产品明确标注状态。</p>
           </div>
         </div>
         <div class="roadmap">
-          <div class="road-card"><h3>1. 个人主页</h3><p>用 `username.github.io` 展示开发者、产品矩阵、联系方式和后续 App Store 链接。</p></div>
-          <div class="road-card"><h3>2. 单 App 页面</h3><p>每个 App 保留独立隐私政策、用户协议和技术支持页，方便 App Store Connect 填写。</p></div>
-          <div class="road-card"><h3>3. 上架后补链接</h3><p>App Store 链接、截图、演示视频和媒体素材上线后再补，不在未上架阶段制造无效入口。</p></div>
+          <div class="road-card"><h3>5 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex 已配置中国区 App Store 下载页。</p></div>
+          <div class="road-card"><h3>ChinApex 审核中</h3><p>语文产品暂不放下载入口，避免用户点击到无效页面，审核通过后再补真实链接。</p></div>
+          <div class="road-card"><h3>PolApex 规划中</h3><p>道法 / 思想政治产品继续作为矩阵方向展示，等具备下载页后再开放跳转。</p></div>
         </div>
       </div>
     </section>
@@ -866,7 +1165,7 @@
         <div class="contact-band">
           <div>
             <h2>教育 App、产品合作或反馈</h2>
-            <p>欢迎联系 King Top。当前重点是继续打磨可离线使用、低成本维护、能被学生立即感知价值的教育工具。</p>
+            <p>欢迎联系 King Top。当前重点是继续打磨已上线 App，并推进 ChinApex 审核与 PolApex 产品化。</p>
           </div>
           <a class="button primary" href="mailto:botonwa83@gmail.com">botonwa83@gmail.com</a>
         </div>
@@ -880,5 +1179,54 @@
       <span>Built for GitHub Pages.</span>
     </div>
   </footer>
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealTargets = document.querySelectorAll(".metric, .product-card, .principle-panel, .principle, .road-card, .contact-band");
+
+      if (!reduceMotion && "IntersectionObserver" in window) {
+        revealTargets.forEach((el, index) => {
+          el.classList.add("reveal");
+          el.style.transitionDelay = `${Math.min((index % 6) * 55, 275)}ms`;
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.16 });
+
+        revealTargets.forEach((el) => observer.observe(el));
+      }
+
+      document.querySelectorAll(".product-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty("--mx", `${x}%`);
+          card.style.setProperty("--my", `${y}%`);
+        });
+      });
+
+      const hero = document.querySelector(".hero");
+      const cloud = document.querySelector(".app-cloud");
+      if (!reduceMotion && hero && cloud) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          cloud.style.transform = `translate3d(${x * 16}px, ${y * 14}px, 0)`;
+        });
+
+        hero.addEventListener("pointerleave", () => {
+          cloud.style.transform = "translate3d(0, 0, 0)";
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
