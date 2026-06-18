@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="King Top AI Music 产品线：QQ音乐石头叔叔，42张专辑作品合集。">
+  <meta name="theme-color" content="#fbfdff">
+  <title>石头叔叔 · AI Music 作品线</title>
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #667085;
+      --paper: #fbfdff;
+      --surface: rgba(255, 255, 255, .84);
+      --line: rgba(17, 24, 39, .12);
+      --teal: #12b8a6;
+      --blue: #3478f6;
+      --rose: #f25f7a;
+      --amber: #f0a43a;
+      --violet: #7657d9;
+      --radius: 8px;
+      --shadow: 0 24px 70px rgba(42, 67, 101, .14);
+      --shadow-strong: 0 30px 90px rgba(42, 67, 101, .20);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.62;
+      background:
+        linear-gradient(130deg, rgba(52, 120, 246, .10), transparent 32%),
+        linear-gradient(245deg, rgba(242, 95, 122, .10), transparent 30%),
+        linear-gradient(180deg, #fbfdff 0%, #f3fbfb 48%, #fff8ed 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 20;
+      inset: 0 0 auto;
+      background: rgba(255, 255, 255, .76);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, .78);
+      box-shadow: 0 10px 34px rgba(37, 79, 118, .08);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 32px));
+      height: 64px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: conic-gradient(from 210deg, var(--rose), var(--amber), var(--teal), var(--blue), var(--rose));
+      box-shadow: 0 8px 22px rgba(52, 120, 246, .22);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: rgba(17, 24, 39, .66);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: var(--blue);
+    }
+
+    .hero {
+      min-height: 86svh;
+      padding: 112px 0 62px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      background-image:
+        linear-gradient(rgba(52, 120, 246, .10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 184, 166, .10) 1px, transparent 1px);
+      background-size: 62px 62px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .78), transparent 84%);
+      transform: rotate(-7deg);
+      animation: gridDrift 24s linear infinite;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% 7% 36%;
+      height: 150px;
+      background: linear-gradient(90deg, transparent, rgba(52, 120, 246, .18), rgba(18, 184, 166, .18), rgba(242, 95, 122, .14), transparent);
+      filter: blur(18px);
+      transform: rotate(-8deg);
+      animation: beamPulse 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .wrap,
+    .hero-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .92fr);
+      gap: 44px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: rgba(17, 24, 39, .66);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--teal), var(--rose));
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      color: transparent;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      background: linear-gradient(112deg, #111827 0%, #185ed4 42%, #148a7e 70%, #b34b66 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-copy {
+      max-width: 670px;
+      margin: 22px 0 0;
+      color: rgba(17, 24, 39, .74);
+      font-size: clamp(17px, 2vw, 22px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      font-weight: 900;
+      border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      box-shadow: 0 14px 34px rgba(52, 120, 246, .28);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      border-color: rgba(52, 120, 246, .22);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 10px 28px rgba(37, 79, 118, .10);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(52, 120, 246, .24);
+    }
+
+    .album-stage {
+      min-height: 454px;
+      position: relative;
+      transition: transform .18s ease-out;
+      will-change: transform;
+    }
+
+    .wave-panel {
+      position: absolute;
+      inset: 56px 36px auto auto;
+      width: 250px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, .75);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .58);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .wave-panel span {
+      width: 8px;
+      height: 42px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--rose), var(--amber), var(--teal));
+      animation: equalizer 1.2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .wave-panel span:nth-child(2n) {
+      animation-delay: -.18s;
+    }
+
+    .wave-panel span:nth-child(3n) {
+      animation-delay: -.34s;
+    }
+
+    .cover-float {
+      position: absolute;
+      width: 150px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid rgba(255, 255, 255, .74);
+      box-shadow: var(--shadow);
+      animation: floatCover 6.8s ease-in-out infinite;
+    }
+
+    .cover-float img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .cover-float strong {
+      display: block;
+      padding: 10px 11px;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .float-a { left: 4%; top: 0; }
+    .float-b { left: 38%; top: 32px; animation-delay: -1.5s; }
+    .float-c { left: 0; bottom: 30px; animation-delay: -2.7s; }
+    .float-d { right: 0; bottom: 8px; animation-delay: -4.1s; }
+
+    .section {
+      padding: 78px 0;
+    }
+
+    .section.alt {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .86), rgba(242, 251, 249, .92)),
+        linear-gradient(90deg, rgba(52, 120, 246, .07), transparent 44%),
+        linear-gradient(270deg, rgba(242, 95, 122, .07), transparent 44%);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+    }
+
+    .lead {
+      max-width: 700px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255, 255, 255, .64);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .metric {
+      min-height: 136px;
+      padding: 24px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, .92), rgba(247, 253, 255, .78));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 18px auto;
+      width: 72px;
+      height: 40px;
+      border-top: 1px solid rgba(52, 120, 246, .18);
+      border-bottom: 1px solid rgba(18, 184, 166, .18);
+      transform: skewX(-18deg);
+    }
+
+    .metric strong {
+      display: block;
+      color: transparent;
+      font-size: 34px;
+      line-height: 1;
+      background: linear-gradient(120deg, var(--blue), var(--teal), var(--amber));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .album-card {
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        linear-gradient(135deg, rgba(52, 120, 246, .26), rgba(18, 184, 166, .20), rgba(242, 95, 122, .20)) border-box;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(16, 24, 39, .07);
+      transition: transform .22s ease, box-shadow .22s ease;
+      position: relative;
+    }
+
+    .album-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at var(--mx, 20%) var(--my, 10%), rgba(52, 120, 246, .15), transparent 32%),
+        linear-gradient(120deg, transparent, rgba(255, 255, 255, .38), transparent);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease;
+    }
+
+    .album-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .album-card:hover::before {
+      opacity: 1;
+    }
+
+    .cover {
+      aspect-ratio: 1;
+      background:
+        linear-gradient(135deg, rgba(52, 120, 246, .14), rgba(18, 184, 166, .16)),
+        repeating-linear-gradient(90deg, rgba(17, 24, 39, .06) 0 1px, transparent 1px 12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .24s ease;
+    }
+
+    .album-card:hover .cover img {
+      transform: scale(1.045);
+    }
+
+    .album-body {
+      padding: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .album-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(52, 120, 246, .14);
+      color: #334155;
+      background: rgba(248, 252, 255, .78);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .album-card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .album-card p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .qq-link {
+      display: inline-flex;
+      margin-top: 14px;
+      color: #1459c9;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .contact-band {
+      padding: 44px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: linear-gradient(135deg, #165f83, #128f83 52%, #e69436);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .contact-band::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .14) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, .10) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(90deg, rgba(0, 0, 0, .50), transparent 76%);
+    }
+
+    .contact-band > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-band h2 {
+      font-size: clamp(26px, 3vw, 38px);
+    }
+
+    .contact-band p {
+      max-width: 760px;
+      margin: 10px 0 0;
+      color: rgba(255, 255, 255, .78);
+    }
+
+    .footer {
+      padding: 30px 0 44px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+
+    @media (max-width: 1020px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .album-stage {
+        min-height: 360px;
+      }
+
+      .album-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+
+      .metric-row,
+      .album-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-band {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero {
+        min-height: auto;
+        padding-top: 100px;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .hero-actions,
+      .section-head,
+      .footer .wrap {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .album-stage {
+        display: none;
+      }
+
+      .metric-row,
+      .album-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-band {
+        padding: 26px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .62s ease, transform .62s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @keyframes gridDrift {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 124px 62px, 62px 124px; }
+    }
+
+    @keyframes beamPulse {
+      0%, 100% { opacity: .54; transform: rotate(-8deg) translateX(0); }
+      50% { opacity: .88; transform: rotate(-8deg) translateX(-24px); }
+    }
+
+    @keyframes equalizer {
+      0%, 100% { transform: scaleY(.52); }
+      50% { transform: scaleY(1.35); }
+    }
+
+    @keyframes floatCover {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(0, -12px, 0) rotate(1.2deg); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="ai-music.html" aria-label="AI Music 首页">
+        <span class="brand-mark">M</span>
+        <span>King Top AI Music</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">教育 App</a>
+        <a href="#albums" aria-current="page">音乐作品</a>
+        <a href="#status">作品概览</a>
+        <a href="https://y.qq.com/n/ryqq/singer/000aPaAE3DyZhr" target="_blank" rel="noopener">QQ音乐</a>
+        <a href="mailto:botonwa83@gmail.com">联系</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="石头叔叔 AI Music">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">AI Music / QQ音乐作品线</p>
+          <h1>石头叔叔，把 AI 音乐做成持续发布的作品宇宙。</h1>
+          <p class="hero-copy">独立于教育 App 的第二条产品线：以“石头叔叔”为音乐厂牌入口，在 QQ 音乐公开展示 42 张专辑，覆盖国语、英语、录音室专辑、EP 单曲与现场专辑。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#albums">查看 42 张专辑</a>
+            <a class="button secondary" href="https://y.qq.com/n/ryqq/singer/000aPaAE3DyZhr" target="_blank" rel="noopener">打开 QQ 音乐主页</a>
+            <a class="button secondary" href="index.html">教育 App 产品线</a>
+          </div>
+        </div>
+
+        <div class="album-stage" aria-hidden="true">
+          <div class="wave-panel"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <a class="cover-float float-a" href="https://y.qq.com/n/ryqq/albumDetail/003duU0H2OBDlU" target="_blank" rel="noopener"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003duU0H2OBDlU_1.jpg" alt=""><strong>星星圆舞曲</strong></a>
+          <a class="cover-float float-b" href="https://y.qq.com/n/ryqq/albumDetail/003BdGRo2tTy0w" target="_blank" rel="noopener"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003BdGRo2tTy0w_1.jpg" alt=""><strong>海棠仙吏</strong></a>
+          <a class="cover-float float-c" href="https://y.qq.com/n/ryqq/albumDetail/001CwkQc19SOG7" target="_blank" rel="noopener"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001CwkQc19SOG7_1.jpg" alt=""><strong>幻境</strong></a>
+          <a class="cover-float float-d" href="https://y.qq.com/n/ryqq/albumDetail/000SYdAh2hzFYd" target="_blank" rel="noopener"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000SYdAh2hzFYd_1.jpg" alt=""><strong>望故乡</strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="status">
+      <div class="wrap">
+        <div class="metric-row" aria-label="AI Music 概览">
+          <div class="metric"><strong>42</strong><span>QQ 音乐公开专辑，歌手名：石头叔叔</span></div>
+          <div class="metric"><strong>2022-2026</strong><span>从同名 Demo 到持续 AI 音乐专辑发布</span></div>
+          <div class="metric"><strong>2</strong><span>主要语种：国语与英语</span></div>
+          <div class="metric"><strong>3</strong><span>作品形态：录音室专辑、EP 单曲、现场专辑</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="albums">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>音乐作品</h2>
+            <p class="lead">以下作品按 QQ 音乐歌手专辑页时间倒序整理。点击任意专辑卡片可进入 QQ 音乐专辑页。</p>
+          </div>
+        </div>
+
+        <div class="album-grid">
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003duU0H2OBDlU" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003duU0H2OBDlU_1.jpg" alt="星星圆舞曲 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-06-17</span><span class="pill">EP单曲</span><span class="pill">4 首</span></div><h3>星星圆舞曲</h3><p>代表曲：大提琴独白：巴洛克的忧伤</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003BdGRo2tTy0w" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003BdGRo2tTy0w_1.jpg" alt="海棠仙吏 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-05-27</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>海棠仙吏</h3><p>代表曲：云散水涸</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001CwkQc19SOG7" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001CwkQc19SOG7_1.jpg" alt="幻境 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-05-27</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>幻境</h3><p>代表曲：云散湘江</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/000SYdAh2hzFYd" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000SYdAh2hzFYd_1.jpg" alt="望故乡 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-05-27</span><span class="pill">EP单曲</span><span class="pill">6 首</span></div><h3>望故乡</h3><p>代表曲：大提琴独白：巴洛克的忧伤</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003Zjeth1m8zQY" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003Zjeth1m8zQY_1.jpg" alt="这些年不流行爱情 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-05-15</span><span class="pill">EP单曲</span><span class="pill">10 首</span></div><h3>这些年不流行爱情</h3><p>代表曲：爱在他乡</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/004GUg5O3Ys0o8" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004GUg5O3Ys0o8_1.jpg" alt="青岛啤酒 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-05-14</span><span class="pill">EP单曲</span><span class="pill">9 首</span></div><h3>青岛啤酒</h3><p>代表曲：凤台</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003s1r5k4c7XjG" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003s1r5k4c7XjG_1.jpg" alt="灰色的召唤 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-05-01</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>灰色的召唤</h3><p>代表曲：低泣大提琴</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/004CWYdI0XJeNJ" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004CWYdI0XJeNJ_1.jpg" alt="city 不 city 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-04-27</span><span class="pill">EP单曲</span><span class="pill">9 首</span></div><h3>city 不 city</h3><p>代表曲：黑的雪</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003DIVsQ4Knqxu" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003DIVsQ4Knqxu_1.jpg" alt="祝我生日快乐 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-04-26</span><span class="pill">EP单曲</span><span class="pill">9 首</span></div><h3>祝我生日快乐</h3><p>代表曲：灰色的召唤</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/004Qynru0zsDWM" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004Qynru0zsDWM_1.jpg" alt="次年秋 我失去了你 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-04-18</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>次年秋 我失去了你</h3><p>代表曲：流泪的手心</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/0021P16C113g64" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000021P16C113g64_1.jpg" alt="未眠夜 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-03-30</span><span class="pill">EP单曲</span><span class="pill">10 首</span></div><h3>未眠夜</h3><p>代表曲：次年秋 我失去了你</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001qJ4Cl1OBnOp" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001qJ4Cl1OBnOp_1.jpg" alt="固始,一个没有故事的城市 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-02-15</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>固始,一个没有故事的城市</h3><p>代表曲：算力觉醒</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003vunGM12hGnT" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003vunGM12hGnT_1.jpg" alt="心碎的安慰 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-02-07</span><span class="pill">EP单曲</span><span class="pill">10 首</span></div><h3>心碎的安慰</h3><p>代表曲：让我再爱你一次2</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001IURYB1TdCtK" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001IURYB1TdCtK_1.jpg" alt="You were my brothers 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-01-31</span><span class="pill">EP单曲</span><span class="pill">10 首</span></div><h3>You were my brothers</h3><p>代表曲：Éramos Irmãos</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/0040LT1k4eLUfg" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000040LT1k4eLUfg_1.jpg" alt="Standing Still 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-01-23</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>Standing Still</h3><p>代表曲：石沉大海</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/004DhF4k2sNy3k" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004DhF4k2sNy3k_1.jpg" alt="若兮 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2026-01-05</span><span class="pill">录音室专辑</span><span class="pill">9 首</span></div><h3>若兮</h3><p>代表曲：败方MVP-催泪版</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/0042GCho44Qr3T" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000042GCho44Qr3T_1.jpg" alt="时光旅行 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-12-29</span><span class="pill">EP单曲</span><span class="pill">8 首</span></div><h3>时光旅行</h3><p>代表曲：cpu烧坏</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003JfO633RYrsI" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003JfO633RYrsI_1.jpg" alt="八月雪 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-12-17</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>八月雪</h3><p>代表曲：过季的围巾</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/000O5p4d4EG0oN" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000O5p4d4EG0oN_1.jpg" alt="绝爱 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-12-16</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>绝爱</h3><p>代表曲：刻骨之痛</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/002qGgF41eAVbx" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000002qGgF41eAVbx_1.jpg" alt="心火 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-10-20</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>心火</h3><p>代表曲：I Lost You,Stone</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001MzaEf0BNwBm" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001MzaEf0BNwBm_1.jpg" alt="成成 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-10-11</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>成成</h3><p>代表曲：成成成成成2</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001MdJNj2wKGD3" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001MdJNj2wKGD3_1.jpg" alt="慢热 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-09-24</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>慢热</h3><p>代表曲：痛爱</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/002g3U062rothR" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000002g3U062rothR_1.jpg" alt="流星与恒星 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-09-15</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>流星与恒星</h3><p>代表曲：数字人</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003IT4zk0HYGmY" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003IT4zk0HYGmY_1.jpg" alt="候鸟的最后一站 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-09-12</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>候鸟的最后一站</h3><p>代表曲：痛</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001Oj4TZ2h5l3Y" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001Oj4TZ2h5l3Y_1.jpg" alt="冰片蝴蝶 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-09-04</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>冰片蝴蝶</h3><p>代表曲：致成成</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003spLMN3bhq9Z" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003spLMN3bhq9Z_1.jpg" alt="爱情抛物线 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-08-25</span><span class="pill">录音室专辑</span><span class="pill">11 首</span></div><h3>爱情抛物线</h3><p>代表曲：绝爱 (剧场版)</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/004DykMC1ENruS" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004DykMC1ENruS_1.jpg" alt="Snowblind Parting 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-08-14</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>Snowblind Parting</h3><p>代表曲：候鳥嘅最後一站</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/00187v0m1yY6wT" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M00000187v0m1yY6wT_1.jpg" alt="心牢 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-08-12</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>心牢</h3><p>代表曲：失诺的约定</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/0047h6Zk3LWPww" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000047h6Zk3LWPww_1.jpg" alt="子夜梦回 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-08-11</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>子夜梦回</h3><p>代表曲：失魂的我 (女生版)</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/000ICH7L21fwSb" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000ICH7L21fwSb_1.jpg" alt="花和尚 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-08-05</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>花和尚</h3><p>代表曲：원기 소녀</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001EbjW42W625Z" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001EbjW42W625Z_1.jpg" alt="哑巴 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-07-16</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>哑巴</h3><p>代表曲：画地为牢 (剧场版)</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001OD8Cy0bg8BD" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001OD8Cy0bg8BD_1.jpg" alt="热咖啡不加糖 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-07-03</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>热咖啡不加糖</h3><p>代表曲：绝不再爱</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/000opwH11yGfib" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000opwH11yGfib_1.jpg" alt="星空低语 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-06-14</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>星空低语</h3><p>代表曲：梦遇学友</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/0026FIWZ2MqEoR" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000026FIWZ2MqEoR_1.jpg" alt="少年说 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-06-11</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>少年说</h3><p>代表曲：我的青春 Jay</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003ARDdg3ywsbs" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003ARDdg3ywsbs_1.jpg" alt="最痛的是痛也忘记 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-05-30</span><span class="pill">EP单曲</span><span class="pill">10 首</span></div><h3>最痛的是痛也忘记</h3><p>代表曲：黑名单住着爱过的人</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/000EkNpY3B1MB2" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000EkNpY3B1MB2_1.jpg" alt="射手座 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-04-15</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>射手座</h3><p>代表曲：新欢旧梦</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001idm3d0LbNJu" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001idm3d0LbNJu_1.jpg" alt="错爱 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-04-14</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>错爱</h3><p>代表曲：兰亭曲</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/000ZrSQw2mTVHe" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000ZrSQw2mTVHe_1.jpg" alt="葬爱 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-04-14</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>葬爱</h3><p>代表曲：背叛2025</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/001ISQ6h0tzPdA" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001ISQ6h0tzPdA_1.jpg" alt="别爱我 放过我 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-04-08</span><span class="pill">录音室专辑</span><span class="pill">10 首</span></div><h3>别爱我 放过我</h3><p>代表曲：白金唱片</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/003OR82s2BI3Wv" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003OR82s2BI3Wv_1.jpg" alt="思念善伟 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2025-02-25</span><span class="pill">录音室专辑</span><span class="pill">19 首</span></div><h3>思念善伟</h3><p>代表曲：对不起</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/002ZzdGi2YFk2T" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000002ZzdGi2YFk2T_1.jpg" alt="石头叔叔翻唱集 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2024-06-07</span><span class="pill">现场专辑</span><span class="pill">2 首</span></div><h3>石头叔叔翻唱集</h3><p>代表曲：勇气</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+          <a class="album-card" href="https://y.qq.com/n/ryqq/albumDetail/0022WakA0ubhn7" target="_blank" rel="noopener">
+            <div class="cover"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000022WakA0ubhn7_1.jpg" alt="石头叔叔同名专辑 封面" loading="lazy"></div>
+            <div class="album-body"><div class="album-meta"><span class="pill">2022-02-27</span><span class="pill">录音室专辑</span><span class="pill">20 首</span></div><h3>石头叔叔同名专辑</h3><p>代表曲：air</p><span class="qq-link">QQ音乐专辑页</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="contact-band">
+          <div>
+            <h2>AI Music 合作、授权或反馈</h2>
+            <p>石头叔叔音乐作品线与教育 App 产品线独立展示。音乐相关入口统一指向 QQ 音乐，方便听众收藏、播放和分享。</p>
+          </div>
+          <a class="button primary" href="mailto:botonwa83@gmail.com">botonwa83@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© 2024-2026 King Top / 石头叔叔. All rights reserved.</span>
+      <span>AI Music page for QQ 音乐作品线.</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const revealTargets = document.querySelectorAll(".metric, .album-card, .contact-band");
+
+      if (!reduceMotion && "IntersectionObserver" in window) {
+        revealTargets.forEach((el, index) => {
+          el.classList.add("reveal");
+          el.style.transitionDelay = `${Math.min((index % 8) * 36, 252)}ms`;
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        revealTargets.forEach((el) => observer.observe(el));
+      }
+
+      document.querySelectorAll(".album-card").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width) * 100;
+          const y = ((event.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty("--mx", `${x}%`);
+          card.style.setProperty("--my", `${y}%`);
+        });
+      });
+
+      const hero = document.querySelector(".hero");
+      const stage = document.querySelector(".album-stage");
+      if (!reduceMotion && hero && stage) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          stage.style.transform = `translate3d(${x * 16}px, ${y * 14}px, 0)`;
+        });
+
+        hero.addEventListener("pointerleave", () => {
+          stage.style.transform = "translate3d(0, 0, 0)";
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
