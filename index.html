@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="King Top 初高中教育 App 产品矩阵：WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、PolApex。">
+  <meta name="description" content="King Top 初高中教育 App 产品矩阵：WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、PolApex、HistApex、GeogApex。">
   <meta name="theme-color" content="#f6fbff">
   <title>King Top · 教育 App 产品矩阵</title>
   <style>
@@ -309,8 +309,7 @@
       border-color: rgba(47, 128, 237, .30);
     }
 
-    .app-tile img,
-    .app-tile .pol-mark {
+    .app-tile img {
       width: 74px;
       height: 74px;
       border-radius: 18px;
@@ -332,22 +331,15 @@
       line-height: 1.35;
     }
 
-    .tile-word { left: 8%; top: 4%; animation-delay: -.4s; }
-    .tile-math { left: 42%; top: 0; animation-delay: -1.6s; }
-    .tile-phys { right: 2%; top: 25%; animation-delay: -2.4s; }
-    .tile-chem { left: 22%; top: 38%; animation-delay: -3.2s; }
-    .tile-bio { left: 58%; top: 55%; animation-delay: -4s; }
-    .tile-chin { left: 0; bottom: 4%; animation-delay: -4.8s; }
-    .tile-pol { right: 17%; bottom: 0; animation-delay: -5.6s; }
-
-    .pol-mark {
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: 26px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #0f6c7d, #d6413a 58%, #d9a441);
-    }
+    .tile-word { left: 5%; top: 2%; animation-delay: -.4s; }
+    .tile-math { left: 38%; top: 0; animation-delay: -1.1s; }
+    .tile-phys { right: 0; top: 17%; animation-delay: -1.8s; }
+    .tile-chem { left: 20%; top: 32%; animation-delay: -2.5s; }
+    .tile-bio { left: 56%; top: 42%; animation-delay: -3.2s; }
+    .tile-chin { left: 0; bottom: 19%; animation-delay: -3.9s; }
+    .tile-pol { right: 13%; bottom: 18%; animation-delay: -4.6s; }
+    .tile-hist { left: 28%; bottom: 0; animation-delay: -5.3s; }
+    .tile-geog { right: 0; bottom: -2%; animation-delay: -6s; }
 
     main {
       overflow: hidden;
@@ -535,8 +527,7 @@
       transition: transform .22s ease;
     }
 
-    .product-card:hover .product-icon,
-    .product-card:hover .pol-mark {
+    .product-card:hover .product-icon {
       transform: scale(1.04) rotate(-2deg);
     }
 
@@ -547,15 +538,6 @@
 
     .store-icon-link:focus-visible {
       box-shadow: 0 0 0 3px rgba(47, 128, 237, .24);
-    }
-
-    .product-card .pol-mark {
-      width: 62px;
-      height: 62px;
-      border-radius: 17px;
-      margin: 0;
-      flex: 0 0 auto;
-      font-size: 22px;
     }
 
     .product-title {
@@ -604,6 +586,12 @@
       color: #7357e8;
       background: rgba(115, 87, 232, .14);
       box-shadow: inset 0 0 0 1px rgba(115, 87, 232, .14);
+    }
+
+    .status.prep {
+      color: #0f6c7d;
+      background: linear-gradient(135deg, rgba(24, 188, 181, .14), rgba(47, 128, 237, .10));
+      box-shadow: inset 0 0 0 1px rgba(24, 188, 181, .16);
     }
 
     .tagline {
@@ -885,8 +873,7 @@
         padding: 10px;
       }
 
-      .app-tile img,
-      .app-tile .pol-mark {
+      .app-tile img {
         width: 60px;
         height: 60px;
         border-radius: 15px;
@@ -1003,8 +990,7 @@
         gap: 10px;
       }
 
-      .product-icon,
-      .product-card .pol-mark {
+      .product-icon {
         width: 54px;
         height: 54px;
         border-radius: 14px;
@@ -1049,7 +1035,7 @@
 
     @media (max-width: 430px) {
       .app-cloud {
-        min-height: 330px;
+        min-height: 430px;
       }
 
       .app-tile {
@@ -1057,8 +1043,7 @@
         padding: 9px;
       }
 
-      .app-tile img,
-      .app-tile .pol-mark {
+      .app-tile img {
         width: 50px;
         height: 50px;
         border-radius: 13px;
@@ -1074,12 +1059,14 @@
       }
 
       .tile-word { left: 2%; top: 0; }
-      .tile-math { left: 34%; top: 14px; }
-      .tile-phys { right: 0; top: 74px; }
-      .tile-chem { left: 4%; top: 130px; }
-      .tile-bio { left: 38%; top: 160px; }
-      .tile-chin { left: 0; bottom: 6px; }
-      .tile-pol { right: 3%; bottom: 20px; }
+      .tile-math { left: 34%; top: 10px; }
+      .tile-phys { right: 0; top: 70px; }
+      .tile-chem { left: 4%; top: 126px; }
+      .tile-bio { left: 38%; top: 154px; }
+      .tile-chin { left: 0; top: 242px; }
+      .tile-pol { right: 3%; top: 244px; }
+      .tile-hist { left: 24%; bottom: 18px; }
+      .tile-geog { right: 3%; bottom: 0; }
     }
 
     @media (max-width: 360px) {
@@ -1179,7 +1166,7 @@
         <div>
           <p class="eyebrow">初高中教育 App 矩阵</p>
           <h1>把学习里的关键能力，做成一组可以练出来的 App。</h1>
-          <p class="hero-copy">从英语词根破译，到初高中数理化生语政的学科登顶。已上线产品可直达 App Store，每个 App 只抓一个核心超能力：看穿题目、拆开知识、形成答案。</p>
+          <p class="hero-copy">从英语词根破译，到初高中数理化生语政史地的学科登顶。已上线产品可直达 App Store，每个 App 只抓一个核心超能力：看穿题目、拆开知识、形成答案。</p>
           <div class="hero-actions">
             <a class="button primary" href="#products">查看产品矩阵</a>
             <a class="button secondary" href="ai-music.html">AI Music 作品线</a>
@@ -1193,8 +1180,10 @@
           <a class="app-tile tile-phys" href="https://apps.apple.com/cn/app/physicsapex/id6779031451?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PhysicsApex"><img src="assets/physapex.png" alt=""><strong>PhysicsApex</strong><span>看见物理</span></a>
           <a class="app-tile tile-chem" href="https://apps.apple.com/cn/app/chemapex/id6780327495?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChemApex"><img src="assets/chemapex.png" alt=""><strong>ChemApex</strong><span>守恒识局</span></a>
           <a class="app-tile tile-bio" href="https://apps.apple.com/cn/app/bioapex/id6780727579?uo=4" target="_blank" rel="noopener" aria-label="前往 App Store 下载 BioApex"><img src="assets/bioapex.png" alt=""><strong>BioApex</strong><span>看见生命</span></a>
-          <div class="app-tile tile-chin"><img src="assets/chinapex.png" alt=""><strong>ChinApex</strong><span>审核中</span></div>
-          <div class="app-tile tile-pol"><div class="pol-mark">P</div><strong>PolApex</strong><span>规划中</span></div>
+          <div class="app-tile tile-chin"><img src="assets/chinapex.png" alt=""><strong>ChinApex</strong><span>上架准备</span></div>
+          <div class="app-tile tile-pol"><img src="assets/polapex.png" alt=""><strong>PolApex</strong><span>上架准备</span></div>
+          <div class="app-tile tile-hist"><img src="assets/histapex.png" alt=""><strong>HistApex</strong><span>上架准备</span></div>
+          <div class="app-tile tile-geog"><img src="assets/geogapex.png" alt=""><strong>GeogApex</strong><span>上架准备</span></div>
         </div>
       </div>
     </section>
@@ -1202,9 +1191,9 @@
     <section class="section">
       <div class="wrap">
         <div class="metric-row" aria-label="产品概览">
-          <div class="metric"><strong>7</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
+          <div class="metric"><strong>9</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
           <div class="metric"><strong>5</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>
-          <div class="metric"><strong>2</strong><span>ChinApex 审核中，PolApex 处于产品方案阶段</span></div>
+          <div class="metric"><strong>4</strong><span>语文、政治、历史、地理进入上架准备阶段</span></div>
           <div class="metric"><strong>100%</strong><span>优先离线内容、本地学习记录、低依赖发布</span></div>
         </div>
       </div>
@@ -1319,7 +1308,7 @@
                   <p>初高中语文</p>
                 </div>
               </div>
-              <span class="status review">审核中</span>
+              <span class="status prep">上架准备</span>
             </div>
             <p class="tagline">让语文从玄学变成可操作的采分点训练。</p>
             <p>原文定位、文言解码、默写星图、作文工坊和阅卷人之眼，让学生知道每一分到底从哪里来。</p>
@@ -1329,17 +1318,49 @@
           <article class="product-card">
             <div class="product-top">
               <div class="product-id">
-                <div class="pol-mark" aria-hidden="true">P</div>
+                <img class="product-icon" src="assets/polapex.png" alt="PolApex 图标">
                 <div class="product-title">
                   <h3>PolApex</h3>
                   <p>初高中道法 / 思想政治</p>
                 </div>
               </div>
-              <span class="status plan">规划中</span>
+              <span class="status prep">上架准备</span>
             </div>
             <p class="tagline">把政治从背了就忘，变成可检索、可迁移、可输出。</p>
-            <p>方案围绕高权重记忆、主体职责、材料切片、答案工厂和选择题排雷，目标是解决“会背不会答”。</p>
+            <p>围绕高权重记忆、主体职责、材料切片、答案工厂和选择题排雷，训练“会背、会调、会写、会避坑”。</p>
             <div class="chips"><span class="chip">材料切片</span><span class="chip">答案工厂</span><span class="chip">主体定位</span></div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <div class="product-id">
+                <img class="product-icon" src="assets/histapex.png" alt="HistApex 图标">
+                <div class="product-title">
+                  <h3>HistApex</h3>
+                  <p>初高中历史</p>
+                </div>
+              </div>
+              <span class="status prep">上架准备</span>
+            </div>
+            <p class="tagline">把时间线、制度线和材料题写法连成历史高分系统。</p>
+            <p>用时间博物馆、史料相遇、历史规律、专题突破和答案模板，把“背事件”推进到“解释变化与因果”。</p>
+            <div class="chips"><span class="chip">时间博物馆</span><span class="chip">史料题</span><span class="chip">规律迁移</span></div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-top">
+              <div class="product-id">
+                <img class="product-icon" src="assets/geogapex.png" alt="GeogApex 图标">
+                <div class="product-title">
+                  <h3>GeogApex</h3>
+                  <p>初高中地理</p>
+                </div>
+              </div>
+              <span class="status prep">上架准备</span>
+            </div>
+            <p class="tagline">把读图、定位、拆因果和综合题表达练成稳定流程。</p>
+            <p>围绕空间定位、图表判读、自然过程、人文区位、区域发展和答案工厂，补齐选择题与综合题两条线。</p>
+            <div class="chips"><span class="chip">图表判读</span><span class="chip">区位矩阵</span><span class="chip">综合题模板</span></div>
           </article>
         </div>
       </div>
@@ -1356,7 +1377,7 @@
         </div>
 
         <div class="principle-list">
-          <div class="principle"><b>抓一个超能力</b><p>每个产品只抢一个心智入口：WordPulse 是猜词，MathApex 是降维，ChinApex 是采分点。</p></div>
+          <div class="principle"><b>抓一个超能力</b><p>每个产品只抢一个心智入口：WordPulse 是猜词，MathApex 是降维，ChinApex 是采分点，GeogApex 是读图定位。</p></div>
           <div class="principle"><b>把知识做成动作</b><p>不是把文档搬进 App，而是把“怎么想、怎么找、怎么写”拆成按钮、卡片、路径和反馈。</p></div>
           <div class="principle"><b>离线优先</b><p>题库、知识点、故事和练习都尽量内置，降低成本、审核风险和长期维护负担。</p></div>
           <div class="principle"><b>先产品后流量</b><p>个人站负责展示可信度与产品矩阵，真正的转化仍应落到 App Store、截图、口碑和持续更新。</p></div>
@@ -1369,13 +1390,13 @@
         <div class="section-head">
           <div>
             <h2>上线状态</h2>
-            <p class="lead">页面优先承载产品入口和可信信息：已上线产品进入 App Store，审核中和规划中产品明确标注状态。</p>
+            <p class="lead">页面优先承载产品入口和可信信息：已上线产品进入 App Store，准备上架的产品明确标注状态。</p>
           </div>
         </div>
         <div class="roadmap">
           <div class="road-card"><h3>5 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex 已配置中国区 App Store 下载页。</p></div>
-          <div class="road-card"><h3>ChinApex 审核中</h3><p>语文产品暂不放下载入口，避免用户点击到无效页面，审核通过后再补真实链接。</p></div>
-          <div class="road-card"><h3>PolApex 规划中</h3><p>道法 / 思想政治产品继续作为矩阵方向展示，等具备下载页后再开放跳转。</p></div>
+          <div class="road-card"><h3>4 个上架准备</h3><p>ChinApex、PolApex、HistApex、GeogApex 已纳入产品矩阵，当前不放无效下载入口。</p></div>
+          <div class="road-card"><h3>链接随公开页更新</h3><p>Apple 公开下载页可访问后，再把对应产品图标切换为 App Store 跳转。</p></div>
         </div>
       </div>
     </section>
@@ -1385,7 +1406,7 @@
         <div class="contact-band">
           <div>
             <h2>教育 App、产品合作或反馈</h2>
-            <p>欢迎联系 King Top。当前重点是继续打磨已上线 App，并推进 ChinApex 审核与 PolApex 产品化。</p>
+            <p>欢迎联系 King Top。当前重点是继续打磨已上线 App，并推进语文、政治、历史、地理产品上架。</p>
           </div>
           <a class="button primary" href="mailto:botonwa83@gmail.com">botonwa83@gmail.com</a>
         </div>

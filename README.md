@@ -14,6 +14,8 @@
 - BioApex
 - ChinApex
 - PolApex
+- HistApex
+- GeogApex
 
 ## AI Music 自动更新
 
@@ -56,6 +58,9 @@ node scripts/update-ai-music.js
 - `assets/chemapex.png`
 - `assets/bioapex.png`
 - `assets/chinapex.png`
+- `assets/polapex.png`
+- `assets/histapex.png`
+- `assets/geogapex.png`
 
 AI Music 专辑封面放在 `assets/ai-music/covers/`。发布网站时需要连同 `assets/` 目录一起提交和部署。
 
@@ -81,6 +86,6 @@ https://botonwa83-byte.github.io/<repo-name>/
 
 ## 后续建议
 
-- ChinApex 通过 App Store 审核后，在产品卡片里补真实 App Store 链接。
+- ChinApex、PolApex、HistApex、GeogApex 公开 App Store 下载页可访问后，在产品卡片里补真实链接。
 - 保留每个 App 独立的隐私政策、用户协议和技术支持页，不要用个人主页替代合规链接。
-- PolApex 目前页面中已标注为“规划中”。
+- 当前首页按 5 个已上线、4 个上架准备展示 Apex 系列状态。
