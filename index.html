@@ -573,8 +573,19 @@
 
     .status.live {
       color: #126049;
+      gap: 6px;
       background: linear-gradient(135deg, rgba(37, 167, 103, .16), rgba(24, 188, 181, .14));
       box-shadow: inset 0 0 0 1px rgba(37, 167, 103, .14);
+    }
+
+    .status.live::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(37, 167, 103, .55);
+      animation: livePulse 2.2s ease-out infinite;
     }
 
     .status.plan {
@@ -1140,6 +1151,12 @@
       0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
       50% { transform: translate3d(0, -12px, 0) rotate(1.2deg); }
     }
+
+    @keyframes livePulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 167, 103, .50); }
+      70% { box-shadow: 0 0 0 7px rgba(37, 167, 103, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 167, 103, 0); }
+    }
   </style>
 </head>
 <body>
@@ -1196,7 +1213,7 @@
           <!-- APP_STATUS_METRICS_START -->
           <div class="metric"><strong>9</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
                     <div class="metric"><strong>6</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>
-                    <div class="metric"><strong>3</strong><span>审核中或上架准备中</span></div>
+                    <div class="metric"><strong>3</strong><span>上架准备中，内容打磨与提审推进中</span></div>
                     <div class="metric"><strong>100%</strong><span>优先离线内容、本地学习记录、低依赖发布</span></div>
           <!-- APP_STATUS_METRICS_END -->
         </div>
@@ -1399,9 +1416,11 @@
           </div>
         </div>
         <div class="roadmap">
-          <div class="road-card"><h3>5 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex 已配置中国区 App Store 下载页。</p></div>
-          <div class="road-card"><h3>4 个上架准备</h3><p>ChinApex、PolApex、HistApex、GeogApex 已纳入产品矩阵，当前不放无效下载入口。</p></div>
-          <div class="road-card"><h3>链接随公开页更新</h3><p>Apple 公开下载页可访问后，再把对应产品图标切换为 App Store 跳转。</p></div>
+          <!-- APP_STATUS_ROADMAP_START -->
+          <div class="road-card"><h3>6 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex 已配置中国区 App Store 下载页，点击图标即可直达。</p></div>
+                    <div class="road-card"><h3>3 个推进中</h3><p>PolApex、HistApex、GeogApex 上架准备中，已纳入产品矩阵，当前不放无效下载入口。</p></div>
+                    <div class="road-card"><h3>状态每日自动同步</h3><p>每天自动检测 App Store 公开页，上线后产品图标会自动切换为下载跳转，无需手动改文案。</p></div>
+          <!-- APP_STATUS_ROADMAP_END -->
         </div>
       </div>
     </section>
@@ -1446,6 +1465,39 @@
         }, { threshold: 0.16 });
 
         revealTargets.forEach((el) => observer.observe(el));
+      }
+
+      // Count metric numbers up from 0 when they first scroll into view.
+      // Preserves any non-digit suffix (e.g. the "%" in "100%").
+      if (!reduceMotion && "IntersectionObserver" in window) {
+        const metricObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            metricObserver.unobserve(el);
+
+            const raw = el.textContent.trim();
+            const match = raw.match(/^(\d+)(.*)$/);
+            if (!match) return;
+
+            const target = Number(match[1]);
+            const suffix = match[2];
+            const duration = 900;
+            const start = performance.now();
+
+            const step = (now) => {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              el.textContent = `${Math.round(target * eased)}${suffix}`;
+              if (progress < 1) requestAnimationFrame(step);
+            };
+
+            el.textContent = `0${suffix}`;
+            requestAnimationFrame(step);
+          });
+        }, { threshold: 0.6 });
+
+        document.querySelectorAll(".metric strong").forEach((el) => metricObserver.observe(el));
       }
 
       document.querySelectorAll(".product-card").forEach((card) => {

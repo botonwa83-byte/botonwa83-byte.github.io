@@ -52,45 +52,86 @@ function replaceGeneratedBlock(source, name, content) {
   return source.replace(pattern, `${indent}${start}\n${indented}\n${indent}${end}`);
 }
 
+// Look up an App Store entry across the listed storefronts. Returns a
+// discriminated result so callers can tell apart three very different cases:
+//   { ok: true,  info }        – the app is publicly listed (live)
+//   { ok: true,  info: null }  – Apple answered, app is genuinely not listed yet
+//   { ok: false }              – every request failed (network / rate limit)
+// The third case must NOT be treated as "not listed", otherwise a transient
+// network blip in CI would flip a live app back to "审核中".
 async function fetchAppInfo(appId) {
-  if (!appId) return null;
+  if (!appId) return { ok: true, info: null };
 
-  const url = `https://itunes.apple.com/cn/lookup?id=${appId}`;
-  const args = [
-    "-fsSL",
-    "--ipv4",
-    "--retry", "2",
-    "--retry-delay", "2",
-    "--connect-timeout", "8",
-    "--max-time", "25",
-    "-H", "User-Agent: Mozilla/5.0 (compatible; KingTopSiteUpdater/1.0)",
-    url
-  ];
+  // Try the China store first (primary market) then fall back to the global
+  // store, which sometimes serves a result while the regional cache lags.
+  const storefronts = ["cn", "us"];
+  let sawError = false;
 
-  try {
-    const { stdout } = await execFileAsync("curl", args, { maxBuffer: 1024 * 1024 * 8 });
-    const data = JSON.parse(stdout);
-    return data.resultCount > 0 ? data.results[0] : null;
-  } catch (error) {
-    console.warn(`Fetch failed for appId ${appId}: ${error.message}`);
-    return null;
+  for (const country of storefronts) {
+    const url = `https://itunes.apple.com/${country}/lookup?id=${appId}`;
+    const args = [
+      "-fsSL",
+      "--ipv4",
+      "--retry", "3",
+      "--retry-delay", "2",
+      "--retry-all-errors",
+      "--connect-timeout", "8",
+      "--max-time", "25",
+      "-H", "User-Agent: Mozilla/5.0 (compatible; KingTopSiteUpdater/1.0)",
+      url
+    ];
+
+    try {
+      const { stdout } = await execFileAsync("curl", args, { maxBuffer: 1024 * 1024 * 8 });
+      const data = JSON.parse(stdout);
+      if (data.resultCount > 0) {
+        return { ok: true, info: data.results[0] };
+      }
+      // Apple responded but has no listing in this storefront yet.
+    } catch (error) {
+      sawError = true;
+      console.warn(`Fetch failed for appId ${appId} (${country}): ${error.message}`);
+    }
   }
+
+  // If at least one storefront answered cleanly with no result, the app is
+  // confirmed unlisted. If every attempt errored, report the failure instead.
+  return sawError ? { ok: false } : { ok: true, info: null };
 }
 
-async function fetchAllAppStatus() {
+// Collect the appIds that the current page already treats as live, so a fetch
+// failure preserves the prior state rather than silently downgrading it.
+function collectPriorLiveAppIds(page) {
+  const ids = new Set();
+  const pattern = /apps\.apple\.com\/[a-z]{2}\/app\/(\d+)/g;
+  let match;
+  while ((match = pattern.exec(page)) !== null) {
+    ids.add(match[1]);
+  }
+  return ids;
+}
+
+async function fetchAllAppStatus(priorLiveIds) {
   const results = [];
 
   for (const app of APPS) {
-    const info = await fetchAppInfo(app.appId);
+    const result = await fetchAppInfo(app.appId);
     let status = app.status || "plan";
+    let appInfo = null;
 
-    if (info) {
+    if (result.ok && result.info) {
       status = "live";
+      appInfo = result.info;
+    } else if (!result.ok && app.appId && priorLiveIds.has(app.appId)) {
+      // Network failure on an app that was live before: keep it live.
+      status = "live";
+      console.warn(`Preserving prior live status for ${app.name} after fetch failure.`);
     } else if (app.appId && !app.status) {
+      // Apple confirmed there is no public listing yet → still in review.
       status = "review";
     }
 
-    results.push({ ...app, status, appInfo: info });
+    results.push({ ...app, status, appInfo });
   }
 
   return results;
@@ -177,23 +218,69 @@ function renderAppCloud(apps) {
   }).join("\n          ");
 }
 
+// Join Chinese app-name lists with the conventional "、" separator.
+function joinNames(apps) {
+  return apps.map((a) => a.name).join("、");
+}
+
 function renderMetrics(apps) {
   const liveCount = apps.filter((a) => a.status === "live").length;
   const reviewCount = apps.filter((a) => a.status === "review").length;
   const planCount = apps.filter((a) => a.status === "plan").length;
+  const pendingCount = reviewCount + planCount;
   const totalCount = apps.length;
+
+  let pendingText;
+  if (pendingCount === 0) {
+    pendingText = "全部产品均已上线 App Store";
+  } else if (reviewCount > 0 && planCount > 0) {
+    pendingText = `${reviewCount} 个审核中、${planCount} 个上架准备中`;
+  } else if (reviewCount > 0) {
+    pendingText = "提交审核中，等待 App Store 放出下载页";
+  } else {
+    pendingText = "上架准备中，内容打磨与提审推进中";
+  }
 
   return [
     `<div class="metric"><strong>${totalCount}</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>`,
     `<div class="metric"><strong>${liveCount}</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>`,
-    `<div class="metric"><strong>${reviewCount + planCount}</strong><span>${reviewCount + planCount > 0 ? "审核中或上架准备中" : "暂无"}</span></div>`,
+    `<div class="metric"><strong>${pendingCount}</strong><span>${pendingText}</span></div>`,
     `<div class="metric"><strong>100%</strong><span>优先离线内容、本地学习记录、低依赖发布</span></div>`
   ].join("\n          ");
 }
 
+// The "上线状态" cards used to be hand-written and drifted out of sync with the
+// real counts. Generate them from the live data instead.
+function renderRoadmap(apps) {
+  const liveApps = apps.filter((a) => a.status === "live");
+  const reviewApps = apps.filter((a) => a.status === "review");
+  const planApps = apps.filter((a) => a.status === "plan");
+  const pendingApps = [...reviewApps, ...planApps];
+
+  const liveCard = liveApps.length > 0
+    ? `<div class="road-card"><h3>${liveApps.length} 个已上线</h3><p>${joinNames(liveApps)} 已配置中国区 App Store 下载页，点击图标即可直达。</p></div>`
+    : `<div class="road-card"><h3>即将上线</h3><p>首批产品正在提审，公开下载页放出后立即在此更新。</p></div>`;
+
+  let pendingCard;
+  if (pendingApps.length === 0) {
+    pendingCard = `<div class="road-card"><h3>矩阵已全部上线</h3><p>所有学科产品均可在 App Store 下载，后续以内容更新与体验打磨为主。</p></div>`;
+  } else {
+    const reviewPart = reviewApps.length > 0 ? `${joinNames(reviewApps)} 提交审核中` : "";
+    const planPart = planApps.length > 0 ? `${joinNames(planApps)} 上架准备中` : "";
+    const detail = [reviewPart, planPart].filter(Boolean).join("，");
+    pendingCard = `<div class="road-card"><h3>${pendingApps.length} 个推进中</h3><p>${detail}，已纳入产品矩阵，当前不放无效下载入口。</p></div>`;
+  }
+
+  const noteCard = `<div class="road-card"><h3>状态每日自动同步</h3><p>每天自动检测 App Store 公开页，上线后产品图标会自动切换为下载跳转，无需手动改文案。</p></div>`;
+
+  return [liveCard, pendingCard, noteCard].join("\n          ");
+}
+
 async function main() {
-  const apps = await fetchAllAppStatus();
   const page = await fs.readFile(INDEX_PAGE, "utf8");
+  const priorLiveIds = collectPriorLiveAppIds(page);
+
+  const apps = await fetchAllAppStatus(priorLiveIds);
 
   const liveCount = apps.filter((a) => a.status === "live").length;
   const reviewCount = apps.filter((a) => a.status === "review").length;
@@ -204,8 +291,14 @@ async function main() {
   const withCloud = replaceGeneratedBlock(page, "CLOUD", renderAppCloud(apps));
   const withMetrics = replaceGeneratedBlock(withCloud, "METRICS", renderMetrics(apps));
   const withProducts = replaceGeneratedBlock(withMetrics, "PRODUCTS", apps.map(renderProductCard).join("\n\n          "));
+  const withRoadmap = replaceGeneratedBlock(withProducts, "ROADMAP", renderRoadmap(apps));
 
-  await fs.writeFile(INDEX_PAGE, withProducts);
+  if (withRoadmap === page) {
+    console.log("No content changes.");
+    return;
+  }
+
+  await fs.writeFile(INDEX_PAGE, withRoadmap);
   console.log(`Updated ${path.relative(ROOT, INDEX_PAGE)}`);
 }
 
