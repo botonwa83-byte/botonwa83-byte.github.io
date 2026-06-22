@@ -927,6 +927,10 @@
         width: min(100% - 24px, 430px);
       }
 
+      .hero-particles {
+        opacity: .6;
+      }
+
       .hero {
         padding-top: 24px;
         padding-bottom: 38px;
@@ -1466,6 +1470,9 @@
   <script>
     (() => {
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      // Hover-capable, fine pointer (desktop mouse). Touch screens report false,
+      // so cursor-driven effects don't get "stuck" after a tap.
+      const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
       const revealTargets = document.querySelectorAll(".metric, .product-card, .principle-panel, .principle, .road-card, .contact-band");
 
       if (!reduceMotion && "IntersectionObserver" in window) {
@@ -1529,7 +1536,7 @@
           card.style.setProperty("--my", `${py * 100}%`);
 
           // Mouse-follow 3D tilt (shares the .product-grid perspective).
-          if (!reduceMotion) {
+          if (!reduceMotion && finePointer) {
             const ry = (px - 0.5) * (maxTilt * 2);
             const rx = (0.5 - py) * (maxTilt * 2);
             card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateY(-8px)`;
@@ -1543,7 +1550,7 @@
 
       const hero = document.querySelector(".hero");
       const cloud = document.querySelector(".app-cloud");
-      if (!reduceMotion && hero && cloud) {
+      if (!reduceMotion && finePointer && hero && cloud) {
         hero.addEventListener("pointermove", (event) => {
           const rect = hero.getBoundingClientRect();
           const x = (event.clientX - rect.left) / rect.width - 0.5;
@@ -1679,22 +1686,53 @@
             }
           }
 
+          if (running) requestAnimationFrame(draw);
+        };
+
+        let running = false;
+        const start = () => {
+          if (running) return;
+          running = true;
           requestAnimationFrame(draw);
         };
 
-        hero.addEventListener("pointermove", (event) => {
-          const rect = hero.getBoundingClientRect();
-          pointer.x = event.clientX - rect.left;
-          pointer.y = event.clientY - rect.top;
+        if (finePointer) {
+          hero.addEventListener("pointermove", (event) => {
+            const rect = hero.getBoundingClientRect();
+            pointer.x = event.clientX - rect.left;
+            pointer.y = event.clientY - rect.top;
+          });
+          hero.addEventListener("pointerleave", () => {
+            pointer.x = -9999;
+            pointer.y = -9999;
+          });
+        }
+
+        // Debounced resize so rotating a phone re-fits the canvas cleanly.
+        let resizeTimer;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(resize, 150);
         });
-        hero.addEventListener("pointerleave", () => {
-          pointer.x = -9999;
-          pointer.y = -9999;
-        });
-        window.addEventListener("resize", resize);
 
         resize();
-        requestAnimationFrame(draw);
+
+        // Pause the animation loop whenever the hero is scrolled out of view —
+        // saves battery and CPU on mobile instead of drawing off-screen frames.
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                start();
+              } else {
+                running = false;
+              }
+            });
+          }, { threshold: 0 });
+          io.observe(hero);
+        } else {
+          start();
+        }
       }
     })();
   </script>
