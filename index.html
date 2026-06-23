@@ -107,6 +107,19 @@
       box-shadow: 0 8px 22px rgba(47, 128, 237, .22);
     }
 
+    .eng-mark {
+      width: 74px;
+      height: 74px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #2f80ed, #7357e8 58%, #25a767);
+      box-shadow: 0 10px 22px rgba(47, 128, 237, .24);
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -352,6 +365,7 @@
     .tile-pol { right: 13%; bottom: 18%; animation-delay: -4.6s; }
     .tile-hist { left: 28%; bottom: 0; animation-delay: -5.3s; }
     .tile-geog { right: 0; bottom: -2%; animation-delay: -6s; }
+    .tile-eng { left: 12%; top: 14%; animation-delay: -6.7s; }
 
     main {
       overflow: hidden;
@@ -517,6 +531,17 @@
       transition: transform .22s ease;
     }
 
+    .product-card .eng-mark {
+      width: 62px;
+      height: 62px;
+      border-radius: 17px;
+      margin: 0;
+      flex: 0 0 auto;
+      font-size: 22px;
+      box-shadow: 0 10px 22px rgba(18, 24, 23, .18);
+      transition: transform .22s ease;
+    }
+
     .store-icon-link {
       position: relative;
       display: block;
@@ -540,7 +565,8 @@
       transition: transform .22s ease;
     }
 
-    .product-card:hover .product-icon {
+    .product-card:hover .product-icon,
+    .product-card:hover .eng-mark {
       transform: scale(1.04) rotate(-2deg);
     }
 
@@ -1095,6 +1121,7 @@
       .tile-pol { right: 3%; top: 244px; }
       .tile-hist { left: 24%; bottom: 18px; }
       .tile-geog { right: 3%; bottom: 0; }
+      .tile-eng { left: 66%; top: 66px; }
     }
 
     @media (max-width: 360px) {
@@ -1225,6 +1252,7 @@
                     <div class="app-tile tile-pol"><img src="assets/polapex.png" alt=""><strong>PolApex</strong><span>初高中道法 / 思想政治</span></div>
                     <div class="app-tile tile-hist"><img src="assets/histapex.png" alt=""><strong>HistApex</strong><span>初高中历史</span></div>
                     <div class="app-tile tile-geog"><img src="assets/geogapex.png" alt=""><strong>GeogApex</strong><span>初高中地理</span></div>
+                    <div class="app-tile tile-eng"><div class="eng-mark">E</div><strong>EngApex</strong><span>初高中英语</span></div>
           <!-- APP_STATUS_CLOUD_END -->
         </div>
       </div>
@@ -1234,9 +1262,9 @@
       <div class="wrap">
         <div class="metric-row" aria-label="产品概览">
           <!-- APP_STATUS_METRICS_START -->
-          <div class="metric"><strong>9</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
+          <div class="metric"><strong>10</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
                     <div class="metric"><strong>6</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>
-                    <div class="metric"><strong>3</strong><span>上架准备中，内容打磨与提审推进中</span></div>
+                    <div class="metric"><strong>4</strong><span>上架准备中，内容打磨与提审推进中</span></div>
                     <div class="metric"><strong>100%</strong><span>优先离线内容、本地学习记录、低依赖发布</span></div>
           <!-- APP_STATUS_METRICS_END -->
         </div>
@@ -1405,6 +1433,23 @@
             <p class="tagline">把读图、定位、拆因果和综合题表达练成稳定流程。</p>
             <p>围绕空间定位、图表判读、自然过程、人文区位、区域发展和答案工厂，补齐选择题与综合题两条线。</p>
             <div class="chips"><span class="chip">图表判读</span><span class="chip">区位矩阵</span><span class="chip">综合题模板</span></div>
+          </article>
+
+                    
+          <article class="product-card">
+            <div class="product-top">
+              <div class="product-id">
+                <div class="eng-mark" aria-hidden="true">E</div>
+                <div class="product-title">
+                  <h3>EngApex</h3>
+                  <p>初高中英语</p>
+                </div>
+              </div>
+              <span class="status plan">上架准备</span>
+            </div>
+            <p class="tagline">把语法填空、完形填空、阅读理解练成系统能力。</p>
+            <p>围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。</p>
+            <div class="chips"><span class="chip">句法解码</span><span class="chip">完形线索</span><span class="chip">阅读题型</span></div>
           </article>
           <!-- APP_STATUS_PRODUCTS_END -->
         </div>
