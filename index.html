@@ -205,44 +205,39 @@
 
     .hero-streams span {
       position: absolute;
-      width: 2px;
-      height: 80px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), white);
-      transform: rotate(15deg);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), white);
+      transform: rotate(-45deg);
       opacity: 0;
-      animation: meteorShower 60s linear infinite;
+      animation: meteorFly 0.8s ease-out forwards;
       filter: blur(0.5px);
-      box-shadow: 0 0 10px white, 0 0 20px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 8px white, 0 0 15px rgba(255, 255, 255, 0.6);
     }
 
-    .hero-streams span:nth-child(1) { left: 5%; animation-delay: 0s; top: -100px; }
-    .hero-streams span:nth-child(2) { left: 15%; animation-delay: -7s; top: -100px; }
-    .hero-streams span:nth-child(3) { left: 25%; animation-delay: -15s; top: -100px; }
-    .hero-streams span:nth-child(4) { left: 35%; animation-delay: -23s; top: -100px; }
-    .hero-streams span:nth-child(5) { left: 45%; animation-delay: -31s; top: -100px; }
-    .hero-streams span:nth-child(6) { left: 55%; animation-delay: -39s; top: -100px; }
-    .hero-streams span:nth-child(7) { left: 65%; animation-delay: -47s; top: -100px; }
-    .hero-streams span:nth-child(8) { left: 75%; animation-delay: -55s; top: -100px; }
-    .hero-streams span:nth-child(9) { left: 85%; animation-delay: -3s; top: -100px; }
-    .hero-streams span:nth-child(10) { left: 95%; animation-delay: -11s; top: -100px; }
+    .hero-streams span:nth-child(1) { left: 10%; top: 5%; animation-delay: 0s; }
+    .hero-streams span:nth-child(2) { left: 25%; top: 8%; animation-delay: -2s; }
+    .hero-streams span:nth-child(3) { left: 40%; top: 3%; animation-delay: -4s; }
+    .hero-streams span:nth-child(4) { left: 55%; top: 6%; animation-delay: -6s; }
+    .hero-streams span:nth-child(5) { left: 70%; top: 4%; animation-delay: -8s; }
+    .hero-streams span:nth-child(6) { left: 85%; top: 7%; animation-delay: -10s; }
+    .hero-streams span:nth-child(7) { left: 15%; top: 12%; animation-delay: -12s; }
+    .hero-streams span:nth-child(8) { left: 30%; top: 9%; animation-delay: -14s; }
+    .hero-streams span:nth-child(9) { left: 50%; top: 11%; animation-delay: -16s; }
+    .hero-streams span:nth-child(10) { left: 65%; top: 10%; animation-delay: -18s; }
+    .hero-streams span:nth-child(11) { left: 80%; top: 13%; animation-delay: -20s; }
+    .hero-streams span:nth-child(12) { left: 95%; top: 8%; animation-delay: -22s; }
 
-    @keyframes meteorShower {
+    @keyframes meteorFly {
       0% {
-        transform: translateY(0) rotate(15deg);
+        transform: rotate(-45deg) translateX(0);
         opacity: 0;
-      }
-      2% {
-        opacity: 1;
       }
       10% {
-        transform: translateY(calc(100vh + 200px)) rotate(15deg);
         opacity: 1;
       }
-      12% {
-        opacity: 0;
-      }
       100% {
-        transform: translateY(calc(100vh + 200px)) rotate(15deg);
+        transform: rotate(-45deg) translateX(300px);
         opacity: 0;
       }
     }
@@ -252,18 +247,23 @@
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0);
-      transition: background 2s ease;
       pointer-events: none;
       z-index: 1;
-      animation: skyDarken 60s ease-in-out infinite;
+      animation: skyFlash 24s linear infinite;
     }
 
-    @keyframes skyDarken {
-      0%, 2%, 10%, 12%, 100% {
+    @keyframes skyFlash {
+      0%, 4%, 100% {
         background: rgba(0, 0, 0, 0);
       }
-      4%, 8% {
-        background: rgba(0, 0, 0, 0.3);
+      5%, 8% {
+        background: rgba(0, 0, 0, 0.15);
+      }
+      16%, 20%, 100% {
+        background: rgba(0, 0, 0, 0);
+      }
+      17%, 19% {
+        background: rgba(0, 0, 0, 0.15);
       }
     }
 
@@ -1273,7 +1273,7 @@
   <main id="top">
     <section class="hero" aria-label="King Top 教育 App">
       <canvas class="hero-particles" aria-hidden="true"></canvas>
-      <div class="hero-streams" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="hero-streams" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="hero-inner">
         <div>
           <p class="eyebrow">初高中教育 App 矩阵</p>
