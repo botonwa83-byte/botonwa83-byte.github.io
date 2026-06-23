@@ -18,7 +18,8 @@ const APPS = [
   { id: "chinapex", name: "ChinApex", subtitle: "初高中语文", appId: "6781556016", tagline: "让语文从玄学变成可操作的采分点训练。", description: "原文定位、文言解码、默写星图、作文工坊和阅卷人之眼，让学生知道每一分到底从哪里来。", chips: ["采分点", "作文工坊", "文言解码"], icon: "assets/chinapex.png", tile: "tile-chin" },
   { id: "polapex", name: "PolApex", subtitle: "初高中道法 / 思想政治", appId: null, tagline: "把政治从背了就忘，变成可检索、可迁移、可输出。", description: "围绕高权重记忆、主体职责、材料切片、答案工厂和选择题排雷。", chips: ["材料切片", "答案工厂", "主体定位"], icon: "assets/polapex.png", tile: "tile-pol", status: "plan" },
   { id: "histapex", name: "HistApex", subtitle: "初高中历史", appId: null, tagline: "把时间线、制度线和材料题写法连成历史高分系统。", description: "用时间博物馆、史料相遇、历史规律、专题突破和答案模板，把背事件推进到解释变化与因果。", chips: ["时间博物馆", "史料题", "规律迁移"], icon: "assets/histapex.png", tile: "tile-hist", status: "plan" },
-  { id: "geogapex", name: "GeogApex", subtitle: "初高中地理", appId: null, tagline: "把读图、定位、拆因果和综合题表达练成稳定流程。", description: "围绕空间定位、图表判读、自然过程、人文区位、区域发展和答案工厂，补齐选择题与综合题两条线。", chips: ["图表判读", "区位矩阵", "综合题模板"], icon: "assets/geogapex.png", tile: "tile-geog", status: "plan" }
+  { id: "geogapex", name: "GeogApex", subtitle: "初高中地理", appId: null, tagline: "把读图、定位、拆因果和综合题表达练成稳定流程。", description: "围绕空间定位、图表判读、自然过程、人文区位、区域发展和答案工厂，补齐选择题与综合题两条线。", chips: ["图表判读", "区位矩阵", "综合题模板"], icon: "assets/geogapex.png", tile: "tile-geog", status: "plan" },
+  { id: "engapex", name: "EngApex", subtitle: "初高中英语", appId: null, tagline: "把语法填空、完形填空、阅读理解练成系统能力。", description: "围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。", chips: ["句法解码", "完形线索", "阅读题型"], icon: "assets/engapex.png", tile: "tile-eng", status: "plan" }
 ];
 
 function escapeHtml(value) {
@@ -111,6 +112,15 @@ function collectPriorLiveAppIds(page) {
   return ids;
 }
 
+async function checkIconExists(iconPath) {
+  try {
+    await fs.access(iconPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function fetchAllAppStatus(priorLiveIds) {
   const results = [];
 
@@ -118,20 +128,24 @@ async function fetchAllAppStatus(priorLiveIds) {
     const result = await fetchAppInfo(app.appId);
     let status = app.status || "plan";
     let appInfo = null;
+    const iconPath = path.join(ROOT, app.icon);
+    const hasIcon = await checkIconExists(iconPath);
 
     if (result.ok && result.info) {
       status = "live";
       appInfo = result.info;
     } else if (!result.ok && app.appId && priorLiveIds.has(app.appId)) {
-      // Network failure on an app that was live before: keep it live.
       status = "live";
       console.warn(`Preserving prior live status for ${app.name} after fetch failure.`);
     } else if (app.appId && !app.status) {
-      // Apple confirmed there is no public listing yet → still in review.
       status = "review";
     }
 
-    results.push({ ...app, status, appInfo });
+    if (!hasIcon) {
+      console.warn(`Icon not found for ${app.name}: ${app.icon}, will use letter marker instead.`);
+    }
+
+    results.push({ ...app, status, appInfo, hasIcon });
   }
 
   return results;
@@ -139,6 +153,11 @@ async function fetchAllAppStatus(priorLiveIds) {
 
 function appStoreUrl(appId) {
   return `https://apps.apple.com/cn/app/${appId}`;
+}
+
+function renderIconMark(app) {
+  const letter = app.name.charAt(0).toUpperCase();
+  return `<div class="icon-mark" aria-hidden="true">${letter}</div>`;
 }
 
 function renderProductCard(app) {
@@ -157,12 +176,16 @@ function renderProductCard(app) {
 
   const chips = app.chips.map((chip) => `<span class="chip">${escapeHtml(chip)}</span>`).join("");
 
+  const iconHtml = app.hasIcon
+    ? `<img class="product-icon" src="${app.icon}" alt="${attrTitle} 图标">`
+    : renderIconMark(app);
+
   if (isPlan) {
     return `
 <article class="product-card">
   <div class="product-top">
     <div class="product-id">
-      <img class="product-icon" src="${app.icon}" alt="${attrTitle} 图标">
+      ${iconHtml}
       <div class="product-title">
         <h3>${title}</h3>
         <p>${subtitle}</p>
@@ -176,15 +199,15 @@ function renderProductCard(app) {
 </article>`;
   }
 
-  const iconHtml = isLive
-    ? `<a class="store-icon-link" href="${appStoreUrl(app.appId)}" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ${title}"><img class="product-icon" src="${app.icon}" alt="${attrTitle} 图标"></a>`
-    : `<img class="product-icon" src="${app.icon}" alt="${attrTitle} 图标">`;
+  const wrappedIconHtml = isLive
+    ? `<a class="store-icon-link" href="${appStoreUrl(app.appId)}" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ${title}">${iconHtml}</a>`
+    : iconHtml;
 
   return `
 <article class="product-card">
   <div class="product-top">
     <div class="product-id">
-      ${iconHtml}
+      ${wrappedIconHtml}
       <div class="product-title">
         <h3>${title}</h3>
         <p>${subtitle}</p>
@@ -205,8 +228,12 @@ function renderAppCloud(apps) {
     const title = escapeHtml(app.name);
     const subtitle = escapeHtml(app.subtitle);
 
+    const iconContent = app.hasIcon
+      ? `<img src="${app.icon}" alt="">`
+      : renderIconMark(app);
+
     if (isPlan) {
-      return `<div class="app-tile ${app.tile}"><img src="${app.icon}" alt=""><strong>${title}</strong><span>${subtitle}</span></div>`;
+      return `<div class="app-tile ${app.tile}">${iconContent}<strong>${title}</strong><span>${subtitle}</span></div>`;
     }
 
     const link = isLive
@@ -214,7 +241,7 @@ function renderAppCloud(apps) {
       : "";
     const tag = isLive ? "a" : "div";
 
-    return `<${tag} class="app-tile ${app.tile}" ${link}><img src="${app.icon}" alt=""><strong>${title}</strong><span>${subtitle}</span></${tag}>`;
+    return `<${tag} class="app-tile ${app.tile}" ${link}>${iconContent}<strong>${title}</strong><span>${subtitle}</span></${tag}>`;
   }).join("\n          ");
 }
 
