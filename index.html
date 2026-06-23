@@ -1640,26 +1640,6 @@
         let width = 0;
         let height = 0;
         let nodes = [];
-        let meteors = [];
-
-        // A single rainbow meteor falling down-left across the hero. `initial`
-        // spreads the first batch over the screen; later respawns drop in from
-        // above so the shower never stops.
-        const spawnMeteor = (initial) => {
-          const len = 120 + Math.random() * 170;
-          const theta = (Math.PI / 180) * (20 + Math.random() * 12);
-          return {
-            dirX: -Math.sin(theta),
-            dirY: Math.cos(theta),
-            x: Math.random() * width * 1.4,
-            y: initial ? Math.random() * height : -(Math.random() * height * 0.6 + len),
-            len,
-            speed: 5 + Math.random() * 6,
-            hue: Math.random() * 360,
-            width: 1.2 + Math.random() * 1.8,
-            alpha: 0.55 + Math.random() * 0.45
-          };
-        };
 
         const resize = () => {
           const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1679,9 +1659,6 @@
             r: Math.random() * 1.7 + 0.8,
             c: palette[Math.floor(Math.random() * palette.length)]
           }));
-
-          const meteorCount = Math.max(6, Math.min(Math.round(width / 110), 16));
-          meteors = Array.from({ length: meteorCount }, () => spawnMeteor(true));
         };
 
         const draw = () => {
@@ -1720,36 +1697,6 @@
               ctx.strokeStyle = `rgba(${a.c}, ${0.34 * (1 - pd / 170)})`;
               ctx.lineWidth = 1;
               ctx.stroke();
-            }
-          }
-
-          // Rainbow meteor shower, drawn on top of the constellation.
-          ctx.lineCap = "round";
-          for (const m of meteors) {
-            m.x += m.dirX * m.speed;
-            m.y += m.dirY * m.speed;
-
-            const tailX = m.x - m.dirX * m.len;
-            const tailY = m.y - m.dirY * m.len;
-            const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
-            grad.addColorStop(0, `hsla(${m.hue}, 92%, 66%, ${m.alpha})`);
-            grad.addColorStop(0.35, `hsla(${m.hue}, 92%, 66%, ${m.alpha * 0.45})`);
-            grad.addColorStop(1, `hsla(${m.hue}, 92%, 66%, 0)`);
-
-            ctx.beginPath();
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = m.width;
-            ctx.moveTo(m.x, m.y);
-            ctx.lineTo(tailX, tailY);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.arc(m.x, m.y, m.width * 1.05, 0, Math.PI * 2);
-            ctx.fillStyle = `hsla(${m.hue}, 96%, 74%, ${m.alpha})`;
-            ctx.fill();
-
-            if (tailY > height || tailX < 0) {
-              Object.assign(m, spawnMeteor(false));
             }
           }
 
