@@ -205,16 +205,67 @@
 
     .hero-streams span {
       position: absolute;
-      width: min(180px, 22vw);
-      height: 1.5px;
-      background: linear-gradient(90deg, transparent, rgba(47, 128, 237, .32), rgba(24, 188, 181, .28), transparent);
-      transform: rotate(-22deg);
-      opacity: .45;
-      animation: streamSlide 18s ease-in-out infinite;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), white);
+      transform: rotate(15deg);
+      opacity: 0;
+      animation: meteorShower 60s linear infinite;
+      filter: blur(0.5px);
+      box-shadow: 0 0 10px white, 0 0 20px rgba(255, 255, 255, 0.5);
     }
 
-    .hero-streams span:nth-child(1) { top: 18%; left: -5%; animation-delay: 0s; }
-    .hero-streams span:nth-child(2) { top: 52%; right: 12%; animation-delay: -8s; }
+    .hero-streams span:nth-child(1) { left: 5%; animation-delay: 0s; top: -100px; }
+    .hero-streams span:nth-child(2) { left: 15%; animation-delay: -7s; top: -100px; }
+    .hero-streams span:nth-child(3) { left: 25%; animation-delay: -15s; top: -100px; }
+    .hero-streams span:nth-child(4) { left: 35%; animation-delay: -23s; top: -100px; }
+    .hero-streams span:nth-child(5) { left: 45%; animation-delay: -31s; top: -100px; }
+    .hero-streams span:nth-child(6) { left: 55%; animation-delay: -39s; top: -100px; }
+    .hero-streams span:nth-child(7) { left: 65%; animation-delay: -47s; top: -100px; }
+    .hero-streams span:nth-child(8) { left: 75%; animation-delay: -55s; top: -100px; }
+    .hero-streams span:nth-child(9) { left: 85%; animation-delay: -3s; top: -100px; }
+    .hero-streams span:nth-child(10) { left: 95%; animation-delay: -11s; top: -100px; }
+
+    @keyframes meteorShower {
+      0% {
+        transform: translateY(0) rotate(15deg);
+        opacity: 0;
+      }
+      2% {
+        opacity: 1;
+      }
+      10% {
+        transform: translateY(calc(100vh + 200px)) rotate(15deg);
+        opacity: 1;
+      }
+      12% {
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(calc(100vh + 200px)) rotate(15deg);
+        opacity: 0;
+      }
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: background 2s ease;
+      pointer-events: none;
+      z-index: 1;
+      animation: skyDarken 60s ease-in-out infinite;
+    }
+
+    @keyframes skyDarken {
+      0%, 2%, 10%, 12%, 100% {
+        background: rgba(0, 0, 0, 0);
+      }
+      4%, 8% {
+        background: rgba(0, 0, 0, 0.3);
+      }
+    }
 
     .eyebrow {
       display: inline-flex;
@@ -1180,14 +1231,6 @@
       50% { opacity: .92; transform: rotate(-14deg) translateX(-28px); }
     }
 
-    @keyframes streamSlide {
-      0%, 100% { transform: rotate(-22deg) translateX(-24px); opacity: 0; }
-      15% { opacity: .65; }
-      35% { opacity: .65; }
-      50% { transform: rotate(-22deg) translateX(28px); opacity: 0; }
-      100% { opacity: 0; }
-    }
-
     @keyframes radarSpin {
       from { transform: rotate(-10deg); }
       to { transform: rotate(350deg); }
@@ -1230,7 +1273,7 @@
   <main id="top">
     <section class="hero" aria-label="King Top 教育 App">
       <canvas class="hero-particles" aria-hidden="true"></canvas>
-      <div class="hero-streams" aria-hidden="true"><span></span><span></span></div>
+      <div class="hero-streams" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="hero-inner">
         <div>
           <p class="eyebrow">初高中教育 App 矩阵</p>
