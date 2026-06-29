@@ -5,6 +5,7 @@
 - 教育 App 产品矩阵：首页 `index.html`
 - AI Music / 石头叔叔作品线：音乐页 `ai-music.html`
 - 各学科广告落地页：`wordpulse.html`、`mathapex.html`、`physicsapex.html` 等独立页面
+- 推广方案动画页：`promotion.html`
 
 教育 App 包括：
 
@@ -51,6 +52,19 @@ assets/subject-landing.css
 ```
 
 首页产品卡片中的“查看广告页”入口由 `scripts/update-apps.js` 生成；如果后续自动同步 App Store 状态，也会保留这些广告页链接。
+
+## 推广方案动画页
+
+`promotion.html` 是面向推广执行的动态网页方案，包含：
+
+- 产品矩阵推广定位
+- 学生、家长、老师 / 学习博主三类人群
+- 短视频、搜索 / SEO、社群、App Store 四类渠道策略
+- 30 天推广节奏
+- 内容脚本工厂
+- 转化漏斗和复盘指标
+
+页面是纯静态 HTML/CSS/JS，使用现有 App 图标作为视觉资产，可直接随 GitHub Pages 发布。
 
 ## AI Music 自动更新
 
@@ -107,7 +121,7 @@ AI Music 专辑封面放在 `assets/ai-music/covers/`。发布网站时需要连
 botonwa83-byte.github.io
 ```
 
-把本目录里的 `index.html`、`ai-music.html`、各学科 `*.html` 广告页、`assets/`、`scripts/` 和 `.github/` 复制到该仓库根目录，提交并推送。GitHub Pages 会把个人站发布到：
+把本目录里的 `index.html`、`ai-music.html`、`promotion.html`、各学科 `*.html` 广告页、`assets/`、`scripts/` 和 `.github/` 复制到该仓库根目录，提交并推送。GitHub Pages 会把个人站发布到：
 
 ```text
 https://botonwa83-byte.github.io/
