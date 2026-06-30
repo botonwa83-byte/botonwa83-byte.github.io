@@ -488,9 +488,8 @@ const APPS = [
     id: "engapex",
     name: "EngApex",
     subtitle: "初高中英语",
-    appId: null,
-    icon: null,
-    status: "plan",
+    appId: "6784478791",
+    icon: "assets/engapex.png",
     theme: { brand: "#0284c7", brandDark: "#0c4a6e", brandRgb: "2, 132, 199", accent: "#8b5cf6", accentRgb: "139, 92, 246", warm: "#f59e0b", warmRgb: "245, 158, 11" },
     title: "把语法填空、完形填空、阅读理解练成系统能力。",
     description: "围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。",
@@ -501,7 +500,7 @@ const APPS = [
       ["4 类", "语法填空、完形、阅读、写作核心题型"],
       ["1 套", "从句法到题型的可执行解题流程"],
       ["多场景", "长难句、语篇线索和写作表达集中训练"],
-      ["准备中", "上架准备中，先展示产品方向"]
+      ["0 登录", "免费下载，无需注册即可开始训练"]
     ],
     preview: {
       label: "句法解码",

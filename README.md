@@ -135,6 +135,6 @@ https://botonwa83-byte.github.io/<repo-name>/
 
 ## 后续建议
 
-- PolApex、EngApex 公开 App Store 下载页可访问后，在 `scripts/update-apps.js` 和 `scripts/generate-subject-pages.js` 里补真实 `appId`。
+- PolApex 公开 App Store 下载页可访问后，在 `scripts/update-apps.js` 和 `scripts/generate-subject-pages.js` 里补真实 `appId`。
 - 保留每个 App 独立的隐私政策、用户协议和技术支持页，不要用个人主页替代合规链接。
-- 当前首页按 8 个已上线、2 个上架准备展示教育产品状态。
+- 当前首页按 9 个已上线、1 个上架准备展示教育产品状态。
