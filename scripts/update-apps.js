@@ -9,6 +9,8 @@ const ROOT = path.resolve(__dirname, "..");
 const INDEX_PAGE = path.join(ROOT, "index.html");
 const execFileAsync = promisify(execFile);
 
+// Education product line only. KingFit is a separate health product line and
+// lives outside these generated homepage blocks.
 const APPS = [
   { id: "wordpulse", name: "WordPulse", subtitle: "初高中英语词汇", appId: "6767762376", tagline: "看到陌生长难词，拆开词根也能猜出意思。", description: "围绕词根词缀、词源宇宙、先猜后揭、懒人模式和纯离线学习，把背单词从记忆负担变成破译体验。", chips: ["330+ 词根词缀", "5800+ 词汇", "词源故事"], icon: "assets/wordpulse.png", tile: "tile-word" },
   { id: "mathapex", name: "MathApex", subtitle: "初高中数学", appId: "6778461030", tagline: "用高阶思维打通初高中数学关键题。", description: "常规解与降维秒杀双解对照，结合公式宇宙、错题复习、数学英雄与数学发现。", chips: ["595 道压轴题", "150+ 公式", "双解对照"], icon: "assets/mathapex.png", tile: "tile-math" },
@@ -302,7 +304,7 @@ function renderRoadmap(apps) {
     const reviewPart = reviewApps.length > 0 ? `${joinNames(reviewApps)} 提交审核中` : "";
     const planPart = planApps.length > 0 ? `${joinNames(planApps)} 上架准备中` : "";
     const detail = [reviewPart, planPart].filter(Boolean).join("，");
-    pendingCard = `<div class="road-card"><h3>${pendingApps.length} 个推进中</h3><p>${detail}，已纳入产品矩阵，当前不放无效下载入口。</p></div>`;
+    pendingCard = `<div class="road-card"><h3>${pendingApps.length} 个推进中</h3><p>${detail}，已纳入教育产品线，当前不放无效下载入口。</p></div>`;
   }
 
   const noteCard = `<div class="road-card"><h3>状态每日自动同步</h3><p>每天自动检测 App Store 公开页，上线后产品图标会自动切换为下载跳转，无需手动改文案。</p></div>`;

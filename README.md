@@ -1,8 +1,9 @@
 # King Top 教育 App 个人站
 
-这是一个可直接发布到 GitHub Pages 的静态个人网站，用于展示两条独立产品线：
+这是一个可直接发布到 GitHub Pages 的静态个人网站，用于展示多条独立产品线：
 
 - 教育 App 产品矩阵：首页 `index.html`
+- 健康 App 产品线：`kingfit.html`
 - AI Music / 石头叔叔作品线：音乐页 `ai-music.html`
 - 各学科广告落地页：`wordpulse.html`、`mathapex.html`、`physicsapex.html` 等独立页面
 - 推广方案动画页：`promotion.html`
@@ -19,6 +20,10 @@
 - HistApex
 - GeogApex
 - EngApex
+
+健康 App 包括：
+
+- KingFit 健康趋势
 
 ## 学科广告页
 
@@ -51,7 +56,11 @@ engapex.html
 assets/subject-landing.css
 ```
 
-首页产品卡片中的“查看广告页”入口由 `scripts/update-apps.js` 生成；如果后续自动同步 App Store 状态，也会保留这些广告页链接。
+首页教育产品卡片中的“查看广告页”入口由 `scripts/update-apps.js` 生成；如果后续自动同步 App Store 状态，也会保留这些广告页链接。KingFit 属于独立健康产品线，不由该脚本生成。
+
+## 健康产品页
+
+`kingfit.html` 展示已上线的 KingFit 健康趋势 App，和教育产品线分开。页面包含 App Store 下载入口、健康趋势定位、恢复评分、训练负荷、睡眠详情、Apple Watch 支持和隐私说明。
 
 ## 推广方案动画页
 
@@ -110,6 +119,7 @@ node scripts/update-ai-music.js
 - `assets/polapex.png`
 - `assets/histapex.png`
 - `assets/geogapex.png`
+- `assets/kingfit.png`
 
 AI Music 专辑封面放在 `assets/ai-music/covers/`。发布网站时需要连同 `assets/` 目录一起提交和部署。
 
@@ -121,7 +131,7 @@ AI Music 专辑封面放在 `assets/ai-music/covers/`。发布网站时需要连
 botonwa83-byte.github.io
 ```
 
-把本目录里的 `index.html`、`ai-music.html`、`promotion.html`、各学科 `*.html` 广告页、`assets/`、`scripts/` 和 `.github/` 复制到该仓库根目录，提交并推送。GitHub Pages 会把个人站发布到：
+把本目录里的 `index.html`、`kingfit.html`、`ai-music.html`、`promotion.html`、各学科 `*.html` 广告页、`assets/`、`scripts/` 和 `.github/` 复制到该仓库根目录，提交并推送。GitHub Pages 会把个人站发布到：
 
 ```text
 https://botonwa83-byte.github.io/
@@ -137,4 +147,4 @@ https://botonwa83-byte.github.io/<repo-name>/
 
 - PolApex 公开 App Store 下载页可访问后，在 `scripts/update-apps.js` 和 `scripts/generate-subject-pages.js` 里补真实 `appId`。
 - 保留每个 App 独立的隐私政策、用户协议和技术支持页，不要用个人主页替代合规链接。
-- 当前首页按 9 个已上线、1 个上架准备展示教育产品状态。
+- 当前首页按 9 个已上线、1 个上架准备展示教育产品状态，并单独展示已上线的 KingFit 健康产品线。

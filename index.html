@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="King Top 初高中教育 App 产品矩阵：WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、PolApex、HistApex、GeogApex。">
+  <meta name="description" content="King Top App 产品线：初高中教育产品矩阵，以及独立健康趋势工具 KingFit。">
   <meta name="theme-color" content="#f6fbff">
-  <title>King Top · 教育 App 产品矩阵</title>
+  <title>King Top · App 产品线</title>
   <style>
     :root {
       --ink: #101723;
@@ -714,6 +714,75 @@
       box-shadow: 0 12px 24px rgba(47, 128, 237, .24);
     }
 
+    .health-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, .88fr) minmax(360px, 1.12fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .line-note {
+      min-height: 100%;
+      padding: 26px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(31, 122, 92, .18);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .88), rgba(240, 250, 246, .82)),
+        radial-gradient(circle at 90% 14%, rgba(31, 122, 92, .14), transparent 34%);
+      box-shadow: 0 14px 34px rgba(31, 122, 92, .10);
+    }
+
+    .line-note h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .line-note p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .health-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .health-meta span {
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(31, 122, 92, .14);
+      border-radius: var(--radius);
+      padding: 12px;
+      color: #315041;
+      background: rgba(255, 255, 255, .72);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .health-meta strong {
+      display: block;
+      color: #1f7a5c;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .health-product {
+      border-color: rgba(31, 122, 92, .18);
+      background:
+        linear-gradient(rgba(255, 255, 255, .88), rgba(255, 255, 255, .88)) padding-box,
+        linear-gradient(135deg, rgba(31, 122, 92, .34), rgba(20, 184, 166, .22), rgba(245, 158, 11, .16)) border-box;
+    }
+
+    .health-product .store-icon-link::after,
+    .health-product .chip-link {
+      background: linear-gradient(135deg, #1f7a5c, #14b8a6);
+    }
+
     .principles {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -977,6 +1046,7 @@
       }
 
       .principles,
+      .health-showcase,
       .roadmap {
         grid-template-columns: 1fr;
       }
@@ -1071,6 +1141,14 @@
       .product-card {
         min-height: auto;
         padding: 18px;
+      }
+
+      .line-note {
+        padding: 20px;
+      }
+
+      .health-meta {
+        grid-template-columns: 1fr;
       }
 
       .product-top {
@@ -1247,10 +1325,11 @@
     <nav class="nav" aria-label="主导航">
       <a class="brand" href="#top" aria-label="King Top 首页">
         <span class="brand-mark">K</span>
-        <span>King Top Education</span>
+        <span>King Top Apps</span>
       </a>
       <div class="nav-links">
-        <a href="#products">产品</a>
+        <a href="#education">教育产品</a>
+        <a href="#health">健康产品</a>
         <a href="physicsapex.html">广告页</a>
         <a href="promotion.html">推广方案</a>
         <a href="#method">理念</a>
@@ -1262,16 +1341,17 @@
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="King Top 教育 App">
+    <section class="hero" aria-label="King Top App 产品线">
       <canvas class="hero-particles" aria-hidden="true"></canvas>
       <div class="hero-streams" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <div class="hero-inner">
         <div>
-          <p class="eyebrow">初高中教育 App 矩阵</p>
-          <h1>把学习里的关键能力，做成一组可以练出来的 App。</h1>
-          <p class="hero-copy">从英语词根破译，到初高中数理化生语政史地的学科登顶。已上线产品可直达 App Store，每个 App 只抓一个核心超能力：看穿题目、拆开知识、形成答案。</p>
+          <p class="eyebrow">教育产品线 + 健康产品线</p>
+          <h1>把关键能力和个人趋势，做成可以直接使用的 App。</h1>
+          <p class="hero-copy">教育产品线覆盖初高中英语与核心学科；健康产品线独立展示 KingFit，面向个人健康趋势、恢复评分、训练负荷和 Apple Watch 查看。</p>
           <div class="hero-actions">
-            <a class="button primary" href="#products">查看产品矩阵</a>
+            <a class="button primary" href="#education">查看教育产品线</a>
+            <a class="button secondary" href="#health">查看 KingFit</a>
             <a class="button secondary" href="physicsapex.html">查看学科广告页</a>
             <a class="button secondary" href="promotion.html">查看推广方案</a>
             <a class="button secondary" href="ai-music.html">AI Music 作品线</a>
@@ -1309,12 +1389,12 @@
       </div>
     </section>
 
-    <section class="section alt" id="products">
+    <section class="section alt" id="education">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>产品矩阵</h2>
-            <p class="lead">不是把题库换个皮，而是为每个初高中学科找到一个能被用户立即感受到的能力杠杆。已上线产品点击图标即可进入 App Store。</p>
+            <h2>教育产品线</h2>
+            <p class="lead">不是把题库换个皮，而是为每个初高中学科找到一个能被用户立即感受到的能力杠杆。已上线教育 App 点击图标即可进入 App Store。</p>
           </div>
         </div>
 
@@ -1494,6 +1574,47 @@
       </div>
     </section>
 
+    <section class="section" id="health">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">健康产品线</p>
+            <h2>KingFit 已上线 App Store</h2>
+            <p class="lead">KingFit 与教育产品线分开展示，定位为个人健康趋势与运动恢复参考工具，支持 iPhone 与 Apple Watch。</p>
+          </div>
+        </div>
+
+        <div class="health-showcase">
+          <div class="line-note">
+            <h3>独立于初高中教育矩阵</h3>
+            <p>KingFit 不属于学科训练产品。它读取用户授权的 HealthKit 数据，在本机整理健康趋势、恢复评分、训练负荷、睡眠详情和今日活动概览。</p>
+            <div class="health-meta" aria-label="KingFit 上线信息">
+              <span><strong>2026-06-30</strong>首次上架</span>
+              <span><strong>1.0</strong>当前版本</span>
+              <span><strong>免费</strong>无内购、无订阅</span>
+              <span><strong>12+</strong>健康与健身分类</span>
+            </div>
+          </div>
+
+          <article class="product-card health-product">
+            <div class="product-top">
+              <div class="product-id">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/kingfit-%E5%81%A5%E5%BA%B7%E8%B6%8B%E5%8A%BF/id6785718008" target="_blank" rel="noopener" aria-label="前往 App Store 下载 KingFit"><img class="product-icon" src="assets/kingfit.png" alt="KingFit 图标"></a>
+                <div class="product-title">
+                  <h3>KingFit</h3>
+                  <p>健康趋势 · 运动恢复</p>
+                </div>
+              </div>
+              <span class="status live">已上线</span>
+            </div>
+            <p class="tagline">把健康 App 与 Apple Watch 中分散的指标整理成可复盘的趋势。</p>
+            <p>查看恢复评分、训练负荷、睡眠阶段、活动概览和健康指标趋势。数据只用于本机生成趋势分析和评分，不需要注册或登录。</p>
+            <div class="chips"><span class="chip">HealthKit</span><span class="chip">Apple Watch</span><span class="chip">恢复评分</span><a class="chip chip-link" href="kingfit.html">查看产品页</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="method">
       <div class="wrap principles">
         <div class="principle-panel">
@@ -1517,14 +1638,14 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2>上线状态</h2>
-            <p class="lead">页面优先承载产品入口和可信信息：已上线产品进入 App Store，准备上架的产品明确标注状态。</p>
+            <h2>教育上线状态</h2>
+            <p class="lead">教育产品线优先承载学科 App 入口和可信信息：已上线产品进入 App Store，准备上架的产品明确标注状态。</p>
           </div>
         </div>
         <div class="roadmap">
           <!-- APP_STATUS_ROADMAP_START -->
           <div class="road-card"><h3>9 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、HistApex、GeogApex、EngApex 已配置中国区 App Store 下载页，点击图标即可直达。</p></div>
-                    <div class="road-card"><h3>1 个推进中</h3><p>PolApex 上架准备中，已纳入产品矩阵，当前不放无效下载入口。</p></div>
+                    <div class="road-card"><h3>1 个推进中</h3><p>PolApex 上架准备中，已纳入教育产品线，当前不放无效下载入口。</p></div>
                     <div class="road-card"><h3>状态每日自动同步</h3><p>每天自动检测 App Store 公开页，上线后产品图标会自动切换为下载跳转，无需手动改文案。</p></div>
           <!-- APP_STATUS_ROADMAP_END -->
         </div>
@@ -1535,8 +1656,8 @@
       <div class="wrap">
         <div class="contact-band">
           <div>
-            <h2>教育 App、产品合作或反馈</h2>
-            <p>欢迎联系 King Top。当前重点是继续打磨 9 个已上线 App，并推进 PolApex 上架准备。</p>
+            <h2>App 产品合作或反馈</h2>
+            <p>欢迎联系 King Top。当前教育产品线继续打磨已上线 App，并推进 PolApex；健康产品线已新增 KingFit。</p>
           </div>
           <a class="button primary" href="mailto:botonwa83@gmail.com">botonwa83@gmail.com</a>
         </div>
@@ -1556,7 +1677,7 @@
       // Hover-capable, fine pointer (desktop mouse). Touch screens report false,
       // so cursor-driven effects don't get "stuck" after a tap.
       const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-      const revealTargets = document.querySelectorAll(".metric, .product-card, .principle-panel, .principle, .road-card, .contact-band");
+      const revealTargets = document.querySelectorAll(".metric, .product-card, .line-note, .principle-panel, .principle, .road-card, .contact-band");
 
       if (!reduceMotion && "IntersectionObserver" in window) {
         revealTargets.forEach((el, index) => {
