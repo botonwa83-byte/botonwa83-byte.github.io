@@ -98,7 +98,7 @@ async function fetchAppInfoWithRetry(appId, attempt = 1) {
       const { stdout } = await execFileAsync("curl", args, { maxBuffer: 1024 * 1024 * 8 });
       const data = JSON.parse(stdout);
       if (data.resultCount > 0) {
-        return { ok: true, info: data.results[0] };
+        return { ok: true, info: data.results[0], country };
       }
     } catch (error) {
       sawError = true;
@@ -144,12 +144,14 @@ async function fetchAllAppStatus(priorLiveIds) {
     const result = await fetchAppInfoWithRetry(app.appId);
     let status = app.status || "plan";
     let appInfo = null;
+    let country = "cn";
     const iconPath = app.icon ? path.join(ROOT, app.icon) : null;
     const hasIcon = await checkIconExists(iconPath);
 
     if (result.ok && result.info) {
       status = "live";
       appInfo = result.info;
+      country = result.country || "cn";
     } else if (!result.ok && app.appId && priorLiveIds.has(app.appId)) {
       status = "live";
       console.warn(`Preserving prior live status for ${app.name} after fetch failure.`);
@@ -161,14 +163,14 @@ async function fetchAllAppStatus(priorLiveIds) {
       console.warn(`Icon not found for ${app.name}: ${app.icon}, will use letter marker instead.`);
     }
 
-    results.push({ ...app, status, appInfo, hasIcon });
+    results.push({ ...app, status, appInfo, hasIcon, country });
   }
 
   return results;
 }
 
-function appStoreUrl(appId) {
-  return `https://apps.apple.com/cn/app/${appId}`;
+function appStoreUrl(appId, country = "cn") {
+  return `https://apps.apple.com/${country}/app/${appId}`;
 }
 
 function landingUrl(app) {
@@ -221,7 +223,7 @@ function renderProductCard(app) {
   }
 
   const wrappedIconHtml = isLive
-    ? `<a class="store-icon-link" href="${appStoreUrl(app.appId)}" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ${title}">${iconHtml}</a>`
+    ? `<a class="store-icon-link" href="${appStoreUrl(app.appId, app.country)}" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ${title}">${iconHtml}</a>`
     : iconHtml;
 
   return `
@@ -258,7 +260,7 @@ function renderAppCloud(apps) {
     }
 
     const link = isLive
-      ? `href="${appStoreUrl(app.appId)}" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ${title}"`
+      ? `href="${appStoreUrl(app.appId, app.country)}" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ${title}"`
       : "";
     const tag = isLive ? "a" : "div";
 
