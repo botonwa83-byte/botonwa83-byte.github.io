@@ -4,12 +4,13 @@ const fs = require("node:fs/promises");
 const { execFile } = require("node:child_process");
 const { Resolver } = require("node:dns").promises;
 const path = require("node:path");
-const { promisify } = require("node:util");
+const { promisify } = require("util");
 
 const ROOT = path.resolve(__dirname, "..");
 const MUSIC_PAGE = path.join(ROOT, "ai-music.html");
 const COVER_DIR = path.join(ROOT, "assets", "ai-music", "covers");
 const COVER_PUBLIC_DIR = "assets/ai-music/covers";
+const CACHE_FILE = path.join(ROOT, ".cache", "ai-music.json");
 const SINGER_MID = "000aPaAE3DyZhr";
 const SINGER_NAME = "石头叔叔";
 const QQ_API_HOST = "c.y.qq.com";
@@ -19,10 +20,14 @@ const execFileAsync = promisify(execFile);
 const HERO_FLOAT_CLASSES = ["float-a", "float-b", "float-c", "float-d", "float-e", "float-f"];
 const COVER_SIZES = [800, 500, 300];
 const PUBLIC_DNS_SERVERS = ["223.5.5.5", "119.29.29.29", "8.8.8.8"];
+const MIN_UPDATE_INTERVAL = 3600000;
+const MAX_RETRY_ATTEMPTS = 3;
+
 const HOST_RESOLVE = {
   [QQ_API_HOST]: process.env.QQ_MUSIC_API_RESOLVE,
   [QQ_COVER_HOST]: process.env.QQ_MUSIC_COVER_RESOLVE
 };
+
 const resolver = new Resolver();
 resolver.setServers(PUBLIC_DNS_SERVERS);
 
@@ -57,8 +62,27 @@ function replaceGeneratedBlock(source, name, content) {
   return source.replace(pattern, `${indent}${start}\n${indented}\n${indent}${end}`);
 }
 
+function generateContentHash(albums) {
+  return albums.map((a) => `${a.mid}:${a.date}:${a.title}`).sort().join("|");
+}
+
+async function readCache() {
+  try {
+    const data = await fs.readFile(CACHE_FILE, "utf8");
+    return JSON.parse(data);
+  } catch {
+    return { lastUpdate: 0, contentHash: "", albums: [] };
+  }
+}
+
+async function writeCache(cache) {
+  await fs.mkdir(path.dirname(CACHE_FILE), { recursive: true });
+  await fs.writeFile(CACHE_FILE, JSON.stringify(cache, null, 2));
+}
+
 async function fetchAlbums() {
-  const data = await requestJson(QQ_ALBUM_API);
+  const data = await requestJsonWithRetry(QQ_ALBUM_API);
+
   if (data.code !== 0 || data.subcode !== 0) {
     throw new Error(`QQ Music API returned code=${data.code}, subcode=${data.subcode}`);
   }
@@ -91,7 +115,7 @@ async function fetchAlbums() {
   };
 }
 
-function requestJson(url, attempt = 1) {
+function requestJsonWithRetry(url, attempt = 1) {
   const args = [
     "-fsSL",
     "--ipv4",
@@ -104,6 +128,8 @@ function requestJson(url, attempt = 1) {
     url
   ];
 
+  const backoffDelay = Math.pow(2, attempt) * 1000;
+
   return runCurl(args, QQ_API_HOST, { maxBuffer: 1024 * 1024 * 8 })
     .then(({ stdout }) => JSON.parse(stdout))
     .catch((error) => {
@@ -111,10 +137,10 @@ function requestJson(url, attempt = 1) {
         throw new Error(`Unable to parse QQ Music JSON: ${error.message}`);
       }
 
-      if (attempt < 2) {
-        return new Promise((resolve) => {
-          setTimeout(resolve, attempt * 1500);
-        }).then(() => requestJson(url, attempt + 1));
+      if (attempt < MAX_RETRY_ATTEMPTS) {
+        console.warn(`QQ Music API request failed (attempt ${attempt}/${MAX_RETRY_ATTEMPTS}), retrying in ${backoffDelay}ms...`);
+        return new Promise((resolve) => setTimeout(resolve, backoffDelay))
+          .then(() => requestJsonWithRetry(url, attempt + 1));
       }
 
       throw error;
@@ -234,7 +260,8 @@ async function downloadCover(album) {
     }
   }
 
-  throw new Error(`Unable to download cover for ${album.title}: ${lastError?.message || "unknown error"}`);
+  console.warn(`Unable to download cover for ${album.title}: ${lastError?.message || "unknown error"}`);
+  return false;
 }
 
 async function downloadMissingCovers(albums) {
@@ -290,15 +317,43 @@ function renderHeroCovers(albums) {
 }
 
 async function main() {
-  const { total, albums } = await fetchAlbums();
-  const downloaded = await downloadMissingCovers(albums);
-  const page = await fs.readFile(MUSIC_PAGE, "utf8");
-  const withHero = replaceGeneratedBlock(page, "HERO", renderHeroCovers(albums));
-  const withStats = replaceGeneratedBlock(withHero, "STATS", renderStats(total, albums));
-  const withAlbums = replaceGeneratedBlock(withStats, "ALBUMS", albums.map(renderAlbumCard).join("\n"));
+  const cache = await readCache();
+  const now = Date.now();
 
-  await fs.writeFile(MUSIC_PAGE, withAlbums);
-  console.log(`Updated ${path.relative(ROOT, MUSIC_PAGE)} with ${albums.length} albums; QQ Music total=${total}; downloaded covers=${downloaded}.`);
+  if (now - cache.lastUpdate < MIN_UPDATE_INTERVAL && cache.contentHash) {
+    console.log(`Skipping update: last update was ${Math.floor((now - cache.lastUpdate) / 60000)} minutes ago`);
+    return;
+  }
+
+  try {
+    const { total, albums } = await fetchAlbums();
+    const newHash = generateContentHash(albums);
+
+    if (newHash === cache.contentHash && cache.albums.length > 0) {
+      console.log("No changes detected in QQ Music albums, skipping update");
+      await writeCache({ ...cache, lastUpdate: now });
+      return;
+    }
+
+    const downloaded = await downloadMissingCovers(albums);
+    const page = await fs.readFile(MUSIC_PAGE, "utf8");
+    const withHero = replaceGeneratedBlock(page, "HERO", renderHeroCovers(albums));
+    const withStats = replaceGeneratedBlock(withHero, "STATS", renderStats(total, albums));
+    const withAlbums = replaceGeneratedBlock(withStats, "ALBUMS", albums.map(renderAlbumCard).join("\n"));
+
+    await fs.writeFile(MUSIC_PAGE, withAlbums);
+    await writeCache({ lastUpdate: now, contentHash: newHash, albums });
+
+    console.log(`Updated ${path.relative(ROOT, MUSIC_PAGE)} with ${albums.length} albums; QQ Music total=${total}; downloaded covers=${downloaded}.`);
+  } catch (error) {
+    console.error(`Failed to update AI Music: ${error.message}`);
+
+    if (cache.albums.length > 0) {
+      console.log("Using cached data from previous successful update");
+    } else {
+      process.exitCode = 1;
+    }
+  }
 }
 
 main().catch((error) => {

@@ -3,7 +3,6 @@ name: Update AI Music
 on:
   workflow_dispatch:
   schedule:
-    # 07:40 Asia/Shanghai every day.
     - cron: "40 23 * * *"
 
 permissions:
@@ -12,7 +11,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,8 +21,12 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Create cache directory
+        run: mkdir -p .cache
+
       - name: Regenerate AI Music page
         run: node scripts/update-ai-music.js
+        continue-on-error: true
 
       - name: Commit changes
         run: |
