@@ -3,7 +3,7 @@ name: Update AI Music
 on:
   workflow_dispatch:
   schedule:
-    - cron: "40 23 * * *"
+    - cron: "30 23 * * *"
 
 permissions:
   contents: write
@@ -21,12 +21,8 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Create cache directory
-        run: mkdir -p .cache
-
       - name: Regenerate AI Music page
         run: node scripts/update-ai-music.js
-        continue-on-error: true
 
       - name: Commit changes
         run: |

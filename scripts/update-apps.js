@@ -7,10 +7,11 @@ const { promisify } = require("node:util");
 
 const ROOT = path.resolve(__dirname, "..");
 const INDEX_PAGE = path.join(ROOT, "index.html");
+const CACHE_FILE = path.join(ROOT, ".cache", "app-status.json");
 const execFileAsync = promisify(execFile);
+const MIN_UPDATE_INTERVAL = 3600000;
+const MAX_RETRY_ATTEMPTS = 3;
 
-// Education product line only. KingFit is a separate health product line and
-// lives outside these generated homepage blocks.
 const APPS = [
   { id: "wordpulse", name: "WordPulse", subtitle: "初高中英语词汇", appId: "6767762376", tagline: "看到陌生长难词，拆开词根也能猜出意思。", description: "围绕词根词缀、词源宇宙、先猜后揭、懒人模式和纯离线学习，把背单词从记忆负担变成破译体验。", chips: ["330+ 词根词缀", "5800+ 词汇", "词源故事"], icon: "assets/wordpulse.png", tile: "tile-word" },
   { id: "mathapex", name: "MathApex", subtitle: "初高中数学", appId: "6778461030", tagline: "用高阶思维打通初高中数学关键题。", description: "常规解与降维秒杀双解对照，结合公式宇宙、错题复习、数学英雄与数学发现。", chips: ["595 道压轴题", "150+ 公式", "双解对照"], icon: "assets/mathapex.png", tile: "tile-math" },
@@ -55,18 +56,27 @@ function replaceGeneratedBlock(source, name, content) {
   return source.replace(pattern, `${indent}${start}\n${indented}\n${indent}${end}`);
 }
 
-// Look up an App Store entry across the listed storefronts. Returns a
-// discriminated result so callers can tell apart three very different cases:
-//   { ok: true,  info }        – the app is publicly listed (live)
-//   { ok: true,  info: null }  – Apple answered, app is genuinely not listed yet
-//   { ok: false }              – every request failed (network / rate limit)
-// The third case must NOT be treated as "not listed", otherwise a transient
-// network blip in CI would flip a live app back to "审核中".
-async function fetchAppInfo(appId) {
+function generateContentHash(apps) {
+  return apps.map((a) => `${a.id}:${a.status}:${a.appId || ""}`).sort().join("|");
+}
+
+async function readCache() {
+  try {
+    const data = await fs.readFile(CACHE_FILE, "utf8");
+    return JSON.parse(data);
+  } catch {
+    return { lastUpdate: 0, contentHash: "", apps: [] };
+  }
+}
+
+async function writeCache(cache) {
+  await fs.mkdir(path.dirname(CACHE_FILE), { recursive: true });
+  await fs.writeFile(CACHE_FILE, JSON.stringify(cache, null, 2));
+}
+
+async function fetchAppInfoWithRetry(appId, attempt = 1) {
   if (!appId) return { ok: true, info: null };
 
-  // Try the China store first (primary market) then fall back to the global
-  // store, which sometimes serves a result while the regional cache lags.
   const storefronts = ["cn", "us"];
   let sawError = false;
 
@@ -90,20 +100,22 @@ async function fetchAppInfo(appId) {
       if (data.resultCount > 0) {
         return { ok: true, info: data.results[0] };
       }
-      // Apple responded but has no listing in this storefront yet.
     } catch (error) {
       sawError = true;
       console.warn(`Fetch failed for appId ${appId} (${country}): ${error.message}`);
     }
   }
 
-  // If at least one storefront answered cleanly with no result, the app is
-  // confirmed unlisted. If every attempt errored, report the failure instead.
+  if (sawError && attempt < MAX_RETRY_ATTEMPTS) {
+    const backoffDelay = Math.pow(2, attempt) * 1000;
+    console.warn(`Retrying appId ${appId} (attempt ${attempt}/${MAX_RETRY_ATTEMPTS}) in ${backoffDelay}ms...`);
+    await new Promise((resolve) => setTimeout(resolve, backoffDelay));
+    return fetchAppInfoWithRetry(appId, attempt + 1);
+  }
+
   return sawError ? { ok: false } : { ok: true, info: null };
 }
 
-// Collect the appIds that the current page already treats as live, so a fetch
-// failure preserves the prior state rather than silently downgrading it.
 function collectPriorLiveAppIds(page) {
   const ids = new Set();
   const pattern = /apps\.apple\.com\/[a-z]{2}\/app\/(\d+)/g;
@@ -129,7 +141,7 @@ async function fetchAllAppStatus(priorLiveIds) {
   const results = [];
 
   for (const app of APPS) {
-    const result = await fetchAppInfo(app.appId);
+    const result = await fetchAppInfoWithRetry(app.appId);
     let status = app.status || "plan";
     let appInfo = null;
     const iconPath = app.icon ? path.join(ROOT, app.icon) : null;
@@ -254,7 +266,6 @@ function renderAppCloud(apps) {
   }).join("\n          ");
 }
 
-// Join Chinese app-name lists with the conventional "、" separator.
 function joinNames(apps) {
   return apps.map((a) => a.name).join("、");
 }
@@ -285,8 +296,6 @@ function renderMetrics(apps) {
   ].join("\n          ");
 }
 
-// The "上线状态" cards used to be hand-written and drifted out of sync with the
-// real counts. Generate them from the live data instead.
 function renderRoadmap(apps) {
   const liveApps = apps.filter((a) => a.status === "live");
   const reviewApps = apps.filter((a) => a.status === "review");
@@ -313,29 +322,51 @@ function renderRoadmap(apps) {
 }
 
 async function main() {
-  const page = await fs.readFile(INDEX_PAGE, "utf8");
-  const priorLiveIds = collectPriorLiveAppIds(page);
+  const cache = await readCache();
+  const now = Date.now();
 
-  const apps = await fetchAllAppStatus(priorLiveIds);
-
-  const liveCount = apps.filter((a) => a.status === "live").length;
-  const reviewCount = apps.filter((a) => a.status === "review").length;
-  const planCount = apps.filter((a) => a.status === "plan").length;
-
-  console.log(`App status: ${liveCount} live, ${reviewCount} review, ${planCount} plan`);
-
-  const withCloud = replaceGeneratedBlock(page, "CLOUD", renderAppCloud(apps));
-  const withMetrics = replaceGeneratedBlock(withCloud, "METRICS", renderMetrics(apps));
-  const withProducts = replaceGeneratedBlock(withMetrics, "PRODUCTS", apps.map(renderProductCard).join("\n\n          "));
-  const withRoadmap = replaceGeneratedBlock(withProducts, "ROADMAP", renderRoadmap(apps));
-
-  if (withRoadmap === page) {
-    console.log("No content changes.");
+  if (now - cache.lastUpdate < MIN_UPDATE_INTERVAL && cache.contentHash) {
+    console.log(`Skipping update: last update was ${Math.floor((now - cache.lastUpdate) / 60000)} minutes ago`);
     return;
   }
 
-  await fs.writeFile(INDEX_PAGE, withRoadmap);
-  console.log(`Updated ${path.relative(ROOT, INDEX_PAGE)}`);
+  try {
+    const page = await fs.readFile(INDEX_PAGE, "utf8");
+    const priorLiveIds = collectPriorLiveAppIds(page);
+
+    const apps = await fetchAllAppStatus(priorLiveIds);
+    const newHash = generateContentHash(apps);
+
+    if (newHash === cache.contentHash && cache.apps.length > 0) {
+      console.log("No changes detected in app status, skipping update");
+      await writeCache({ ...cache, lastUpdate: now });
+      return;
+    }
+
+    const liveCount = apps.filter((a) => a.status === "live").length;
+    const reviewCount = apps.filter((a) => a.status === "review").length;
+    const planCount = apps.filter((a) => a.status === "plan").length;
+
+    console.log(`App status: ${liveCount} live, ${reviewCount} review, ${planCount} plan`);
+
+    const withCloud = replaceGeneratedBlock(page, "CLOUD", renderAppCloud(apps));
+    const withMetrics = replaceGeneratedBlock(withCloud, "METRICS", renderMetrics(apps));
+    const withProducts = replaceGeneratedBlock(withMetrics, "PRODUCTS", apps.map(renderProductCard).join("\n\n          "));
+    const withRoadmap = replaceGeneratedBlock(withProducts, "ROADMAP", renderRoadmap(apps));
+
+    await fs.writeFile(INDEX_PAGE, withRoadmap);
+    await writeCache({ lastUpdate: now, contentHash: newHash, apps });
+
+    console.log(`Updated ${path.relative(ROOT, INDEX_PAGE)}`);
+  } catch (error) {
+    console.error(`Failed to update app status: ${error.message}`);
+
+    if (cache.apps.length > 0) {
+      console.log("Using cached data from previous successful update");
+    } else {
+      process.exitCode = 1;
+    }
+  }
 }
 
 main().catch((error) => {
