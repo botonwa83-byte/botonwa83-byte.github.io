@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="assets/subject-landing.css">
 </head>
 <body style="--brand: #0f766e; --brand-dark: #134e4a; --brand-rgb: 15, 118, 110; --accent: #38bdf8; --accent-rgb: 56, 189, 248; --warm: #f97316; --warm-rgb: 249, 115, 22">
+  <div class="curtain top" aria-hidden="true"></div>
+  <div class="curtain bottom" aria-hidden="true"></div>
   <header class="landing-header">
     <nav class="landing-nav" aria-label="GeogApex 导航">
       <a class="brand" href="geogapex.html" aria-label="GeogApex 首页">
@@ -31,6 +33,7 @@
 
   <main>
     <section class="hero">
+      <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="wrap hero-inner">
         <div>
           <p class="eyebrow">初高中地理 · 读图定位与综合题</p>
@@ -295,6 +298,15 @@
 
       const hero = document.querySelector(".hero");
       const visual = document.querySelector(".hero-visual");
+      if (finePointer && hero) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const px = ((event.clientX - rect.left) / rect.width) * 100;
+          const py = ((event.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty("--sx", `${px}%`);
+          hero.style.setProperty("--sy", `${py}%`);
+        });
+      }
       if (!reduceMotion && finePointer && hero && visual) {
         hero.addEventListener("pointermove", (event) => {
           const rect = hero.getBoundingClientRect();

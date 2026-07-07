@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="assets/subject-landing.css">
 </head>
 <body style="--brand: #be123c; --brand-dark: #881337; --brand-rgb: 190, 18, 60; --accent: #f97316; --accent-rgb: 249, 115, 22; --warm: #22c55e; --warm-rgb: 34, 197, 94">
+  <div class="curtain top" aria-hidden="true"></div>
+  <div class="curtain bottom" aria-hidden="true"></div>
   <header class="landing-header">
     <nav class="landing-nav" aria-label="PolApex 导航">
       <a class="brand" href="polapex.html" aria-label="PolApex 首页">
@@ -31,6 +33,7 @@
 
   <main>
     <section class="hero">
+      <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="wrap hero-inner">
         <div>
           <p class="eyebrow">初高中道法 / 思政 · 材料题输出</p>
@@ -295,6 +298,15 @@
 
       const hero = document.querySelector(".hero");
       const visual = document.querySelector(".hero-visual");
+      if (finePointer && hero) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const px = ((event.clientX - rect.left) / rect.width) * 100;
+          const py = ((event.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty("--sx", `${px}%`);
+          hero.style.setProperty("--sy", `${py}%`);
+        });
+      }
       if (!reduceMotion && finePointer && hero && visual) {
         hero.addEventListener("pointermove", (event) => {
           const rect = hero.getBoundingClientRect();

@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="assets/subject-landing.css">
 </head>
 <body style="--brand: #0284c7; --brand-dark: #0c4a6e; --brand-rgb: 2, 132, 199; --accent: #8b5cf6; --accent-rgb: 139, 92, 246; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+  <div class="curtain top" aria-hidden="true"></div>
+  <div class="curtain bottom" aria-hidden="true"></div>
   <header class="landing-header">
     <nav class="landing-nav" aria-label="EngApex 导航">
       <a class="brand" href="engapex.html" aria-label="EngApex 首页">
@@ -31,6 +33,7 @@
 
   <main>
     <section class="hero">
+      <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="wrap hero-inner">
         <div>
           <p class="eyebrow">初高中英语 · 句法阅读与写作</p>
@@ -295,6 +298,15 @@
 
       const hero = document.querySelector(".hero");
       const visual = document.querySelector(".hero-visual");
+      if (finePointer && hero) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const px = ((event.clientX - rect.left) / rect.width) * 100;
+          const py = ((event.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty("--sx", `${px}%`);
+          hero.style.setProperty("--sy", `${py}%`);
+        });
+      }
       if (!reduceMotion && finePointer && hero && visual) {
         hero.addEventListener("pointermove", (event) => {
           const rect = hero.getBoundingClientRect();
