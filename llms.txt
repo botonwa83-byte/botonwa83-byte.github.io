@@ -1,0 +1,29 @@
+# King Top App 产品线
+
+> King Top 是一个独立开发者产品线，专注于初高中英语与九大学科的教育 App 矩阵，
+> 以及独立的健康趋势工具 KingFit。全部教育产品均已上线 App Store（中国区）。
+
+联系方式：botonwa83@gmail.com
+
+## 教育产品（初高中，均已上线 App Store）
+
+- [WordPulse](https://botonwa83-byte.github.io/wordpulse.html): 初高中英语词汇，围绕词根词缀、词源故事、纯离线学习
+- [MathApex](https://botonwa83-byte.github.io/mathapex.html): 初高中数学，常规解法与降维秒杀双解对照，覆盖压轴题
+- [PhysicsApex](https://botonwa83-byte.github.io/physicsapex.html): 初高中物理，互动模拟沙盘、考点地图、错因诊断
+- [ChemApex](https://botonwa83-byte.github.io/chemapex.html): 初高中化学，元素星图、方程式剧本库、守恒战例
+- [BioApex](https://botonwa83-byte.github.io/bioapex.html): 初高中生物，过程剧场、考点图谱、遗传神探
+- [ChinApex](https://botonwa83-byte.github.io/chinapex.html): 初高中语文，采分点训练、文言解码、作文工坊
+- [PolApex](https://botonwa83-byte.github.io/polapex.html): 初高中道法/思想政治，材料切片、答案工厂
+- [HistApex](https://botonwa83-byte.github.io/histapex.html): 初高中历史，时间博物馆、史料题、规律迁移
+- [GeogApex](https://botonwa83-byte.github.io/geogapex.html): 初高中地理，图表判读、区位矩阵、综合题模板
+- [EngApex](https://botonwa83-byte.github.io/engapex.html): 初高中英语，句法解码、完形线索、阅读题型
+
+## 健康产品
+
+- [KingFit](https://botonwa83-byte.github.io/kingfit.html): 个人健康趋势与运动恢复参考工具，支持 iPhone 与 Apple Watch，
+  读取 HealthKit 数据在本机生成恢复评分、训练负荷、睡眠详情，免费、无需注册登录
+
+## 其他
+
+- [推广方案](https://botonwa83-byte.github.io/promotion.html)
+- [AI Music 作品线](https://botonwa83-byte.github.io/ai-music.html)

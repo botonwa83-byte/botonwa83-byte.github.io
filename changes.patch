@@ -1,0 +1,593 @@
+diff --git a/bioapex.html b/bioapex.html
+index 2d713d2..8073baf 100644
+--- a/bioapex.html
++++ b/bioapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>BioApex · 把背不完的生物变成逐个掌握的系统。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "BioApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "BioApex 是一款初高中生物 App，用过程剧场、考点图谱和遗传神探，帮助学生系统理解生命过程与易混知识点。",
++  "url": "https://botonwa83-byte.github.io/bioapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6780727579" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "BioApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "BioApex 覆盖初高中生物，遗传专题偏重高中阶段考点。" } },
++    { "@type": "Question", "name": "BioApex 如何处理易混知识点？", "acceptedAnswer": { "@type": "Answer", "text": "BioApex 提供专门的易混辨析模块，对比相似概念的区别。" } },
++    { "@type": "Question", "name": "BioApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #16a34a; --brand-dark: #14532d; --brand-rgb: 22, 163, 74; --accent: #0ea5e9; --accent-rgb: 14, 165, 233; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/chemapex.html b/chemapex.html
+index c5b7221..28c72c3 100644
+--- a/chemapex.html
++++ b/chemapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>ChemApex · 看见反应背后的守恒棋局。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "ChemApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "ChemApex 是一款初高中化学 App，通过元素星图、方程式剧本库和守恒战例，把推断题、守恒题和实验题拆解成可复用的解题方法。",
++  "url": "https://botonwa83-byte.github.io/chemapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6780327495" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "ChemApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "ChemApex 覆盖初高中化学，元素与方程式体系同时兼顾两个学段的考点。" } },
++    { "@type": "Question", "name": "ChemApex 能帮助推断题吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以，ChemApex 专门设计了化学神探等模块用于训练推断题思路。" } },
++    { "@type": "Question", "name": "ChemApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #059669; --brand-dark: #064e3b; --brand-rgb: 5, 150, 105; --accent: #22c55e; --accent-rgb: 34, 197, 94; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/chinapex.html b/chinapex.html
+index d7df752..4d1822b 100644
+--- a/chinapex.html
++++ b/chinapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>ChinApex · 让语文从玄学变成可操作的采分点训练。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "ChinApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "ChinApex 是一款初高中语文 App，围绕采分点训练、文言解码和作文工坊，把语文学习变成可操作的得分动作。",
++  "url": "https://botonwa83-byte.github.io/chinapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6781556016" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "ChinApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "ChinApex 覆盖初高中语文，文言文和作文模块同时兼顾两个学段。" } },
++    { "@type": "Question", "name": "ChinApex 能帮助文言文学习吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以，ChinApex 提供文言解码模块专门训练文言文阅读。" } },
++    { "@type": "Question", "name": "ChinApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #dc2626; --brand-dark: #7f1d1d; --brand-rgb: 220, 38, 38; --accent: #f59e0b; --accent-rgb: 245, 158, 11; --warm: #0ea5e9; --warm-rgb: 14, 165, 233">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/engapex.html b/engapex.html
+index aaec15a..6d336bb 100644
+--- a/engapex.html
++++ b/engapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>EngApex · 把语法填空、完形填空、阅读理解练成系统能力。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "EngApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "EngApex 是一款初高中英语 App，围绕句法解码、完形线索和写作框架，把语法填空、完形和阅读理解练成系统能力。",
++  "url": "https://botonwa83-byte.github.io/engapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6784478791" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "EngApex 和 WordPulse 有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "WordPulse 专注词汇记忆，EngApex 专注语法、完形和阅读等题型训练。" } },
++    { "@type": "Question", "name": "EngApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "EngApex 覆盖初高中英语题型训练。" } },
++    { "@type": "Question", "name": "EngApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #0284c7; --brand-dark: #0c4a6e; --brand-rgb: 2, 132, 199; --accent: #8b5cf6; --accent-rgb: 139, 92, 246; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/geogapex.html b/geogapex.html
+index 2fa9765..f690301 100644
+--- a/geogapex.html
++++ b/geogapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>GeogApex · 把读图、定位、拆因果和综合题表达练成稳定流程。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "GeogApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "GeogApex 是一款初高中地理 App，围绕空间定位、图表判读和综合题模板，训练学生读图、拆因果和综合题表达的稳定流程。",
++  "url": "https://botonwa83-byte.github.io/geogapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6783594491" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "GeogApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "GeogApex 覆盖初高中地理，读图和区位分析兼顾两个学段考点。" } },
++    { "@type": "Question", "name": "GeogApex 能帮助综合题吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以，GeogApex 提供答案工厂模块专门训练综合题表达。" } },
++    { "@type": "Question", "name": "GeogApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #0f766e; --brand-dark: #134e4a; --brand-rgb: 15, 118, 110; --accent: #38bdf8; --accent-rgb: 56, 189, 248; --warm: #f97316; --warm-rgb: 249, 115, 22">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/histapex.html b/histapex.html
+index 3b73f41..a214990 100644
+--- a/histapex.html
++++ b/histapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>HistApex · 把时间线、制度线和材料题写法连成历史高分系统。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "HistApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "HistApex 是一款初高中历史 App，用时间博物馆、史料相遇和答案模板，把历史事件记忆推进到解释因果与规律迁移。",
++  "url": "https://botonwa83-byte.github.io/histapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6783254820" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "HistApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "HistApex 覆盖初高中历史，时间线和材料题训练兼顾两个学段。" } },
++    { "@type": "Question", "name": "HistApex 能帮助材料分析题吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以，HistApex 提供史料相遇和答案模板模块。" } },
++    { "@type": "Question", "name": "HistApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #92400e; --brand-dark: #451a03; --brand-rgb: 146, 64, 14; --accent: #0ea5e9; --accent-rgb: 14, 165, 233; --warm: #eab308; --warm-rgb: 234, 179, 8">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/index.html b/index.html
+index 75b72b2..0def2a9 100644
+--- a/index.html
++++ b/index.html
+@@ -1468,6 +1468,37 @@
+       background: linear-gradient(90deg, transparent, rgba(16, 23, 35, .12) 20%, rgba(16, 23, 35, .12) 80%, transparent);
+     }
+   </style>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "Organization",
++  "name": "King Top",
++  "url": "https://botonwa83-byte.github.io/",
++  "logo": "https://botonwa83-byte.github.io/assets/wordpulse.png",
++  "email": "botonwa83@gmail.com",
++  "description": "King Top 是一个独立开发者产品线，专注于初高中英语与九大学科的教育 App 矩阵，以及独立的健康趋势工具 KingFit。"
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "ItemList",
++  "name": "King Top 教育与健康 App 产品线",
++  "itemListElement": [
++    { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "WordPulse", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中英语词汇 App，围绕词根词缀、词源故事和纯离线学习。", "url": "https://botonwa83-byte.github.io/wordpulse.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6767762376" } } },
++    { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "MathApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中数学 App，常规解法与降维秒杀双解对照，覆盖压轴题。", "url": "https://botonwa83-byte.github.io/mathapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6778461030" } } },
++    { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "PhysicsApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中物理 App，互动模拟沙盘、考点地图、错因诊断。", "url": "https://botonwa83-byte.github.io/physicsapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6779031451" } } },
++    { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "ChemApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中化学 App，元素星图、方程式剧本库、守恒战例。", "url": "https://botonwa83-byte.github.io/chemapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6780327495" } } },
++    { "@type": "ListItem", "position": 5, "item": { "@type": "SoftwareApplication", "name": "BioApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中生物 App，过程剧场、考点图谱、遗传神探。", "url": "https://botonwa83-byte.github.io/bioapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6780727579" } } },
++    { "@type": "ListItem", "position": 6, "item": { "@type": "SoftwareApplication", "name": "ChinApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中语文 App，采分点训练、文言解码、作文工坊。", "url": "https://botonwa83-byte.github.io/chinapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6781556016" } } },
++    { "@type": "ListItem", "position": 7, "item": { "@type": "SoftwareApplication", "name": "PolApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中道法/思想政治 App，材料切片、答案工厂。", "url": "https://botonwa83-byte.github.io/polapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/us/app/6783150236" } } },
++    { "@type": "ListItem", "position": 8, "item": { "@type": "SoftwareApplication", "name": "HistApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中历史 App，时间博物馆、史料相遇、规律迁移。", "url": "https://botonwa83-byte.github.io/histapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6783254820" } } },
++    { "@type": "ListItem", "position": 9, "item": { "@type": "SoftwareApplication", "name": "GeogApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中地理 App，空间定位、图表判读、综合题模板。", "url": "https://botonwa83-byte.github.io/geogapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6783594491" } } },
++    { "@type": "ListItem", "position": 10, "item": { "@type": "SoftwareApplication", "name": "EngApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中英语 App，句法解码、完形线索、写作框架。", "url": "https://botonwa83-byte.github.io/engapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6784478791" } } },
++    { "@type": "ListItem", "position": 11, "item": { "@type": "SoftwareApplication", "name": "KingFit", "applicationCategory": "HealthApplication", "operatingSystem": "iOS, watchOS", "description": "个人健康趋势与运动恢复参考工具，本机生成恢复评分、训练负荷和睡眠趋势，无需注册登录。", "url": "https://botonwa83-byte.github.io/kingfit.html", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY", "url": "https://apps.apple.com/cn/app/kingfit-%E5%81%A5%E5%BA%B7%E8%B6%8B%E5%8A%BF/id6785718008" } } }
++  ]
++}
++</script>
+ </head>
+ <body>
+   <div class="curtain top" aria-hidden="true"></div>
+@@ -1513,16 +1544,16 @@
+ 
+         <div class="app-cloud">
+           <!-- APP_STATUS_CLOUD_START -->
+-          <a class="app-tile tile-word" href="https://apps.apple.com/cn/app/6767762376" target="_blank" rel="noopener" aria-label="前往 App Store 下载 WordPulse"><img src="assets/wordpulse.png" alt=""><strong>WordPulse</strong><span>初高中英语词汇</span></a>
+-                    <a class="app-tile tile-math" href="https://apps.apple.com/cn/app/6778461030" target="_blank" rel="noopener" aria-label="前往 App Store 下载 MathApex"><img src="assets/mathapex.png" alt=""><strong>MathApex</strong><span>初高中数学</span></a>
+-                    <a class="app-tile tile-phys" href="https://apps.apple.com/cn/app/6779031451" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PhysicsApex"><img src="assets/physapex.png" alt=""><strong>PhysicsApex</strong><span>初高中物理</span></a>
+-                    <a class="app-tile tile-chem" href="https://apps.apple.com/cn/app/6780327495" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChemApex"><img src="assets/chemapex.png" alt=""><strong>ChemApex</strong><span>初高中化学</span></a>
+-                    <a class="app-tile tile-bio" href="https://apps.apple.com/cn/app/6780727579" target="_blank" rel="noopener" aria-label="前往 App Store 下载 BioApex"><img src="assets/bioapex.png" alt=""><strong>BioApex</strong><span>初高中生物</span></a>
+-                    <a class="app-tile tile-chin" href="https://apps.apple.com/cn/app/6781556016" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChinApex"><img src="assets/chinapex.png" alt=""><strong>ChinApex</strong><span>初高中语文</span></a>
+-                    <a class="app-tile tile-pol" href="https://apps.apple.com/us/app/6783150236" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PolApex"><img src="assets/polapex.png" alt=""><strong>PolApex</strong><span>初高中道法 / 思想政治</span></a>
+-                    <a class="app-tile tile-hist" href="https://apps.apple.com/cn/app/6783254820" target="_blank" rel="noopener" aria-label="前往 App Store 下载 HistApex"><img src="assets/histapex.png" alt=""><strong>HistApex</strong><span>初高中历史</span></a>
+-                    <a class="app-tile tile-geog" href="https://apps.apple.com/cn/app/6783594491" target="_blank" rel="noopener" aria-label="前往 App Store 下载 GeogApex"><img src="assets/geogapex.png" alt=""><strong>GeogApex</strong><span>初高中地理</span></a>
+-                    <a class="app-tile tile-eng" href="https://apps.apple.com/cn/app/6784478791" target="_blank" rel="noopener" aria-label="前往 App Store 下载 EngApex"><img src="assets/engapex.png" alt=""><strong>EngApex</strong><span>初高中英语</span></a>
++          <a class="app-tile tile-word" href="https://apps.apple.com/cn/app/6767762376" target="_blank" rel="noopener" aria-label="前往 App Store 下载 WordPulse"><img src="assets/wordpulse.png" alt="WordPulse 图标"><strong>WordPulse</strong><span>初高中英语词汇</span></a>
++                    <a class="app-tile tile-math" href="https://apps.apple.com/cn/app/6778461030" target="_blank" rel="noopener" aria-label="前往 App Store 下载 MathApex"><img src="assets/mathapex.png" alt="MathApex 图标"><strong>MathApex</strong><span>初高中数学</span></a>
++                    <a class="app-tile tile-phys" href="https://apps.apple.com/cn/app/6779031451" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PhysicsApex"><img src="assets/physapex.png" alt="PhysicsApex 图标"><strong>PhysicsApex</strong><span>初高中物理</span></a>
++                    <a class="app-tile tile-chem" href="https://apps.apple.com/cn/app/6780327495" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChemApex"><img src="assets/chemapex.png" alt="ChemApex 图标"><strong>ChemApex</strong><span>初高中化学</span></a>
++                    <a class="app-tile tile-bio" href="https://apps.apple.com/cn/app/6780727579" target="_blank" rel="noopener" aria-label="前往 App Store 下载 BioApex"><img src="assets/bioapex.png" alt="BioApex 图标"><strong>BioApex</strong><span>初高中生物</span></a>
++                    <a class="app-tile tile-chin" href="https://apps.apple.com/cn/app/6781556016" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChinApex"><img src="assets/chinapex.png" alt="ChinApex 图标"><strong>ChinApex</strong><span>初高中语文</span></a>
++                    <a class="app-tile tile-pol" href="https://apps.apple.com/us/app/6783150236" target="_blank" rel="noopener" aria-label="前往 App Store 下载 PolApex"><img src="assets/polapex.png" alt="PolApex 图标"><strong>PolApex</strong><span>初高中道法 / 思想政治</span></a>
++                    <a class="app-tile tile-hist" href="https://apps.apple.com/cn/app/6783254820" target="_blank" rel="noopener" aria-label="前往 App Store 下载 HistApex"><img src="assets/histapex.png" alt="HistApex 图标"><strong>HistApex</strong><span>初高中历史</span></a>
++                    <a class="app-tile tile-geog" href="https://apps.apple.com/cn/app/6783594491" target="_blank" rel="noopener" aria-label="前往 App Store 下载 GeogApex"><img src="assets/geogapex.png" alt="GeogApex 图标"><strong>GeogApex</strong><span>初高中地理</span></a>
++                    <a class="app-tile tile-eng" href="https://apps.apple.com/cn/app/6784478791" target="_blank" rel="noopener" aria-label="前往 App Store 下载 EngApex"><img src="assets/engapex.png" alt="EngApex 图标"><strong>EngApex</strong><span>初高中英语</span></a>
+           <!-- APP_STATUS_CLOUD_END -->
+         </div>
+       </div>
+diff --git a/kingfit.html b/kingfit.html
+index 5d66428..29eb3d9 100644
+--- a/kingfit.html
++++ b/kingfit.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>KingFit · 健康趋势与运动恢复</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "KingFit",
++  "applicationCategory": "HealthApplication",
++  "operatingSystem": "iOS, watchOS",
++  "description": "KingFit 是个人健康趋势与运动恢复参考工具，支持 iPhone 与 Apple Watch，读取 HealthKit 数据在本机生成恢复评分、训练负荷和睡眠趋势，免费、无需注册登录。",
++  "url": "https://botonwa83-byte.github.io/kingfit.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/kingfit-%E5%81%A5%E5%BA%B7%E8%B6%8B%E5%8A%BF/id6785718008" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "KingFit 需要注册账号吗？", "acceptedAnswer": { "@type": "Answer", "text": "不需要，KingFit 无需注册登录，所有数据在本机处理。" } },
++    { "@type": "Question", "name": "KingFit 支持 Apple Watch 吗？", "acceptedAnswer": { "@type": "Answer", "text": "支持，KingFit 同时支持 iPhone 与 Apple Watch。" } },
++    { "@type": "Question", "name": "KingFit 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "KingFit 免费使用。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #1f7a5c; --brand-dark: #0f3f31; --brand-rgb: 31, 122, 92; --accent: #14b8a6; --accent-rgb: 20, 184, 166; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/llms.txt b/llms.txt
+new file mode 100644
+index 0000000..2e92420
+--- /dev/null
++++ b/llms.txt
+@@ -0,0 +1,29 @@
++# King Top App 产品线
++
++> King Top 是一个独立开发者产品线，专注于初高中英语与九大学科的教育 App 矩阵，
++> 以及独立的健康趋势工具 KingFit。全部教育产品均已上线 App Store（中国区）。
++
++联系方式：botonwa83@gmail.com
++
++## 教育产品（初高中，均已上线 App Store）
++
++- [WordPulse](https://botonwa83-byte.github.io/wordpulse.html): 初高中英语词汇，围绕词根词缀、词源故事、纯离线学习
++- [MathApex](https://botonwa83-byte.github.io/mathapex.html): 初高中数学，常规解法与降维秒杀双解对照，覆盖压轴题
++- [PhysicsApex](https://botonwa83-byte.github.io/physicsapex.html): 初高中物理，互动模拟沙盘、考点地图、错因诊断
++- [ChemApex](https://botonwa83-byte.github.io/chemapex.html): 初高中化学，元素星图、方程式剧本库、守恒战例
++- [BioApex](https://botonwa83-byte.github.io/bioapex.html): 初高中生物，过程剧场、考点图谱、遗传神探
++- [ChinApex](https://botonwa83-byte.github.io/chinapex.html): 初高中语文，采分点训练、文言解码、作文工坊
++- [PolApex](https://botonwa83-byte.github.io/polapex.html): 初高中道法/思想政治，材料切片、答案工厂
++- [HistApex](https://botonwa83-byte.github.io/histapex.html): 初高中历史，时间博物馆、史料题、规律迁移
++- [GeogApex](https://botonwa83-byte.github.io/geogapex.html): 初高中地理，图表判读、区位矩阵、综合题模板
++- [EngApex](https://botonwa83-byte.github.io/engapex.html): 初高中英语，句法解码、完形线索、阅读题型
++
++## 健康产品
++
++- [KingFit](https://botonwa83-byte.github.io/kingfit.html): 个人健康趋势与运动恢复参考工具，支持 iPhone 与 Apple Watch，
++  读取 HealthKit 数据在本机生成恢复评分、训练负荷、睡眠详情，免费、无需注册登录
++
++## 其他
++
++- [推广方案](https://botonwa83-byte.github.io/promotion.html)
++- [AI Music 作品线](https://botonwa83-byte.github.io/ai-music.html)
+diff --git a/mathapex.html b/mathapex.html
+index 6e02cf9..4189fd6 100644
+--- a/mathapex.html
++++ b/mathapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>MathApex · 用高阶思维打通初高中数学关键题。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "MathApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "MathApex 是一款初高中数学 App，提供常规解法与降维秒杀双解对照，结合公式宇宙、错题复习，帮助学生打通压轴题。",
++  "url": "https://botonwa83-byte.github.io/mathapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6778461030" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "MathApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "MathApex 覆盖初高中数学，压轴题训练更偏向中高考冲刺阶段。" } },
++    { "@type": "Question", "name": "MathApex 的双解对照是什么意思？", "acceptedAnswer": { "@type": "Answer", "text": "同一道题会同时展示常规解法和更快的降维解法，帮助学生理解思路差异。" } },
++    { "@type": "Question", "name": "MathApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #7c3aed; --brand-dark: #4c1d95; --brand-rgb: 124, 58, 237; --accent: #06b6d4; --accent-rgb: 6, 182, 212; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/physicsapex.html b/physicsapex.html
+index 78c65bf..2eeff55 100644
+--- a/physicsapex.html
++++ b/physicsapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>PhysicsApex · 降维秒杀高考物理压轴题。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "PhysicsApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "PhysicsApex 是一款初高中物理 App，用互动模拟沙盘、考点地图和错因诊断，把守恒、对称与等效等抽象概念变成可观察的现象。",
++  "url": "https://botonwa83-byte.github.io/physicsapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6779031451" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "PhysicsApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "PhysicsApex 覆盖初高中物理，尤其针对高考压轴题的降维解法做了专门设计。" } },
++    { "@type": "Question", "name": "PhysicsApex 需要联网吗？", "acceptedAnswer": { "@type": "Answer", "text": "核心刷题与讲解内容支持离线使用，具体以 App 内说明为准。" } },
++    { "@type": "Question", "name": "PhysicsApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #4338ca; --brand-dark: #1e1b4b; --brand-rgb: 67, 56, 202; --accent: #06b6d4; --accent-rgb: 6, 182, 212; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/polapex.html b/polapex.html
+index 50f9b19..74b50ac 100644
+--- a/polapex.html
++++ b/polapex.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>PolApex · 把政治从背了就忘，变成可检索、可迁移、可输出。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "PolApex",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "PolApex 是一款初高中道法/思想政治 App，围绕高权重记忆、材料切片和答案工厂，把政治学习变成可检索、可迁移的能力。",
++  "url": "https://botonwa83-byte.github.io/polapex.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/us/app/6783150236" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "PolApex 适合哪个学段？", "acceptedAnswer": { "@type": "Answer", "text": "PolApex 覆盖初中道法与高中思想政治。" } },
++    { "@type": "Question", "name": "PolApex 如何训练材料题？", "acceptedAnswer": { "@type": "Answer", "text": "PolApex 提供材料切片和答案工厂模块，训练材料分析和作答规范。" } },
++    { "@type": "Question", "name": "PolApex 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #be123c; --brand-dark: #881337; --brand-rgb: 190, 18, 60; --accent: #f97316; --accent-rgb: 249, 115, 22; --warm: #22c55e; --warm-rgb: 34, 197, 94">
+   <div class="curtain top" aria-hidden="true"></div>
+diff --git a/robots.txt b/robots.txt
+new file mode 100644
+index 0000000..cd5acb5
+--- /dev/null
++++ b/robots.txt
+@@ -0,0 +1,4 @@
++User-agent: *
++Allow: /
++
++Sitemap: https://botonwa83-byte.github.io/sitemap.xml
+diff --git a/sitemap.xml b/sitemap.xml
+new file mode 100644
+index 0000000..52c513b
+--- /dev/null
++++ b/sitemap.xml
+@@ -0,0 +1,88 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/</loc>
++    <changefreq>weekly</changefreq>
++    <priority>1.0</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/wordpulse.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/mathapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/physicsapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/chemapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/bioapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/chinapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/polapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/histapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/geogapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/engapex.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.8</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/kingfit.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.7</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/ai-music.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.5</priority>
++  </url>
++
++  <url>
++    <loc>https://botonwa83-byte.github.io/promotion.html</loc>
++    <changefreq>monthly</changefreq>
++    <priority>0.4</priority>
++  </url>
++
++</urlset>
+diff --git a/wordpulse.html b/wordpulse.html
+index 0473132..7b2fe29 100644
+--- a/wordpulse.html
++++ b/wordpulse.html
+@@ -11,6 +11,30 @@
+   <meta property="og:type" content="website">
+   <title>WordPulse · 看到陌生长难词，拆开词根也能猜出意思。</title>
+   <link rel="stylesheet" href="assets/subject-landing.css">
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "SoftwareApplication",
++  "name": "WordPulse",
++  "applicationCategory": "EducationalApplication",
++  "operatingSystem": "iOS",
++  "description": "WordPulse 是一款面向初高中生的英语词汇 App，围绕词根词缀、词源故事、先猜后揭和纯离线学习，帮助学生看到陌生长难词时也能拆解词根猜出词义。",
++  "url": "https://botonwa83-byte.github.io/wordpulse.html",
++  "author": { "@type": "Organization", "name": "King Top" },
++  "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6767762376" }
++}
++</script>
++<script type="application/ld+json">
++{
++  "@context": "https://schema.org",
++  "@type": "FAQPage",
++  "mainEntity": [
++    { "@type": "Question", "name": "WordPulse 需要联网才能使用吗？", "acceptedAnswer": { "@type": "Answer", "text": "不需要。WordPulse 采用纯离线学习设计，词库和词源故事都内置在 App 中。" } },
++    { "@type": "Question", "name": "WordPulse 适合初中生还是高中生？", "acceptedAnswer": { "@type": "Answer", "text": "WordPulse 覆盖初高中英语词汇，词根词缀和词源故事的设计同时适配两个学段的高频难词。" } },
++    { "@type": "Question", "name": "WordPulse 收费吗？", "acceptedAnswer": { "@type": "Answer", "text": "请以 App Store 页面显示的最新价格和内购信息为准。" } }
++  ]
++}
++</script>
+ </head>
+ <body style="--brand: #2563eb; --brand-dark: #1e3a8a; --brand-rgb: 37, 99, 235; --accent: #14b8a6; --accent-rgb: 20, 184, 166; --warm: #f59e0b; --warm-rgb: 245, 158, 11">
+   <div class="curtain top" aria-hidden="true"></div>

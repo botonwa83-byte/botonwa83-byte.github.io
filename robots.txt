@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://botonwa83-byte.github.io/sitemap.xml
