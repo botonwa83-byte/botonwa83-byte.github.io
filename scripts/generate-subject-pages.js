@@ -596,6 +596,7 @@ const APPS = [
     name: "MathTop",
     subtitle: "小初数学 · 知识点题组",
     review: true,
+    bundleId: "com.mathtop.app",
     icon: "assets/mathtop.png",
     theme: { brand: "#ea580c", brandDark: "#7c2d12", brandRgb: "234, 88, 12", accent: "#0ea5e9", accentRgb: "14, 165, 233", warm: "#f59e0b", warmRgb: "245, 158, 11" },
     title: "88 个知识点各 10 道固定题组，答完就出解析。",
@@ -1157,7 +1158,34 @@ function renderSubjectPage(app) {
 `;
 }
 
+async function lookupAppIdByBundleId(bundleId) {
+  for (const country of ["cn", "us"]) {
+    try {
+      const response = await fetch(`https://itunes.apple.com/${country}/lookup?bundleId=${bundleId}`);
+      const data = await response.json();
+      if (data.resultCount > 0) return String(data.results[0].trackId);
+    } catch (error) {
+      console.warn(`BundleId lookup failed for ${bundleId} (${country}): ${error.message}`);
+    }
+  }
+
+  return null;
+}
+
 async function main() {
+  for (const app of APPS) {
+    if (!app.appId && app.bundleId) {
+      const trackId = await lookupAppIdByBundleId(app.bundleId);
+      if (trackId) {
+        app.appId = trackId;
+        app.review = false;
+        console.log(`${app.name} resolved via bundleId ${app.bundleId} to appId ${trackId}.`);
+      } else {
+        console.log(`${app.name} not on the App Store yet, keeping review state.`);
+      }
+    }
+  }
+
   await Promise.all(APPS.map((app) => fs.writeFile(path.join(ROOT, subjectUrl(app)), renderSubjectPage(app))));
   console.log(`Generated ${APPS.length} subject landing pages.`);
 }

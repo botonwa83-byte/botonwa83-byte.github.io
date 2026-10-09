@@ -24,7 +24,7 @@ const APPS = [
   { id: "geogapex", name: "GeogApex", subtitle: "初高中地理", appId: "6783594491", tagline: "把读图、定位、拆因果和综合题表达练成稳定流程。", description: "围绕空间定位、图表判读、自然过程、人文区位、区域发展和答案工厂，补齐选择题与综合题两条线。", chips: ["图表判读", "区位矩阵", "综合题模板"], icon: "assets/geogapex.png", tile: "tile-geog" },
   { id: "engapex", name: "EngApex", subtitle: "初高中英语", appId: "6784478791", tagline: "把语法填空、完形填空、阅读理解练成系统能力。", description: "围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。", chips: ["句法解码", "完形线索", "阅读题型"], icon: "assets/engapex.png", tile: "tile-eng" },
   { id: "chintop", name: "ChinTop", subtitle: "小初语文 · 五大专题", appId: "6815168238", tagline: "语文不是凭感觉：每个专题都有解题模型和错因定位。", description: "现代文阅读、文言文解码、古诗词鉴赏、考场作文升格、综合性学习五大专题，配逐题解析、错因复盘、能力地图与方法工具箱。", chips: ["五大专题", "307 道题库", "能力地图"], icon: "assets/chintop.png", tile: "tile-chintop" },
-  { id: "mathtop", name: "MathTop", subtitle: "小初数学 · 知识点题组", status: "review", tagline: "88 个知识点各 10 道固定题组，答完就出解析。", description: "每个知识点从基础到变式再到应用，错题自动进「错题变身器」重做；配能力地图、三批仿真题与竞赛压轴等进阶模块。", chips: ["88 个知识点", "错题变身器", "能力地图"], icon: "assets/mathtop.png", tile: "tile-mathtop" },
+  { id: "mathtop", name: "MathTop", subtitle: "小初数学 · 知识点题组", status: "review", bundleId: "com.mathtop.app", tagline: "88 个知识点各 10 道固定题组，答完就出解析。", description: "每个知识点从基础到变式再到应用，错题自动进「错题变身器」重做；配能力地图、三批仿真题与竞赛压轴等进阶模块。", chips: ["88 个知识点", "错题变身器", "能力地图"], icon: "assets/mathtop.png", tile: "tile-mathtop" },
   { id: "engtop", name: "EngTop", subtitle: "初高中英语 · 主线七关", appId: "6815115946", tagline: "提分雷达告诉你先打哪一关，错因诊断告诉你分丢在哪。", description: "主线七关覆盖语法填空、完形、七选五、阅读、应用文、读后续写与听力，配提分雷达、错因诊断、估分器与两个写作工坊。", chips: ["主线七关", "提分雷达", "写作工坊"], icon: "assets/engtop.png", tile: "tile-engtop" }
 ];
 
@@ -77,14 +77,15 @@ async function writeCache(cache) {
   await fs.writeFile(CACHE_FILE, JSON.stringify(cache, null, 2));
 }
 
-async function fetchAppInfoWithRetry(appId, attempt = 1) {
-  if (!appId) return { ok: true, info: null };
+async function fetchAppInfoWithRetry(app, attempt = 1) {
+  if (!app.appId && !app.bundleId) return { ok: true, info: null };
 
+  const query = app.appId ? `id=${app.appId}` : `bundleId=${app.bundleId}`;
   const storefronts = ["cn", "us"];
   let sawError = false;
 
   for (const country of storefronts) {
-    const url = `https://itunes.apple.com/${country}/lookup?id=${appId}`;
+    const url = `https://itunes.apple.com/${country}/lookup?${query}`;
     const args = [
       "-fsSL",
       "--ipv4",
@@ -105,15 +106,15 @@ async function fetchAppInfoWithRetry(appId, attempt = 1) {
       }
     } catch (error) {
       sawError = true;
-      console.warn(`Fetch failed for appId ${appId} (${country}): ${error.message}`);
+      console.warn(`Fetch failed for ${app.appId || app.bundleId} (${country}): ${error.message}`);
     }
   }
 
   if (sawError && attempt < MAX_RETRY_ATTEMPTS) {
     const backoffDelay = Math.pow(2, attempt) * 1000;
-    console.warn(`Retrying appId ${appId} (attempt ${attempt}/${MAX_RETRY_ATTEMPTS}) in ${backoffDelay}ms...`);
+    console.warn(`Retrying ${app.appId || app.bundleId} (attempt ${attempt}/${MAX_RETRY_ATTEMPTS}) in ${backoffDelay}ms...`);
     await new Promise((resolve) => setTimeout(resolve, backoffDelay));
-    return fetchAppInfoWithRetry(appId, attempt + 1);
+    return fetchAppInfoWithRetry(app, attempt + 1);
   }
 
   return sawError ? { ok: false } : { ok: true, info: null };
@@ -144,10 +145,11 @@ async function fetchAllAppStatus(priorLiveIds) {
   const results = [];
 
   for (const app of APPS) {
-    const result = await fetchAppInfoWithRetry(app.appId);
+    const result = await fetchAppInfoWithRetry(app);
     let status = app.status || "plan";
     let appInfo = null;
     let country = "cn";
+    let resolvedAppId = app.appId;
     const iconPath = app.icon ? path.join(ROOT, app.icon) : null;
     const hasIcon = await checkIconExists(iconPath);
 
@@ -155,10 +157,14 @@ async function fetchAllAppStatus(priorLiveIds) {
       status = "live";
       appInfo = result.info;
       country = result.country || "cn";
-    } else if (!result.ok && app.appId && priorLiveIds.has(app.appId)) {
+      if (!resolvedAppId && result.info.trackId) {
+        resolvedAppId = String(result.info.trackId);
+        console.log(`${app.name} resolved via bundleId ${app.bundleId} to appId ${resolvedAppId}.`);
+      }
+    } else if (!result.ok && resolvedAppId && priorLiveIds.has(resolvedAppId)) {
       status = "live";
       console.warn(`Preserving prior live status for ${app.name} after fetch failure.`);
-    } else if (app.appId && !app.status) {
+    } else if (resolvedAppId && !app.status) {
       status = "review";
     }
 
@@ -166,7 +172,7 @@ async function fetchAllAppStatus(priorLiveIds) {
       console.warn(`Icon not found for ${app.name}: ${app.icon}, will use letter marker instead.`);
     }
 
-    results.push({ ...app, status, appInfo, hasIcon, country });
+    results.push({ ...app, appId: resolvedAppId, status, appInfo, hasIcon, country });
   }
 
   return results;
