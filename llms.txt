@@ -1,7 +1,7 @@
 # King Top App 产品线
 
 > King Top 是一个独立开发者产品线，专注于初高中英语与九大学科的教育 App 矩阵，
-> 以及独立的健康趋势工具 KingFit。全部教育产品均已上线 App Store（中国区）。
+> 以及独立的健康趋势工具 KingFit。教育产品分 Apex 系列与 Top 系列，均已上线或推进上架 App Store（中国区）。
 
 联系方式：botonwa83@gmail.com
 
@@ -17,6 +17,12 @@
 - [HistApex](https://botonwa83-byte.github.io/histapex.html): 初高中历史，时间博物馆、史料题、规律迁移
 - [GeogApex](https://botonwa83-byte.github.io/geogapex.html): 初高中地理，图表判读、区位矩阵、综合题模板
 - [EngApex](https://botonwa83-byte.github.io/engapex.html): 初高中英语，句法解码、完形线索、阅读题型
+
+## Top 系列（语数外）
+
+- [ChinTop](https://botonwa83-byte.github.io/chintop.html): 小初语文，现代文、文言、诗词、作文、综合五大专题，逐题解析 + 错因定位 + 能力地图，已上线 App Store
+- [MathTop](https://botonwa83-byte.github.io/mathtop.html): 小初数学，88 个知识点各 10 道固定题组、错题变身器、能力地图，审核中
+- [EngTop](https://botonwa83-byte.github.io/engtop.html): 初高中英语，主线七关、提分雷达、错因诊断、两个写作工坊，已上线 App Store
 
 ## 健康产品
 

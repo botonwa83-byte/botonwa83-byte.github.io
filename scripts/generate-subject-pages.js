@@ -328,7 +328,8 @@ const APPS = [
     id: "polapex",
     name: "PolApex",
     subtitle: "初高中道法 / 思想政治",
-    appId: null,
+    appId: "6783150236",
+    storeRegion: "us",
     icon: "assets/polapex.png",
     status: "plan",
     theme: { brand: "#be123c", brandDark: "#881337", brandRgb: "190, 18, 60", accent: "#f97316", accentRgb: "249, 115, 22", warm: "#22c55e", warmRgb: "34, 197, 94" },
@@ -536,8 +537,276 @@ const APPS = [
       ["判题型", "区分细节、推断、主旨和态度题。"],
       ["练输出", "把词汇、句型和段落结构迁移到写作。"]
     ]
+  },
+  {
+    id: "chintop",
+    name: "ChinTop",
+    subtitle: "小初语文 · 五大专题",
+    appId: "6815168238",
+    icon: "assets/chintop.png",
+    theme: { brand: "#c026d3", brandDark: "#701a75", brandRgb: "192, 38, 211", accent: "#f59e0b", accentRgb: "245, 158, 11", warm: "#14b8a6", warmRgb: "20, 184, 166" },
+    title: "把语文拆成五个能练的专题。",
+    description: "现代文阅读、文言文解码、古诗词鉴赏、考场作文升格、综合性学习五大专题，配解题模型、逐题解析、错因定位与能力地图。",
+    heroTag: "小初语文 · 专题突破",
+    heroLead: "ChinTop 不把语文当玄学：每个专题都有解题模型、逐题解析和错因定位，练完就知道自己丢分丢在哪，五项能力全程量化。",
+    badges: ["五大专题", "307 道题库", "逐题解析", "能力地图"],
+    metrics: [
+      ["5 个", "专题覆盖现代文、文言、诗词、作文与综合学习"],
+      ["307 道", "专题题库，每题带逐条解析与错因定位"],
+      ["5 项", "能力全程量化：证据、推理、表达、写作、复盘"],
+      ["¥22", "完整版一次买断，无订阅无续费"]
+    ],
+    preview: {
+      label: "专题训练",
+      main: "文言文解码 · 翻译与断句",
+      normalLabel: "凭感觉",
+      normalValue: "玄学答题",
+      smartLabel: "解题模型",
+      smartValue: "采分有据",
+      weapons: ["证据链", "文言实虚词", "意象炼字", "作文升格"]
+    },
+    methods: [
+      ["读", "现代文阅读", "证据链、人物形象、结构作用、主旨归纳，先定位再作答。"],
+      ["译", "文言文解码", "实词、虚词、特殊句式、翻译与断句，逐个击破。"],
+      ["赏", "古诗词鉴赏", "意象、炼字、情感与表达技巧，按鉴赏模型组织答案。"],
+      ["写", "考场作文升格", "审题、选材、结构、细节描写，一篇一篇升格。"],
+      ["综", "综合性学习", "图表、新闻、口语交际、材料探究，专项训练。"],
+      ["盘", "错因复盘", "答错自动进错题复盘，配合能力地图看短板。"]
+    ],
+    duel: {
+      title: "语文不是玄学，是采分点训练",
+      lead: "学生真正缺的不是「多读多背」，而是知道每道题的采分点在哪里、答案怎么组织才给分。",
+      normalTitle: "凭感觉答题",
+      normalValue: "说不清丢分",
+      normalText: "答完不知道哪里扣分，下次还是凭感觉，成绩起伏大。",
+      smartTitle: "模型化解题",
+      smartValue: "逐题解析",
+      smartText: "每题带逐条解析与错因定位，知道每一分从哪里来。"
+    },
+    chapters: ["现代文阅读", "文言文", "古诗词", "考场作文", "综合性学习", "能力地图", "错题复盘", "方法工具箱"],
+    workflow: [
+      ["认题型", "先判断题目属于哪个专题、考什么采分点。"],
+      ["套模型", "用对应专题的解题模型组织作答。"],
+      ["对解析", "逐条对照解析，标出丢分步骤。"],
+      ["进复盘", "错题自动归入错题复盘，配合能力地图定向补弱。"]
+    ]
+  },
+  {
+    id: "mathtop",
+    name: "MathTop",
+    subtitle: "小初数学 · 知识点题组",
+    review: true,
+    icon: "assets/mathtop.png",
+    theme: { brand: "#ea580c", brandDark: "#7c2d12", brandRgb: "234, 88, 12", accent: "#0ea5e9", accentRgb: "14, 165, 233", warm: "#f59e0b", warmRgb: "245, 158, 11" },
+    title: "88 个知识点各 10 道固定题组，答完就出解析。",
+    description: "每个知识点从基础到变式再到应用，错题自动进「错题变身器」重做；配能力地图、三批仿真题与竞赛压轴等进阶模块。",
+    heroTag: "小初数学 · 题组通关",
+    heroLead: "MathTop 把小学高年级到初中的数学拆成 88 个能练的知识点，每组 10 道题层层递进，答完立刻出解析，错题变身器负责把错题真正过掉。",
+    badges: ["88 个知识点", "每点 10 题题组", "错题变身器", "能力地图"],
+    metrics: [
+      ["88 个", "知识点，覆盖小学高年级到初中数学"],
+      ["10 道", "每个知识点固定题组：基础 → 变式 → 应用"],
+      ["3 批", "共 100 道仿真题，适合考前限时过题"],
+      ["5 项", "数感、空间、推理、建模、数据全程量化"]
+    ],
+    preview: {
+      label: "知识点题组",
+      main: "一元一次方程 · 第 4/10 题",
+      normalLabel: "刷题量",
+      normalValue: "无序重复",
+      smartLabel: "题组递进",
+      smartValue: "层层变式",
+      weapons: ["基础题", "变式题", "应用题", "错题变身器"]
+    },
+    methods: [
+      ["组", "知识点题组", "每个知识点固定 10 道：基础 → 变式 → 应用，含解析与错因定位。"],
+      ["变", "错题变身器", "错题重做 + 变式再练，直到真正过掉为止。"],
+      ["图", "能力地图", "数感、空间、推理、建模、数据五项能力全程量化。"],
+      ["仿", "仿真题批", "三批共 100 道仿真题，集中限时训练。"],
+      ["竞", "进阶模块", "竞赛压轴、几何实验室、应用题冲刺、阶段测评。"],
+      ["档", "成长摘要", "本地记录学习进度与掌握变化，无需登录。"]
+    ],
+    duel: {
+      title: "不是刷题量，是题组递进",
+      lead: "数学提分的关键不是做更多题，而是让每个薄弱知识点都被针对性练到「会了」。",
+      normalTitle: "盲目刷题",
+      normalValue: "会做的反复做",
+      normalText: "题量不小，但薄弱知识点始终没有被针对性训练。",
+      smartTitle: "题组 + 变身器",
+      smartValue: "错哪练哪",
+      smartText: "每知识点 10 道递进题组，错题自动变身重做，直到过掉。"
+    },
+    chapters: ["数与运算", "方程", "几何", "应用题", "函数启蒙", "统计与数据", "仿真限时", "竞赛压轴"],
+    workflow: [
+      ["选知识点", "从能力地图挑薄弱知识点进入题组。"],
+      ["过 10 题组", "基础 → 变式 → 应用，答完立刻出解析。"],
+      ["错题变身", "错题进变身器，重做加变式直到掌握。"],
+      ["仿真检验", "用仿真题批限时训练，检验阶段成果。"]
+    ]
+  },
+  {
+    id: "engtop",
+    name: "EngTop",
+    subtitle: "初高中英语 · 主线七关",
+    appId: "6815115946",
+    icon: "assets/engtop.png",
+    theme: { brand: "#db2777", brandDark: "#831843", brandRgb: "219, 39, 119", accent: "#0ea5e9", accentRgb: "14, 165, 233", warm: "#f59e0b", warmRgb: "245, 158, 11" },
+    title: "提分雷达告诉你先打哪一关，错因诊断告诉你分丢在哪。",
+    description: "主线七关覆盖语法填空、完形、七选五、阅读、应用文、读后续写与听力，配提分雷达、错因诊断、估分器与两个写作工坊。",
+    heroTag: "初高中英语 · 七关主线",
+    heroLead: "EngTop 不只告诉你错了，还告诉你分丢在哪、下一步先打哪一关：主线七关 + 提分雷达 + 错因诊断 + 两个写作工坊，把英语提分变成有顺序的攻关。",
+    badges: ["主线七关", "提分雷达", "错因诊断", "写作工坊"],
+    metrics: [
+      ["7 关", "从语法骨架到听力抓取的主线学习路径"],
+      ["4 类", "错因归到四类根因，给出对应训练建议"],
+      ["2 个", "读后续写与应用文工坊，含句式弹药库"],
+      ["0 登录", "完全离线运行，学习记录只保存在设备上"]
+    ],
+    preview: {
+      label: "提分雷达",
+      main: "建议先打：L2 完形逻辑链",
+      normalLabel: "按题号刷",
+      normalValue: "顺序刷题",
+      smartLabel: "按失分推",
+      smartValue: "先打弱关",
+      weapons: ["提分雷达", "错因诊断", "估分器", "写作教练"]
+    },
+    methods: [
+      ["关", "主线七关", "语法骨架、完形逻辑链、七选五、阅读、应用文、读后续写、听力抓取。"],
+      ["达", "提分雷达", "按规则强度 × 你的失分推荐先打哪一关，不按题号顺序刷。"],
+      ["诊", "错因诊断", "把错误归到四类根因，给出对应建议。"],
+      ["坊", "写作工坊", "读后续写工坊、应用文工坊，含句式弹药库与写作教练。"],
+      ["估", "估分器", "考点图谱 + 估分驾驶舱，随时看当前水平与差距。"],
+      ["训", "能力训练营", "词汇专项与句式库，日常滚动积累。"]
+    ],
+    duel: {
+      title: "英语提分不靠刷题量",
+      lead: "刷题的收益取决于顺序：先补失分最多的规则，再谈题量。",
+      normalTitle: "按顺序刷题",
+      normalValue: "不知先打哪",
+      normalText: "刷了很多题，但不知道弱项在哪、下一步该练什么。",
+      smartTitle: "雷达 + 诊断",
+      smartValue: "指哪打哪",
+      smartText: "提分雷达排序弱关，错因诊断定位根因，每一步都有明确目标。"
+    },
+    chapters: ["语法填空", "完形填空", "七选五", "阅读理解", "应用文写作", "读后续写", "听力抓取", "词汇专项"],
+    workflow: [
+      ["测现状", "用估分器与考点图谱看当前水平。"],
+      ["打弱关", "按提分雷达推荐，先攻失分最多的关卡。"],
+      ["诊断错因", "每关即时诊断，把错误归到四类根因。"],
+      ["工坊升格", "在写作工坊用句式弹药库与写作教练升格作文。"]
+    ]
   }
 ];
+
+const SITE_BASE = "https://botonwa83-byte.github.io";
+
+const SEO_META = {
+  wordpulse: {
+    description: "WordPulse 是一款面向初高中生的英语词汇 App，围绕词根词缀、词源故事、先猜后揭和纯离线学习，帮助学生看到陌生长难词时也能拆解词根猜出词义。",
+    faq: [
+      ["WordPulse 需要联网才能使用吗？", "不需要。WordPulse 采用纯离线学习设计，词库和词源故事都内置在 App 中。"],
+      ["WordPulse 适合初中生还是高中生？", "WordPulse 覆盖初高中英语词汇，词根词缀和词源故事的设计同时适配两个学段的高频难词。"],
+      ["WordPulse 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  mathapex: {
+    description: "MathApex 是一款初高中数学 App，提供常规解法与降维秒杀双解对照，结合公式宇宙、错题复习，帮助学生打通压轴题。",
+    faq: [
+      ["MathApex 适合哪个学段？", "MathApex 覆盖初高中数学，压轴题训练更偏向中高考冲刺阶段。"],
+      ["MathApex 的双解对照是什么意思？", "同一道题会同时展示常规解法和更快的降维解法，帮助学生理解思路差异。"],
+      ["MathApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  physicsapex: {
+    description: "PhysicsApex 是一款初高中物理 App，用互动模拟沙盘、考点地图和错因诊断，把守恒、对称与等效等抽象概念变成可观察的现象。",
+    faq: [
+      ["PhysicsApex 适合哪个学段？", "PhysicsApex 覆盖初高中物理，尤其针对高考压轴题的降维解法做了专门设计。"],
+      ["PhysicsApex 需要联网吗？", "核心刷题与讲解内容支持离线使用，具体以 App 内说明为准。"],
+      ["PhysicsApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  chemapex: {
+    description: "ChemApex 是一款初高中化学 App，通过元素星图、方程式剧本库和守恒战例，把推断题、守恒题和实验题拆解成可复用的解题方法。",
+    faq: [
+      ["ChemApex 适合哪个学段？", "ChemApex 覆盖初高中化学，元素与方程式体系同时兼顾两个学段的考点。"],
+      ["ChemApex 能帮助推断题吗？", "可以，ChemApex 专门设计了化学神探等模块用于训练推断题思路。"],
+      ["ChemApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  bioapex: {
+    description: "BioApex 是一款初高中生物 App，用过程剧场、考点图谱和遗传神探，帮助学生系统理解生命过程与易混知识点。",
+    faq: [
+      ["BioApex 适合哪个学段？", "BioApex 覆盖初高中生物，遗传专题偏重高中阶段考点。"],
+      ["BioApex 如何处理易混知识点？", "BioApex 提供专门的易混辨析模块，对比相似概念的区别。"],
+      ["BioApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  chinapex: {
+    description: "ChinApex 是一款初高中语文 App，围绕采分点训练、文言解码和作文工坊，把语文学习变成可操作的得分动作。",
+    faq: [
+      ["ChinApex 适合哪个学段？", "ChinApex 覆盖初高中语文，文言文和作文模块同时兼顾两个学段。"],
+      ["ChinApex 能帮助文言文学习吗？", "可以，ChinApex 提供文言解码模块专门训练文言文阅读。"],
+      ["ChinApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  polapex: {
+    description: "PolApex 是一款初高中道法/思想政治 App，围绕高权重记忆、材料切片和答案工厂，把政治学习变成可检索、可迁移的能力。",
+    faq: [
+      ["PolApex 适合哪个学段？", "PolApex 覆盖初中道法与高中思想政治。"],
+      ["PolApex 如何训练材料题？", "PolApex 提供材料切片和答案工厂模块，训练材料分析和作答规范。"],
+      ["PolApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  histapex: {
+    description: "HistApex 是一款初高中历史 App，用时间博物馆、史料相遇和答案模板，把历史事件记忆推进到解释因果与规律迁移。",
+    faq: [
+      ["HistApex 适合哪个学段？", "HistApex 覆盖初高中历史，时间线和材料题训练兼顾两个学段。"],
+      ["HistApex 能帮助材料分析题吗？", "可以，HistApex 提供史料相遇和答案模板模块。"],
+      ["HistApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  geogapex: {
+    description: "GeogApex 是一款初高中地理 App，围绕空间定位、图表判读和综合题模板，训练学生读图、拆因果和综合题表达的稳定流程。",
+    faq: [
+      ["GeogApex 适合哪个学段？", "GeogApex 覆盖初高中地理，读图和区位分析兼顾两个学段考点。"],
+      ["GeogApex 能帮助综合题吗？", "可以，GeogApex 提供答案工厂模块专门训练综合题表达。"],
+      ["GeogApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  engapex: {
+    description: "EngApex 是一款初高中英语 App，围绕句法解码、完形线索和写作框架，把语法填空、完形和阅读理解练成系统能力。",
+    faq: [
+      ["EngApex 和 WordPulse 有什么区别？", "WordPulse 专注词汇记忆，EngApex 专注语法、完形和阅读等题型训练。"],
+      ["EngApex 适合哪个学段？", "EngApex 覆盖初高中英语题型训练。"],
+      ["EngApex 收费吗？", "请以 App Store 页面显示的最新价格和内购信息为准。"]
+    ]
+  },
+  chintop: {
+    description: "ChinTop 是一款小初语文 App，把语文拆成现代文阅读、文言文解码、古诗词鉴赏、考场作文升格与综合性学习五大专题，每道题带逐题解析与错因定位。",
+    faq: [
+      ["ChinTop 适合哪个学段？", "ChinTop 面向小学高年级到初中语文，五大专题覆盖小升初与中考高频考点。"],
+      ["ChinTop 怎么帮我找到丢分原因？", "每道题都有逐条解析，答错自动进错题复盘，配合能力地图定位薄弱能力。"],
+      ["ChinTop 收费吗？", "五个专题可免费试练，完整版 ¥22 一次性买断，无订阅无续费。"]
+    ]
+  },
+  mathtop: {
+    description: "MathTop 是一款小初数学 App，把数学拆成 88 个知识点，每个知识点一组 10 道递进题，错题自动进错题变身器重做。",
+    faq: [
+      ["MathTop 适合哪个学段？", "MathTop 覆盖小学高年级到初中数学，按 88 个知识点组织训练。"],
+      ["MathTop 的错题变身器是什么？", "错题会自动进入变身器，通过重做加变式再练，直到真正掌握。"],
+      ["MathTop 收费吗？", "每个知识点前 3 题免费试练，完整版 ¥22 一次性买断，无订阅无续费。"]
+    ]
+  },
+  engtop: {
+    description: "EngTop 是一款初高中英语 App，主线七关覆盖语法填空、完形、七选五、阅读、应用文、读后续写与听力，配提分雷达与错因诊断。",
+    faq: [
+      ["EngTop 适合哪个学段？", "EngTop 覆盖初高中英语题型训练，主线七关从中考到高考题型都有覆盖。"],
+      ["EngTop 的提分雷达是什么？", "提分雷达按规则强度和你的失分情况推荐先打哪一关，而不是按题号顺序刷题。"],
+      ["EngTop 收费吗？", "主线前三关免费，完整版 ¥22 一次性买断，无订阅无续费。"]
+    ]
+  }
+};
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -552,7 +821,7 @@ function escapeAttr(value) {
 }
 
 function appStoreUrl(app) {
-  return app.appId ? `https://apps.apple.com/cn/app/${app.appId}` : "";
+  return app.appId ? `https://apps.apple.com/${app.storeRegion || "cn"}/app/${app.appId}` : "";
 }
 
 function subjectUrl(app) {
@@ -565,6 +834,43 @@ function iconHtml(app, className = "", alt = "") {
   }
 
   return `<span${className ? ` class="${className} letter-icon"` : ` class="letter-icon"`} aria-hidden="true">${escapeHtml(app.name.charAt(0))}</span>`;
+}
+
+function renderJsonLd(app) {
+  const seo = SEO_META[app.id];
+  if (!seo) return "";
+
+  const softwareApp = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": app.name,
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "iOS",
+    "description": seo.description,
+    "url": `${SITE_BASE}/${app.id}.html`,
+    "author": { "@type": "Organization", "name": "King Top" }
+  };
+
+  if (app.appId) {
+    softwareApp.offers = { "@type": "Offer", "url": `https://apps.apple.com/${app.storeRegion || "cn"}/app/${app.appId}` };
+  }
+
+  const faqPage = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": seo.faq.map(([question, answer]) => ({
+      "@type": "Question",
+      "name": question,
+      "acceptedAnswer": { "@type": "Answer", "text": answer }
+    }))
+  };
+
+  return `<script type="application/ld+json">
+${JSON.stringify(softwareApp, null, 2)}
+</` + `script>
+<script type="application/ld+json">
+${JSON.stringify(faqPage, null, 2)}
+</` + `script>`;
 }
 
 function renderStoreButton(app, classes = "button primary") {
@@ -611,8 +917,11 @@ function renderSubjectPage(app) {
   <meta property="og:type" content="website">
   <title>${escapeHtml(app.name)} · ${escapeHtml(app.title)}</title>
   <link rel="stylesheet" href="assets/subject-landing.css">
+  ${renderJsonLd(app)}
 </head>
 <body style="${themeStyle}">
+  <div class="curtain top" aria-hidden="true"></div>
+  <div class="curtain bottom" aria-hidden="true"></div>
   <header class="landing-header">
     <nav class="landing-nav" aria-label="${escapeAttr(app.name)} 导航">
       <a class="brand" href="${canonical}" aria-label="${escapeAttr(app.name)} 首页">
@@ -631,6 +940,7 @@ function renderSubjectPage(app) {
 
   <main>
     <section class="hero">
+      <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="wrap hero-inner">
         <div>
           <p class="eyebrow">${escapeHtml(app.heroTag)}</p>
@@ -657,7 +967,7 @@ function renderSubjectPage(app) {
                   <strong>${escapeHtml(app.name)}</strong>
                   <span>${escapeHtml(app.subtitle)}</span>
                 </div>
-                <span class="status-dot">${app.appId ? "已上线" : "准备中"}</span>
+                <span class="status-dot">${app.appId ? "已上线" : app.review ? "审核中" : "准备中"}</span>
               </div>
               <div class="screen-card">
                 <div class="label">${escapeHtml(app.preview.label)}</div>
@@ -765,8 +1075,8 @@ function renderSubjectPage(app) {
       <div class="wrap">
         <div class="cta-band">
           <div>
-            <h2>${app.appId ? "打开 App Store，开始训练" : "产品上架准备中"}</h2>
-            <p>${app.appId ? `${app.name} 已配置中国区 App Store 下载入口。` : `${app.name} 已纳入 King Top 教育产品矩阵，上架后会补充公开下载入口。`}</p>
+            <h2>${app.appId ? "打开 App Store，开始训练" : app.review ? "即将上线" : "产品上架准备中"}</h2>
+            <p>${app.appId ? `${app.name} 已配置中国区 App Store 下载入口。` : app.review ? `${app.name} 已提交 App Store 审核，公开下载页放出后立即更新。` : `${app.name} 已纳入 King Top 教育产品矩阵，上架后会补充公开下载入口。`}</p>
           </div>
           ${renderStoreButton(app, "button secondary")}
         </div>
@@ -819,6 +1129,15 @@ function renderSubjectPage(app) {
 
       const hero = document.querySelector(".hero");
       const visual = document.querySelector(".hero-visual");
+      if (finePointer && hero) {
+        hero.addEventListener("pointermove", (event) => {
+          const rect = hero.getBoundingClientRect();
+          const px = ((event.clientX - rect.left) / rect.width) * 100;
+          const py = ((event.clientY - rect.top) / rect.height) * 100;
+          hero.style.setProperty("--sx", \`\${px}%\`);
+          hero.style.setProperty("--sy", \`\${py}%\`);
+        });
+      }
       if (!reduceMotion && finePointer && hero && visual) {
         hero.addEventListener("pointermove", (event) => {
           const rect = hero.getBoundingClientRect();

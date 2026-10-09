@@ -438,6 +438,9 @@
     .tile-hist { left: 28%; bottom: 0; animation-delay: -5.3s; }
     .tile-geog { right: 0; bottom: -2%; animation-delay: -6s; }
     .tile-eng { left: 12%; top: 14%; animation-delay: -6.7s; }
+    .tile-chintop { right: 13%; top: 20%; animation-delay: -7.4s; }
+    .tile-mathtop { left: 41%; top: 40%; animation-delay: -8.1s; }
+    .tile-engtop { left: 56%; top: 0; animation-delay: -8.8s; }
 
     main {
       overflow: hidden;
@@ -1062,7 +1065,7 @@
       }
 
       .app-cloud {
-        min-height: 360px;
+        min-height: 510px;
         width: min(100%, 520px);
         margin: 0 auto;
       }
@@ -1251,7 +1254,7 @@
 
     @media (max-width: 430px) {
       .app-cloud {
-        min-height: 430px;
+        min-height: 510px;
       }
 
       .app-tile {
@@ -1284,6 +1287,9 @@
       .tile-hist { left: 24%; bottom: 18px; }
       .tile-geog { right: 3%; bottom: 0; }
       .tile-eng { left: 66%; top: 66px; }
+      .tile-chintop { left: 2%; top: 372px; }
+      .tile-mathtop { left: 37%; top: 380px; }
+      .tile-engtop { right: 2%; top: 372px; }
     }
 
     @media (max-width: 360px) {
@@ -1495,7 +1501,10 @@
     { "@type": "ListItem", "position": 8, "item": { "@type": "SoftwareApplication", "name": "HistApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中历史 App，时间博物馆、史料相遇、规律迁移。", "url": "https://botonwa83-byte.github.io/histapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6783254820" } } },
     { "@type": "ListItem", "position": 9, "item": { "@type": "SoftwareApplication", "name": "GeogApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中地理 App，空间定位、图表判读、综合题模板。", "url": "https://botonwa83-byte.github.io/geogapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6783594491" } } },
     { "@type": "ListItem", "position": 10, "item": { "@type": "SoftwareApplication", "name": "EngApex", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中英语 App，句法解码、完形线索、写作框架。", "url": "https://botonwa83-byte.github.io/engapex.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6784478791" } } },
-    { "@type": "ListItem", "position": 11, "item": { "@type": "SoftwareApplication", "name": "KingFit", "applicationCategory": "HealthApplication", "operatingSystem": "iOS, watchOS", "description": "个人健康趋势与运动恢复参考工具，本机生成恢复评分、训练负荷和睡眠趋势，无需注册登录。", "url": "https://botonwa83-byte.github.io/kingfit.html", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY", "url": "https://apps.apple.com/cn/app/kingfit-%E5%81%A5%E5%BA%B7%E8%B6%8B%E5%8A%BF/id6785718008" } } }
+    { "@type": "ListItem", "position": 11, "item": { "@type": "SoftwareApplication", "name": "ChinTop", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "小初语文 App，现代文、文言、诗词、作文、综合五大专题，逐题解析与错因定位。", "url": "https://botonwa83-byte.github.io/chintop.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6815168238" } } },
+    { "@type": "ListItem", "position": 12, "item": { "@type": "SoftwareApplication", "name": "MathTop", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "小初数学 App，88 个知识点固定题组，错题变身器与能力地图。", "url": "https://botonwa83-byte.github.io/mathtop.html" } },
+    { "@type": "ListItem", "position": 13, "item": { "@type": "SoftwareApplication", "name": "EngTop", "applicationCategory": "EducationalApplication", "operatingSystem": "iOS", "description": "初高中英语 App，主线七关、提分雷达、错因诊断与写作工坊。", "url": "https://botonwa83-byte.github.io/engtop.html", "offers": { "@type": "Offer", "url": "https://apps.apple.com/cn/app/6815115946" } } },
+    { "@type": "ListItem", "position": 14, "item": { "@type": "SoftwareApplication", "name": "KingFit", "applicationCategory": "HealthApplication", "operatingSystem": "iOS, watchOS", "description": "个人健康趋势与运动恢复参考工具，本机生成恢复评分、训练负荷和睡眠趋势，无需注册登录。", "url": "https://botonwa83-byte.github.io/kingfit.html", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY", "url": "https://apps.apple.com/cn/app/kingfit-%E5%81%A5%E5%BA%B7%E8%B6%8B%E5%8A%BF/id6785718008" } } }
   ]
 }
 </script>
@@ -1554,6 +1563,9 @@
                     <a class="app-tile tile-hist" href="https://apps.apple.com/cn/app/6783254820" target="_blank" rel="noopener" aria-label="前往 App Store 下载 HistApex"><img src="assets/histapex.png" alt=""><strong>HistApex</strong><span>初高中历史</span></a>
                     <a class="app-tile tile-geog" href="https://apps.apple.com/cn/app/6783594491" target="_blank" rel="noopener" aria-label="前往 App Store 下载 GeogApex"><img src="assets/geogapex.png" alt=""><strong>GeogApex</strong><span>初高中地理</span></a>
                     <a class="app-tile tile-eng" href="https://apps.apple.com/cn/app/6784478791" target="_blank" rel="noopener" aria-label="前往 App Store 下载 EngApex"><img src="assets/engapex.png" alt=""><strong>EngApex</strong><span>初高中英语</span></a>
+                    <a class="app-tile tile-chintop" href="https://apps.apple.com/cn/app/6815168238" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChinTop"><img src="assets/chintop.png" alt=""><strong>ChinTop</strong><span>小初语文 · 五大专题</span></a>
+                    <div class="app-tile tile-mathtop" ><img src="assets/mathtop.png" alt=""><strong>MathTop</strong><span>小初数学 · 知识点题组</span></div>
+                    <a class="app-tile tile-engtop" href="https://apps.apple.com/cn/app/6815115946" target="_blank" rel="noopener" aria-label="前往 App Store 下载 EngTop"><img src="assets/engtop.png" alt=""><strong>EngTop</strong><span>初高中英语 · 主线七关</span></a>
           <!-- APP_STATUS_CLOUD_END -->
         </div>
       </div>
@@ -1570,9 +1582,9 @@
       <div class="wrap">
         <div class="metric-row" aria-label="产品概览">
           <!-- APP_STATUS_METRICS_START -->
-          <div class="metric"><strong>10</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
-                    <div class="metric"><strong>10</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>
-                    <div class="metric"><strong>0</strong><span>全部产品均已上线 App Store</span></div>
+          <div class="metric"><strong>13</strong><span>初高中教育产品方向，覆盖英语与核心学科</span></div>
+                    <div class="metric"><strong>12</strong><span>已上线 App Store，点击产品图标可进入下载页</span></div>
+                    <div class="metric"><strong>1</strong><span>提交审核中，等待 App Store 放出下载页</span></div>
                     <div class="metric"><strong>100%</strong><span>优先离线内容、本地学习记录、低依赖发布</span></div>
           <!-- APP_STATUS_METRICS_END -->
         </div>
@@ -1759,6 +1771,57 @@
             <p>围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。</p>
             <div class="chips"><span class="chip">句法解码</span><span class="chip">完形线索</span><span class="chip">阅读题型</span><a class="chip chip-link" href="engapex.html">查看广告页</a></div>
           </article>
+
+                    
+          <article class="product-card">
+            <div class="product-top">
+              <div class="product-id">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/6815168238" target="_blank" rel="noopener" aria-label="前往 App Store 下载 ChinTop"><img class="product-icon" src="assets/chintop.png" alt="ChinTop 图标"></a>
+                <div class="product-title">
+                  <h3>ChinTop</h3>
+                  <p>小初语文 · 五大专题</p>
+                </div>
+              </div>
+              <span class="status live">已上线</span>
+            </div>
+            <p class="tagline">语文不是凭感觉：每个专题都有解题模型和错因定位。</p>
+            <p>现代文阅读、文言文解码、古诗词鉴赏、考场作文升格、综合性学习五大专题，配逐题解析、错因复盘、能力地图与方法工具箱。</p>
+            <div class="chips"><span class="chip">五大专题</span><span class="chip">307 道题库</span><span class="chip">能力地图</span><a class="chip chip-link" href="chintop.html">查看广告页</a></div>
+          </article>
+
+                    
+          <article class="product-card">
+            <div class="product-top">
+              <div class="product-id">
+                <img class="product-icon" src="assets/mathtop.png" alt="MathTop 图标">
+                <div class="product-title">
+                  <h3>MathTop</h3>
+                  <p>小初数学 · 知识点题组</p>
+                </div>
+              </div>
+              <span class="status review">审核中</span>
+            </div>
+            <p class="tagline">88 个知识点各 10 道固定题组，答完就出解析。</p>
+            <p>每个知识点从基础到变式再到应用，错题自动进「错题变身器」重做；配能力地图、三批仿真题与竞赛压轴等进阶模块。</p>
+            <div class="chips"><span class="chip">88 个知识点</span><span class="chip">错题变身器</span><span class="chip">能力地图</span><a class="chip chip-link" href="mathtop.html">查看广告页</a></div>
+          </article>
+
+                    
+          <article class="product-card">
+            <div class="product-top">
+              <div class="product-id">
+                <a class="store-icon-link" href="https://apps.apple.com/cn/app/6815115946" target="_blank" rel="noopener" aria-label="前往 App Store 下载 EngTop"><img class="product-icon" src="assets/engtop.png" alt="EngTop 图标"></a>
+                <div class="product-title">
+                  <h3>EngTop</h3>
+                  <p>初高中英语 · 主线七关</p>
+                </div>
+              </div>
+              <span class="status live">已上线</span>
+            </div>
+            <p class="tagline">提分雷达告诉你先打哪一关，错因诊断告诉你分丢在哪。</p>
+            <p>主线七关覆盖语法填空、完形、七选五、阅读、应用文、读后续写与听力，配提分雷达、错因诊断、估分器与两个写作工坊。</p>
+            <div class="chips"><span class="chip">主线七关</span><span class="chip">提分雷达</span><span class="chip">写作工坊</span><a class="chip chip-link" href="engtop.html">查看广告页</a></div>
+          </article>
           <!-- APP_STATUS_PRODUCTS_END -->
         </div>
       </div>
@@ -1834,8 +1897,8 @@
         </div>
         <div class="roadmap">
           <!-- APP_STATUS_ROADMAP_START -->
-          <div class="road-card"><h3>10 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、PolApex、HistApex、GeogApex、EngApex 已配置中国区 App Store 下载页，点击图标即可直达。</p></div>
-                    <div class="road-card"><h3>矩阵已全部上线</h3><p>所有学科产品均可在 App Store 下载，后续以内容更新与体验打磨为主。</p></div>
+          <div class="road-card"><h3>12 个已上线</h3><p>WordPulse、MathApex、PhysicsApex、ChemApex、BioApex、ChinApex、PolApex、HistApex、GeogApex、EngApex、ChinTop、EngTop 已配置中国区 App Store 下载页，点击图标即可直达。</p></div>
+                    <div class="road-card"><h3>1 个推进中</h3><p>MathTop 提交审核中，已纳入教育产品线，当前不放无效下载入口。</p></div>
                     <div class="road-card"><h3>状态每日自动同步</h3><p>每天自动检测 App Store 公开页，上线后产品图标会自动切换为下载跳转，无需手动改文案。</p></div>
           <!-- APP_STATUS_ROADMAP_END -->
         </div>

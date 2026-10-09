@@ -22,7 +22,10 @@ const APPS = [
   { id: "polapex", name: "PolApex", subtitle: "初高中道法 / 思想政治", appId: "6783150236", tagline: "把政治从背了就忘，变成可检索、可迁移、可输出。", description: "围绕高权重记忆、主体职责、材料切片、答案工厂和选择题排雷。", chips: ["材料切片", "答案工厂", "主体定位"], icon: "assets/polapex.png", tile: "tile-pol" },
   { id: "histapex", name: "HistApex", subtitle: "初高中历史", appId: "6783254820", tagline: "把时间线、制度线和材料题写法连成历史高分系统。", description: "用时间博物馆、史料相遇、历史规律、专题突破和答案模板，把背事件推进到解释变化与因果。", chips: ["时间博物馆", "史料题", "规律迁移"], icon: "assets/histapex.png", tile: "tile-hist" },
   { id: "geogapex", name: "GeogApex", subtitle: "初高中地理", appId: "6783594491", tagline: "把读图、定位、拆因果和综合题表达练成稳定流程。", description: "围绕空间定位、图表判读、自然过程、人文区位、区域发展和答案工厂，补齐选择题与综合题两条线。", chips: ["图表判读", "区位矩阵", "综合题模板"], icon: "assets/geogapex.png", tile: "tile-geog" },
-  { id: "engapex", name: "EngApex", subtitle: "初高中英语", appId: "6784478791", tagline: "把语法填空、完形填空、阅读理解练成系统能力。", description: "围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。", chips: ["句法解码", "完形线索", "阅读题型"], icon: "assets/engapex.png", tile: "tile-eng" }
+  { id: "engapex", name: "EngApex", subtitle: "初高中英语", appId: "6784478791", tagline: "把语法填空、完形填空、阅读理解练成系统能力。", description: "围绕句法解码、完形线索、阅读题型和写作框架，让英语从语感变成可操作的解题流程。", chips: ["句法解码", "完形线索", "阅读题型"], icon: "assets/engapex.png", tile: "tile-eng" },
+  { id: "chintop", name: "ChinTop", subtitle: "小初语文 · 五大专题", appId: "6815168238", tagline: "语文不是凭感觉：每个专题都有解题模型和错因定位。", description: "现代文阅读、文言文解码、古诗词鉴赏、考场作文升格、综合性学习五大专题，配逐题解析、错因复盘、能力地图与方法工具箱。", chips: ["五大专题", "307 道题库", "能力地图"], icon: "assets/chintop.png", tile: "tile-chintop" },
+  { id: "mathtop", name: "MathTop", subtitle: "小初数学 · 知识点题组", status: "review", tagline: "88 个知识点各 10 道固定题组，答完就出解析。", description: "每个知识点从基础到变式再到应用，错题自动进「错题变身器」重做；配能力地图、三批仿真题与竞赛压轴等进阶模块。", chips: ["88 个知识点", "错题变身器", "能力地图"], icon: "assets/mathtop.png", tile: "tile-mathtop" },
+  { id: "engtop", name: "EngTop", subtitle: "初高中英语 · 主线七关", appId: "6815115946", tagline: "提分雷达告诉你先打哪一关，错因诊断告诉你分丢在哪。", description: "主线七关覆盖语法填空、完形、七选五、阅读、应用文、读后续写与听力，配提分雷达、错因诊断、估分器与两个写作工坊。", chips: ["主线七关", "提分雷达", "写作工坊"], icon: "assets/engtop.png", tile: "tile-engtop" }
 ];
 
 function escapeHtml(value) {
